@@ -40,9 +40,9 @@ Run the metrics collection script:
 bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json
 ```
 
-This returns JSON with `total_input`, `total_output`, `total_tokens`, `total_cache_read`, `total_cache_create`, `total_all_tokens`, `sessions`, `assistant_messages`.
+This returns JSON with `total_input`, `total_output`, `total_tokens`, `total_cache_read`, `total_cache_create`, `total_all_tokens`, `sessions`, `assistant_messages`, `cost_total`, `models`, `source`.
 
-The script parses JSONL session transcripts from `~/.claude/projects/<project-slug>/*.jsonl`, extracting `usage` data from each assistant message.
+The script uses `npx ccusage` as the primary data source (accurate per-model pricing for Opus + Haiku). Falls back to manual JSONL transcript parsing if ccusage is unavailable.
 
 If the script is not available or fails, manually parse session data:
 

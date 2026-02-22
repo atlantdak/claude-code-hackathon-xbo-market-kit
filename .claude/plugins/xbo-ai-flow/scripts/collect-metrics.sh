@@ -4,12 +4,10 @@ set -euo pipefail
 # =============================================================================
 # XBO AI Flow — Metrics Collector
 # =============================================================================
-# Parses Claude Code JSONL session transcripts to aggregate token usage
-# for sessions related to the xbo-market-kit project.
+# Collects token usage and cost data for the xbo-market-kit project.
 #
-# Data source: ~/.claude/projects/<project-slug>/*.jsonl
-# Each assistant message contains usage.input_tokens, usage.output_tokens,
-# usage.cache_read_input_tokens, usage.cache_creation_input_tokens
+# Primary source: npx ccusage (accurate per-model pricing, billing data)
+# Fallback: manual JSONL transcript parsing (approximate, Opus pricing only)
 #
 # Usage: bash collect-metrics.sh [--json]
 # =============================================================================
@@ -17,13 +15,80 @@ set -euo pipefail
 PROJECT_SLUG="-Users-atlantdak-Local-Sites-claude-code-hackathon-xbo-market-kit-app-public"
 PROJECT_DIR="$HOME/.claude/projects/$PROJECT_SLUG"
 
-if [ ! -d "$PROJECT_DIR" ]; then
-    echo "Error: Project directory not found: $PROJECT_DIR"
-    exit 1
+# Try ccusage first (accurate per-model pricing)
+CCUSAGE_DATA=""
+if command -v npx &>/dev/null; then
+    CCUSAGE_DATA=$(npx ccusage daily --since 20260222 --json --instances --breakdown 2>/dev/null || echo "")
 fi
 
-# Use python3 to parse JSONL files and aggregate token usage
-METRICS=$(python3 -c "
+if [ -n "$CCUSAGE_DATA" ]; then
+    # Extract project-specific data from ccusage
+    METRICS=$(python3 -c "
+import json, sys
+
+data = json.loads('''$CCUSAGE_DATA''')
+projects = data.get('projects', {})
+
+# Find our project
+project_key = '$PROJECT_SLUG'
+project_data = projects.get(project_key, [])
+
+total_input = 0
+total_output = 0
+total_cache_read = 0
+total_cache_create = 0
+total_cost = 0.0
+models = set()
+
+for entry in project_data:
+    total_input += entry.get('inputTokens', 0)
+    total_output += entry.get('outputTokens', 0)
+    total_cache_read += entry.get('cacheReadTokens', 0)
+    total_cache_create += entry.get('cacheCreationTokens', 0)
+    total_cost += entry.get('totalCost', 0.0)
+    for m in entry.get('modelsUsed', []):
+        models.add(m)
+
+total_tokens = total_input + total_output
+total_all = total_tokens + total_cache_read + total_cache_create
+
+# Count sessions from JSONL files
+import os, glob
+jsonl_files = glob.glob(os.path.join('$PROJECT_DIR', '*.jsonl'))
+session_count = len(jsonl_files)
+msg_count = 0
+for f in jsonl_files:
+    with open(f) as fp:
+        for line in fp:
+            try:
+                d = json.loads(line)
+                if d.get('type') == 'assistant':
+                    msg_count += 1
+            except:
+                pass
+
+print(json.dumps({
+    'total_input': total_input,
+    'total_output': total_output,
+    'total_cache_read': total_cache_read,
+    'total_cache_create': total_cache_create,
+    'total_tokens': total_tokens,
+    'total_all_tokens': total_all,
+    'sessions': session_count,
+    'assistant_messages': msg_count,
+    'cost_total': round(total_cost, 2),
+    'models': sorted(list(models)),
+    'source': 'ccusage'
+}))
+" 2>/dev/null)
+else
+    # Fallback: parse JSONL transcripts directly (approximate)
+    if [ ! -d "$PROJECT_DIR" ]; then
+        echo "Error: Project directory not found and ccusage unavailable"
+        exit 1
+    fi
+
+    METRICS=$(python3 -c "
 import json, os, glob
 
 project_dir = '$PROJECT_DIR'
@@ -56,6 +121,9 @@ for f in sorted(jsonl_files):
 total_tokens = total_input + total_output
 total_all = total_tokens + total_cache_read + total_cache_create
 
+# Approximate cost using Opus pricing (fallback only)
+cost = (total_input * 15.00 + total_output * 75.00 + total_cache_read * 1.50 + total_cache_create * 18.75) / 1_000_000
+
 print(json.dumps({
     'total_input': total_input,
     'total_output': total_output,
@@ -64,24 +132,18 @@ print(json.dumps({
     'total_tokens': total_tokens,
     'total_all_tokens': total_all,
     'sessions': session_count,
-    'assistant_messages': msg_count
+    'assistant_messages': msg_count,
+    'cost_total': round(cost, 2),
+    'models': ['approximate-opus-pricing'],
+    'source': 'jsonl-fallback'
 }))
 " 2>/dev/null)
-
-if [ -z "$METRICS" ]; then
-    echo "Error: Failed to parse session data"
-    exit 1
 fi
 
-# Extract values
-total_input=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['total_input'])")
-total_output=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['total_output'])")
-total_cache_read=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['total_cache_read'])")
-total_cache_create=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['total_cache_create'])")
-total_tokens=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['total_tokens'])")
-total_all=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['total_all_tokens'])")
-total_sessions=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['sessions'])")
-msg_count=$(echo "$METRICS" | python3 -c "import json,sys; print(json.load(sys.stdin)['assistant_messages'])")
+if [ -z "$METRICS" ]; then
+    echo "Error: Failed to collect metrics"
+    exit 1
+fi
 
 # JSON output mode
 if [ "${1:-}" = "--json" ]; then
@@ -89,10 +151,26 @@ if [ "${1:-}" = "--json" ]; then
     exit 0
 fi
 
+# Extract values for display
+eval "$(python3 -c "
+import json
+d = json.loads('''$METRICS''')
+print(f\"total_input={d['total_input']}\")
+print(f\"total_output={d['total_output']}\")
+print(f\"total_cache_read={d['total_cache_read']}\")
+print(f\"total_cache_create={d['total_cache_create']}\")
+print(f\"total_tokens={d['total_tokens']}\")
+print(f\"total_all={d['total_all_tokens']}\")
+print(f\"total_sessions={d['sessions']}\")
+print(f\"msg_count={d['assistant_messages']}\")
+print(f\"cost_total={d['cost_total']}\")
+print(f\"source={d['source']}\")
+")"
+
 # Format numbers with commas
 fmt() { python3 -c "print(f'{$1:,}')"; }
 
-echo "📊 XBO Market Kit — Token & Time Report"
+echo "📊 XBO Market Kit — Token & Cost Report"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Sessions:           $total_sessions"
 echo "API calls:          $msg_count"
@@ -102,4 +180,7 @@ echo "Cache read tokens:  $(fmt $total_cache_read)"
 echo "Cache create tokens:$(fmt $total_cache_create)"
 echo "Total (in+out):     $(fmt $total_tokens)"
 echo "Total (all):        $(fmt $total_all)"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "💰 Cost:            \$$cost_total"
+echo "📡 Source:          $source"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

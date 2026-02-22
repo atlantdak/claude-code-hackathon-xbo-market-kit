@@ -38,14 +38,17 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="150"><h2>3h 3m</h2><sub>Dev Time</sub></td>
-<td align="center" width="150"><h2>4 / 4</h2><sub>Tasks Done</sub></td>
-<td align="center" width="150"><h2>21</h2><sub>Commits</sub></td>
-<td align="center" width="150"><h2>50.7M</h2><sub>Tokens</sub></td>
-<td align="center" width="150"><h2>518</h2><sub>API Calls</sub></td>
-<td align="center" width="150"><h2>4</h2><sub>Sessions</sub></td>
+<td align="center" width="130"><h2>$20.99</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>3h 3m</h2><sub>Dev Time</sub></td>
+<td align="center" width="130"><h2>4 / 4</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>21</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>31.7M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>565</h2><sub>API Calls</sub></td>
 </tr>
 </table>
+
+> *Cost calculated by [ccusage](https://github.com/ryoppippi/ccusage) — Claude Opus 4.6 + Haiku 4.5 pricing*
+
 </div>
 
 ### Time Allocation
@@ -82,24 +85,36 @@ gantt
     Metrics Collector Fix        :done, fix, 18:40, 14min
 ```
 
-### Token Usage Breakdown
+### Cost Breakdown
 
 ```mermaid
-pie title Token Distribution
-    "Cache Read (48.9M)" : 48858
-    "Cache Create (1.8M)" : 1758
-    "Output (35.6K)" : 36
-    "Input (14.8K)" : 15
+pie title Cost by Category ($20.99 total)
+    "Cache Read — $46.15" : 4615
+    "Cache Create — $17.87" : 1787
+    "Output — $0.52" : 52
+    "Input — $0.05" : 5
+```
+
+> **Note:** ~97% of cost comes from prompt caching (context window). Actual input/output is only $0.57.
+
+### Token Usage
+
+```mermaid
+pie title Token Distribution (31.7M total)
+    "Cache Read (30.8M)" : 30766
+    "Cache Create (953K)" : 953
+    "Output (7.0K)" : 7
+    "Input (3.3K)" : 3
 ```
 
 ### Task Details
 
-| # | Task | Duration | Commits | Status |
-|:-:|:-----|:--------:|:-------:|:------:|
-| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 4 | **Metrics Fix** — JSONL transcript parsing for real token data | 14m | 2 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| # | Task | Duration | Commits | Cost | Status |
+|:-:|:-----|:--------:|:-------:|:----:|:------:|
+| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $5.50 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $5.85 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $8.03 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 4 | **Metrics Fix** — JSONL transcript parsing + ccusage integration | 14m | 2 | $1.61 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 ---
 
