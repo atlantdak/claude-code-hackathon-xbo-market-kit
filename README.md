@@ -21,11 +21,12 @@
 
 ---
 
-[Features](#-features) &bull;
-[AI Agents](#-ai-powered-development) &bull;
-[Architecture](#-architecture) &bull;
-[Quick Start](#-quick-start) &bull;
-[Documentation](#-documentation)
+[Dashboard](#ai-development-dashboard) &bull;
+[Features](#features) &bull;
+[AI Agents](#ai-powered-development) &bull;
+[Architecture](#architecture) &bull;
+[Quick Start](#quick-start) &bull;
+[Documentation](#documentation)
 
 </div>
 
