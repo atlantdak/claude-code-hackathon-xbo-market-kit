@@ -40,25 +40,31 @@ Run the metrics collection script:
 bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json
 ```
 
-This returns JSON with `total_input`, `total_output`, `total_tokens`, `sessions`, `minutes`.
+This returns JSON with `total_input`, `total_output`, `total_tokens`, `total_cache_read`, `total_cache_create`, `total_all_tokens`, `sessions`, `assistant_messages`.
+
+The script parses JSONL session transcripts from `~/.claude/projects/<project-slug>/*.jsonl`, extracting `usage` data from each assistant message.
 
 If the script is not available or fails, manually parse session data:
 
 ```bash
 python3 -c "
-import json, glob, os
-sessions = glob.glob(os.path.expanduser('~/.claude/usage-data/session-meta/*.json'))
-total_in, total_out, count, mins = 0, 0, 0, 0
-for s in sessions:
-    try:
-        d = json.load(open(s))
-        if 'claude-code-hackathon' in d.get('project_path', ''):
-            total_in += d.get('input_tokens', 0)
-            total_out += d.get('output_tokens', 0)
-            mins += d.get('duration_minutes', 0)
-            count += 1
-    except: pass
-print(json.dumps({'total_input': total_in, 'total_output': total_out, 'total_tokens': total_in + total_out, 'sessions': count, 'minutes': mins}))
+import json, os, glob
+project_dir = os.path.expanduser('~/.claude/projects/-Users-atlantdak-Local-Sites-claude-code-hackathon-xbo-market-kit-app-public')
+jsonl_files = glob.glob(os.path.join(project_dir, '*.jsonl'))
+total_in, total_out, count, msgs = 0, 0, len(jsonl_files), 0
+for f in jsonl_files:
+    with open(f) as fp:
+        for line in fp:
+            try:
+                d = json.loads(line)
+                if d.get('type') == 'assistant':
+                    usage = d.get('message', {}).get('usage', {})
+                    if usage:
+                        total_in += usage.get('input_tokens', 0)
+                        total_out += usage.get('output_tokens', 0)
+                        msgs += 1
+            except: pass
+print(json.dumps({'total_input': total_in, 'total_output': total_out, 'total_tokens': total_in + total_out, 'sessions': count, 'assistant_messages': msgs}))
 "
 ```
 
