@@ -1,0 +1,12 @@
+{
+  "name": "xbo-ai-flow",
+  "version": "0.1.0",
+  "description": "AI-driven development workflow for XBO Market Kit. Provides specialized agents, metrics tracking, README/worklog generation, and orchestration.",
+  "author": {
+    "name": "Dmytro Kishkin",
+    "email": "atlantdak@gmail.com"
+  },
+  "repository": "https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit",
+  "license": "MIT",
+  "keywords": ["wordpress", "ai-workflow", "hackathon", "metrics", "orchestration"]
+}

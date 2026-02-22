@@ -1,0 +1,14 @@
+{
+  "hooks": [
+    {
+      "type": "Stop",
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo '\\n📊 Session ending. Remember to run /worklog-update and /readme-update to keep docs current.'"
+        }
+      ]
+    }
+  ]
+}

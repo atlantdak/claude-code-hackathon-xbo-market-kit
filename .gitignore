@@ -48,6 +48,12 @@
 !scripts/
 !scripts/**
 
+# ---------- Claude Code Plugin: xbo-ai-flow ----------
+!.claude/
+!.claude/plugins/
+!.claude/plugins/xbo-ai-flow/
+!.claude/plugins/xbo-ai-flow/**
+
 # ---------- Plugin: xbo-market-kit ----------
 !wp-content/
 !wp-content/plugins/
