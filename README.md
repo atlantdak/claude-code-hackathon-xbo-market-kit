@@ -37,7 +37,7 @@
 
 <!-- Dynamic metrics — updated by /readme-update skill -->
 
-| ![Dev Time](https://img.shields.io/badge/Dev%20Time-Day%201-blue?style=flat-square&logo=clockify&logoColor=white) | ![Tasks](https://img.shields.io/badge/Tasks-4%20completed-orange?style=flat-square&logo=todoist&logoColor=white) | ![Commits](https://img.shields.io/badge/Commits-4-lightgrey?style=flat-square&logo=git&logoColor=white) | ![Agents](https://img.shields.io/badge/AI%20Agents-5-purple?style=flat-square&logo=anthropic&logoColor=white) | ![Skills](https://img.shields.io/badge/Skills-4-teal?style=flat-square&logo=zap&logoColor=white) |
+| ![Dev Time](https://img.shields.io/badge/Dev%20Time-Day%201-blue?style=flat-square&logo=clockify&logoColor=white) | ![Tasks](https://img.shields.io/badge/Tasks-8%20completed-orange?style=flat-square&logo=todoist&logoColor=white) | ![Commits](https://img.shields.io/badge/Commits-18-lightgrey?style=flat-square&logo=git&logoColor=white) | ![Agents](https://img.shields.io/badge/AI%20Agents-5-purple?style=flat-square&logo=anthropic&logoColor=white) | ![Skills](https://img.shields.io/badge/Skills-4%20+%206%20cmds-teal?style=flat-square&logo=zap&logoColor=white) |
 |:---:|:---:|:---:|:---:|:---:|
 
 </div>
@@ -175,6 +175,17 @@ graph TD
 | `/worklog-update` | Add entries to the development journal |
 | `/metrics` | Collect and display time/token/task analytics |
 
+### Command Shortcuts
+
+| Command | Purpose |
+|:--------|:--------|
+| `/feature "desc"` | Start full pipeline for a new feature |
+| `/verify` | Run all quality checks (PHPCS + PHPStan + PHPUnit + Security) |
+| `/test` | Quick PHPUnit test run |
+| `/review` | Code review with Codex CLI |
+| `/docs` | Update worklog + README + metrics in one command |
+| `/status` | Show project status, features, and metrics |
+
 ---
 
 ## Architecture
@@ -246,7 +257,7 @@ app/public/                             # Git root
 
 | Day | Focus | Progress |
 |:----|:------|:---------|
-| **Day 1** | Repo setup, plugin scaffold, AI workflow | `████████████████░░░░` 80% |
+| **Day 1** | Repo setup, plugin scaffold, AI workflow (full autonomy) | `████████████████████` 100% |
 | **Day 2** | API client, caching, REST endpoints | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | **Day 3** | Shortcodes: ticker + movers | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | **Day 4** | Shortcodes: orderbook + trades | `░░░░░░░░░░░░░░░░░░░░` 0% |

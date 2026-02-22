@@ -1,6 +1,6 @@
 {
   "name": "xbo-ai-flow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AI-driven development workflow for XBO Market Kit. Provides specialized agents, metrics tracking, README/worklog generation, and orchestration.",
   "author": {
     "name": "Dmytro Kishkin",

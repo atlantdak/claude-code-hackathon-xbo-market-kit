@@ -11,6 +11,8 @@ Design documents and implementation plans created during development.
 | 2026-02-22 | [Project Setup Implementation](2026-02-22-project-setup-plan.md) | Completed |
 | 2026-02-22 | [AI Workflow Design](2026-02-22-ai-workflow-design.md) | Approved |
 | 2026-02-22 | [AI Workflow Implementation](2026-02-22-ai-workflow-plan.md) | Completed |
+| 2026-02-22 | [Workflow Improvements Design](2026-02-22-workflow-improvements-design.md) | Approved |
+| 2026-02-22 | [Workflow Improvements Plan](2026-02-22-workflow-improvements-plan.md) | Completed |
 
 ---
 
