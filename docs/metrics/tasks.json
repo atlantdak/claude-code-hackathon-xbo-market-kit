@@ -10,6 +10,7 @@
       "commits": 1,
       "cost_usd": 5.82,
       "coverage": null,
+      "issue_number": 1,
       "status": "completed"
     },
     {
@@ -22,6 +23,7 @@
       "commits": 6,
       "cost_usd": 6.19,
       "coverage": null,
+      "issue_number": 2,
       "status": "completed"
     },
     {
@@ -34,6 +36,7 @@
       "commits": 12,
       "cost_usd": 8.49,
       "coverage": null,
+      "issue_number": 3,
       "status": "completed"
     },
     {
@@ -46,6 +49,7 @@
       "commits": 2,
       "cost_usd": 1.70,
       "coverage": null,
+      "issue_number": 4,
       "status": "completed"
     }
   ],

@@ -23,7 +23,7 @@ Before starting, verify:
 
 Execute these steps in order. Do NOT skip any step.
 
-### Step 1: Record Task Start
+### Step 1: Record Task Start + Create GitHub Issue
 
 Read `docs/metrics/tasks.json`, then add a new task entry:
 
@@ -38,11 +38,22 @@ Read `docs/metrics/tasks.json`, then add a new task entry:
   "commits": 0,
   "cost_usd": 0,
   "coverage": null,
+  "issue_number": null,
   "status": "in_progress"
 }
 ```
 
 Write the updated file back. The task slug should be lowercase-hyphenated from the feature name.
+
+**Create GitHub Issue:** Use `mcp__plugin_github_github__issue_write` to create an Issue:
+- **owner:** `atlantdak`
+- **repo:** `claude-code-hackathon-xbo-market-kit`
+- **method:** `create`
+- **title:** Task description (short, imperative)
+- **body:** Include task ID, plan link (if any), started timestamp
+- **labels:** `["ai-task"]` + type label (`feat`, `fix`, `chore`, `infra`, `docs`)
+
+Save the returned `issue_number` into the task entry in `tasks.json`.
 
 ### Step 2: Brainstorm
 
@@ -129,7 +140,7 @@ git commit -m "docs: update metrics, worklog, and README after [feature]
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ```
 
-### Step 8: Record Task End
+### Step 8: Record Task End + Close GitHub Issue
 
 Run `bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json` to get fresh `cost_total`.
 
@@ -142,6 +153,26 @@ Update the task entry in `docs/metrics/tasks.json`:
 - Set `cost_usd` — estimate proportionally: `(duration_minutes / total_duration_all_tasks) * cost_total`
 
 Recalculate totals section (including `total_cost_usd`).
+
+**Close GitHub Issue:** Use `mcp__plugin_github_github__issue_write` to close the Issue:
+- **method:** `update`
+- **issue_number:** from task entry
+- **state:** `closed`
+- **state_reason:** `completed`
+
+Then add a completion comment using `mcp__plugin_github_github__add_issue_comment`:
+
+```markdown
+## Completion Report
+
+| Metric | Value |
+|--------|-------|
+| Duration | Xm |
+| Commits | N |
+| Cost | $X.XX |
+
+🤖 Closed by AI orchestration pipeline
+```
 
 ## Error Recovery
 
