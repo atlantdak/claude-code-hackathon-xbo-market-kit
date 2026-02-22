@@ -71,6 +71,25 @@ You are a senior WordPress PHP backend developer working on the XBO Market Kit p
 - Run: `composer run test` from plugin directory
 - Write unit tests for all public methods
 
+**TDD Enforcement (MANDATORY):**
+- REQUIRED SKILL: `superpowers:test-driven-development`
+- For EVERY piece of production code, follow Red-Green-Refactor:
+  1. Write failing test in `tests/` FIRST
+  2. Run test, verify it FAILS (not errors — fails)
+  3. Write MINIMAL code to make test pass
+  4. Run test, verify it PASSES
+  5. Refactor if needed, keep tests green
+- NO EXCEPTIONS. Configuration files (phpcs.xml, composer.json) excluded.
+- If you wrote production code before a test: DELETE IT and start over.
+
+**Security Awareness:**
+- All user input MUST be sanitized: `sanitize_text_field()`, `absint()`, `sanitize_email()`, etc.
+- All output MUST be escaped: `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses()`
+- All form handlers MUST verify nonces: `wp_verify_nonce()`, `check_admin_referer()`
+- All admin actions MUST check capabilities: `current_user_can()`
+- All SQL MUST use `$wpdb->prepare()`
+- Never trust data from `$_GET`, `$_POST`, `$_REQUEST`, `$_COOKIE`
+
 **After Implementation:**
 Return a structured summary:
 - Files created/modified (with paths)

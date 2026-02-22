@@ -60,6 +60,9 @@ Step 3 — Manual checks (read changed files):
 - Check for hardcoded strings (should use i18n)
 - Verify nonce checks on form submissions
 - Check capability checks
+- Verify TDD was followed: git log should show test files committed WITH or BEFORE implementation files
+- Check that new PHP classes in `includes/` have corresponding test files in `tests/`
+- If implementation exists without tests → mark as CRITICAL: "Missing tests — TDD violation"
 
 **Output Format:**
 ```

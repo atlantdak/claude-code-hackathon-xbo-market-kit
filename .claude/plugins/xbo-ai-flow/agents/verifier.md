@@ -50,6 +50,28 @@ Step 3 — Run PHPUnit:
 cd /Users/atlantdak/Local\ Sites/claude-code-hackathon-xbo-market-kit/app/public/wp-content/plugins/xbo-market-kit && composer run test 2>&1
 ```
 
+Step 4 — Run Security Scan:
+```bash
+cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public"
+bash .claude/plugins/xbo-ai-flow/scripts/security-check.sh wp-content/plugins/xbo-market-kit/includes 2>&1
+```
+
+Step 5 — TDD Compliance Check:
+For each PHP file modified in the last commit (or staged), verify a corresponding test file exists:
+- `includes/Api/Client.php` → `tests/Api/ClientTest.php`
+- `includes/Cache/TransientCache.php` → `tests/Cache/TransientCacheTest.php`
+- Pattern: `includes/Foo/Bar.php` → `tests/Foo/BarTest.php`
+
+```bash
+cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public/wp-content/plugins/xbo-market-kit"
+for FILE in $(git diff --name-only HEAD~1 -- includes/ 2>/dev/null); do
+    TEST_FILE=$(echo "$FILE" | sed 's|includes/|tests/|' | sed 's|\.php$|Test.php|')
+    if [ ! -f "$TEST_FILE" ]; then
+        echo "❌ Missing test: $TEST_FILE for $FILE"
+    fi
+done
+```
+
 **Output Format:**
 
 Return results as:
@@ -65,8 +87,14 @@ Return results as:
 ### PHPUnit: [PASS/FAIL]
 [Test count, assertions, failures with details]
 
+### Security: [PASS/FAIL]
+[Details if failed]
+
+### TDD Compliance: [PASS/FAIL]
+[Missing test files if any]
+
 ### Summary
-- Total checks: 3
+- Total checks: 5
 - Passed: [N]
 - Failed: [N]
 - Blocking issues: [list or "none"]

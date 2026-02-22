@@ -80,6 +80,14 @@ Step 5 — Clean up:
 wp post delete [POST_ID] --force
 ```
 
+Step 6 — Check test coverage (if phpunit supports it):
+```bash
+cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public/wp-content/plugins/xbo-market-kit"
+composer run test -- --coverage-text 2>&1 | grep -E "^\s*(Classes|Methods|Lines):" || echo "Coverage data not available"
+```
+
+Include coverage data in the output if available.
+
 **If browser MCP is available:**
 - Navigate to page URL
 - Take screenshot
