@@ -40,7 +40,7 @@
       "started": "2026-02-22T18:40:00+02:00",
       "completed": "2026-02-22T18:54:00+02:00",
       "duration_minutes": 14,
-      "commits": 1,
+      "commits": 2,
       "coverage": null,
       "status": "completed"
     }
@@ -48,7 +48,7 @@
   "totals": {
     "total_tasks": 4,
     "total_duration_minutes": 183,
-    "total_tokens": 48295,
-    "total_commits": 20
+    "total_tokens": 50334,
+    "total_commits": 21
   }
 }

@@ -33,14 +33,73 @@
 
 ## AI Development Dashboard
 
-<div align="center">
-
 <!-- Dynamic metrics — updated by /readme-update skill -->
 
-| ![Dev Time](https://img.shields.io/badge/Dev%20Time-3h%203m-blue?style=flat-square&logo=clockify&logoColor=white) | ![Tasks](https://img.shields.io/badge/Tasks-4%20completed-orange?style=flat-square&logo=todoist&logoColor=white) | ![Commits](https://img.shields.io/badge/Commits-20-lightgrey?style=flat-square&logo=git&logoColor=white) | ![Agents](https://img.shields.io/badge/AI%20Agents-5-purple?style=flat-square&logo=anthropic&logoColor=white) | ![Skills](https://img.shields.io/badge/Skills-4%20+%206%20cmds-teal?style=flat-square&logo=zap&logoColor=white) |
-|:---:|:---:|:---:|:---:|:---:|
-
+<div align="center">
+<table>
+<tr>
+<td align="center" width="150"><h2>3h 3m</h2><sub>Dev Time</sub></td>
+<td align="center" width="150"><h2>4 / 4</h2><sub>Tasks Done</sub></td>
+<td align="center" width="150"><h2>21</h2><sub>Commits</sub></td>
+<td align="center" width="150"><h2>50.7M</h2><sub>Tokens</sub></td>
+<td align="center" width="150"><h2>518</h2><sub>API Calls</sub></td>
+<td align="center" width="150"><h2>4</h2><sub>Sessions</sub></td>
+</tr>
+</table>
 </div>
+
+### Time Allocation
+
+```mermaid
+pie title Dev Time by Task (183 min total)
+    "Project Setup (48m)" : 48
+    "AI Workflow v1 (51m)" : 51
+    "Workflow Improvements v2 (70m)" : 70
+    "Metrics Fix (14m)" : 14
+```
+
+### Commits per Task
+
+```mermaid
+xychart-beta
+    title "Commits by Task"
+    x-axis ["Project Setup", "AI Workflow v1", "Workflow v2", "Metrics Fix"]
+    y-axis "Commits" 0 --> 15
+    bar [1, 6, 12, 2]
+```
+
+### Day 1 Timeline
+
+```mermaid
+gantt
+    title Day 1 — Feb 22, 2026
+    dateFormat HH:mm
+    axisFormat %H:%M
+    section Development
+    Project Setup & Scaffold     :done, setup, 15:33, 48min
+    AI Workflow v1 (Plugin)      :done, wf1, 16:21, 51min
+    Workflow v2 (Full Autonomy)  :done, wf2, 17:30, 70min
+    Metrics Collector Fix        :done, fix, 18:40, 14min
+```
+
+### Token Usage Breakdown
+
+```mermaid
+pie title Token Distribution
+    "Cache Read (48.9M)" : 48858
+    "Cache Create (1.8M)" : 1758
+    "Output (35.6K)" : 36
+    "Input (14.8K)" : 15
+```
+
+### Task Details
+
+| # | Task | Duration | Commits | Status |
+|:-:|:-----|:--------:|:-------:|:------:|
+| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 4 | **Metrics Fix** — JSONL transcript parsing for real token data | 14m | 2 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 ---
 
