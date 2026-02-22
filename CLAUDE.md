@@ -5,6 +5,10 @@
 WordPress plugin developed for the **Claude Code Hackathon 2026**.
 Repository: https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit
 
+**Author:** Dmytro Kishkin (<atlantdak@gmail.com>)
+
+Use this authorship info for all plugin headers, composer.json, license files, and any other metadata requiring an author.
+
 ## Project Structure
 
 - **Git root / PHPStorm root:** this directory (`app/public/`)
@@ -113,6 +117,29 @@ xbo-market-kit/
 - Plans: `docs/plans/`
 - Work log: `docs/worklog/`
 - Architecture decisions: `docs/architecture/`
+
+## MCP Servers
+
+Project-level MCP servers configured in `.mcp.json`:
+
+| Server | Purpose |
+|--------|---------|
+| `codex-subagent` | Codex CLI as MCP — used by reviewer agent for code review |
+| `chrome-devtools` | Chrome DevTools Protocol — used by integration-tester for browser testing |
+
+Global plugins (always available):
+- **Context7** — up-to-date documentation for WordPress, Gutenberg, Tailwind, Elementor
+- **GitHub** — PR/issue management
+- **Playwright** — browser automation alternative
+
+## AI Development Workflow
+
+The project uses the `xbo-ai-flow` Claude Code plugin (`.claude/plugins/xbo-ai-flow/`):
+
+- **Agents:** backend-dev, frontend-dev, verifier, integration-tester, reviewer
+- **Skills:** `/orchestrate`, `/readme-update`, `/worklog-update`, `/metrics`
+- **Design doc:** `docs/plans/2026-02-22-ai-workflow-design.md`
+- **Metrics:** `docs/metrics/tasks.json`
 
 ## Important Notes
 

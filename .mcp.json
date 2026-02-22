@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "codex-subagent": {
+      "command": "uvx",
+      "args": [
+        "codex-as-mcp@latest"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "chrome-devtools-mcp"
+      ]
+    }
+  }
+}
