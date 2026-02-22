@@ -27,8 +27,8 @@
       "matcher": "",
       "hooks": [
         {
-          "type": "command",
-          "command": "bash -c 'echo \"\\n📊 Session ending.\\n📝 Remember to run: /worklog-update, /readme-update, /metrics\\n💡 Or run /docs to update all documentation at once.\"'"
+          "type": "prompt",
+          "prompt": "Before ending the session, automatically update all project metrics and documentation:\n\n1. Run `bash \".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh\" --json` to get fresh token/cost data\n2. Update `docs/metrics/tasks.json` totals (total_tokens, total_commits, total_cost_usd) with fresh data\n3. Update `docs/worklog/YYYY-MM-DD.md` Metrics table with current numbers\n4. Update `README.md` dashboard: KPI cards, Cost Breakdown pie chart, Token Usage pie chart, Commits per Task bar chart\n5. Commit changes: `git add docs/ README.md && git commit -m 'docs: auto-update metrics on session end'`\n\nDo this silently and efficiently. Do NOT push to remote."
         }
       ]
     }
