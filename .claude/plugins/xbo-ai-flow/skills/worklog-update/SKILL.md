@@ -1,31 +1,33 @@
 ---
 name: worklog-update
-description: This skill should be used when the user asks to "update worklog", "add worklog entry", "log work", "document what was done", or after completing a development task. Adds structured entries to the daily worklog file.
-version: 0.1.0
+description: This skill should be used when the user asks to "update worklog", "add worklog entry", "log work", "document what was done today", "update development journal", or after completing a development task via the orchestrate skill.
+version: 0.2.0
 ---
 
 # Worklog Update — Development Journal
 
 ## Overview
 
-Add structured entries to the daily worklog file at `docs/worklog/YYYY-MM-DD.md`. Each entry documents completed work, decisions, metrics, and issues encountered.
+Add structured entries to the daily worklog. Each entry documents completed work, decisions made, and metrics.
+
+**Announce at start:** "Using the worklog-update skill to record today's progress."
 
 ## Process
 
-### 1. Determine Today's Date
+### Step 1: Determine Date
 
-Use the current date in `YYYY-MM-DD` format.
+Get today's date. Use `date +%Y-%m-%d` or the current date from context. Format: `YYYY-MM-DD`.
 
-### 2. Check if Worklog Exists
+### Step 2: Check Existing Worklog
 
-Read `docs/worklog/YYYY-MM-DD.md`. If it does not exist, create it with the header:
+Read `docs/worklog/YYYY-MM-DD.md`. If file does not exist, create it with this template:
 
 ```markdown
 # YYYY-MM-DD — [Day Summary]
 
 ## Summary
 
-[Brief description of the day's focus]
+[Brief description of the day's focus — 1-2 sentences]
 
 ## Completed
 
@@ -42,38 +44,61 @@ Read `docs/worklog/YYYY-MM-DD.md`. If it does not exist, create it with the head
 ## Tools Used
 
 - Claude Code (brainstorming, planning, implementation)
+- Local by Flywheel (WordPress 6.9.1 environment)
+- PHPStorm (IDE)
 ```
 
-### 3. Add Entry
+### Step 3: Collect Data
 
-Append to the "Completed" section:
+**Completed tasks:** Read `docs/metrics/tasks.json`. Filter tasks completed today (where `completed` starts with today's date).
 
-```markdown
-- [x] [Task description] ([duration]m, [commit count] commits)
-  - [Key details or sub-items]
+**Commits today:**
+```bash
+cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public"
+git log --oneline --since="YYYY-MM-DDT00:00:00" --until="YYYY-MM-DDT23:59:59"
 ```
 
-### 4. Update Metrics Table
+**Decisions:** Review any design docs created today in `docs/plans/`.
 
-Recalculate from `docs/metrics/tasks.json` and git log for today.
+### Step 4: Update Completed Section
 
-### 5. Update docs/worklog/README.md
-
-Add or update the entry in the index table:
+For each completed task, add a checkbox entry:
 
 ```markdown
+- [x] Task description (Xm, N commits)
+  - Key detail or sub-item
+```
+
+If tasks are from a plan, reference the plan file.
+
+### Step 5: Update Metrics Table
+
+| Metric | Value |
+|--------|-------|
+| Tasks completed | [count from tasks.json] |
+| Total dev time | [sum of durations]m |
+| Commits | [from git log] |
+
+### Step 6: Update Day Summary
+
+Set the H1 title to reflect today's main focus area. Set the Summary section to 1-2 sentences describing what was accomplished.
+
+### Step 7: Update Worklog Index
+
+Read `docs/worklog/README.md`. If today's entry is not listed, add it. If the index file doesn't exist, create it:
+
+```markdown
+# Work Log
+
+Daily development journal for XBO Market Kit.
+
+## Entries
+
+| Date | Summary |
+|------|---------|
 | YYYY-MM-DD | [Summary] |
 ```
 
-### 6. Update docs/plans/README.md
+### Step 8: Update Plans Index
 
-If any plans changed status, update the plans index.
-
-## Entry Format
-
-Each completed task entry should include:
-- Task name (from the plan)
-- Duration in minutes
-- Number of commits
-- Key decisions or notable items as sub-bullets
-- Any issues encountered
+Read `docs/plans/README.md`. Check if any plan statuses changed today. Update the status column if needed (In Progress → Completed).
