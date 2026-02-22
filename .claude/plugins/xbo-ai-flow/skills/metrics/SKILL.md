@@ -1,36 +1,28 @@
 ---
 name: metrics
-description: This skill should be used when the user asks to "collect metrics", "show metrics", "update metrics", "how much time was spent", "token usage", or when the orchestrate skill needs to update task metrics after completion.
-version: 0.1.0
+description: This skill should be used when the user asks to "collect metrics", "show metrics", "update metrics", "how much time was spent", "token usage", "analytics", or when the orchestrate skill needs to update task metrics after completion.
+version: 0.2.0
 ---
 
 # Metrics — Development Analytics
 
 ## Overview
 
-Collect, aggregate, and display development metrics for the XBO Market Kit project. Tracks time spent, tokens consumed, tasks completed, and test results.
+Collect, aggregate, and display development metrics. Track time spent, tokens consumed, tasks completed, and commits.
 
-## Data Storage
+**Announce at start:** "Using the metrics skill to collect and display development analytics."
 
-Metrics are stored in `docs/metrics/tasks.json`.
+## Process
 
-### File Format
+Execute these steps in order.
+
+### Step 1: Ensure Data File Exists
+
+Check if `docs/metrics/tasks.json` exists. If not, create it:
 
 ```json
 {
-  "tasks": [
-    {
-      "id": "task-slug",
-      "plan": "docs/plans/YYYY-MM-DD-feature-plan.md",
-      "started": "2026-02-22T10:00:00Z",
-      "completed": "2026-02-22T11:30:00Z",
-      "duration_minutes": 90,
-      "session_ids": [],
-      "estimated_tokens": 0,
-      "commits": 0,
-      "status": "completed"
-    }
-  ],
+  "tasks": [],
   "totals": {
     "total_tasks": 0,
     "total_duration_minutes": 0,
@@ -40,74 +32,69 @@ Metrics are stored in `docs/metrics/tasks.json`.
 }
 ```
 
-## Collection Process
+### Step 2: Collect Token Data
 
-### 1. Initialize File
-
-If `docs/metrics/tasks.json` does not exist, create it with empty arrays and zero totals.
-
-### 2. Update Task Entry
-
-When a task completes:
-- Set `completed` timestamp
-- Calculate `duration_minutes` from start/end
-- Count commits via `git log --oneline --after="[started]" --before="[completed]" | wc -l`
-- Set `status` to "completed"
-
-### 3. Token Estimation
-
-Claude Code session data lives in `~/.claude/usage-data/session-meta/`.
-
-To estimate tokens for the current session:
-- Parse JSON files matching the project path and time range:
+Run the metrics collection script:
 
 ```bash
-for f in ~/.claude/usage-data/session-meta/*.json; do
-  project=$(python3 -c "import json; print(json.load(open('$f')).get('project_path',''))" 2>/dev/null)
-  if echo "$project" | grep -q "claude-code-hackathon"; then
-    python3 -c "
-import json
-d = json.load(open('$f'))
-inp = d.get('input_tokens', 0)
-out = d.get('output_tokens', 0)
-start = d.get('start_time', 'unknown')
-print(f'{start}: input={inp}, output={out}, total={inp+out}')
-"
-  fi
-done
+bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json
 ```
 
-### 4. Recalculate Totals
+This returns JSON with `total_input`, `total_output`, `total_tokens`, `sessions`, `minutes`.
 
-After updating any task:
+If the script is not available or fails, manually parse session data:
+
+```bash
+python3 -c "
+import json, glob, os
+sessions = glob.glob(os.path.expanduser('~/.claude/usage-data/session-meta/*.json'))
+total_in, total_out, count, mins = 0, 0, 0, 0
+for s in sessions:
+    try:
+        d = json.load(open(s))
+        if 'claude-code-hackathon' in d.get('project_path', ''):
+            total_in += d.get('input_tokens', 0)
+            total_out += d.get('output_tokens', 0)
+            mins += d.get('duration_minutes', 0)
+            count += 1
+    except: pass
+print(json.dumps({'total_input': total_in, 'total_output': total_out, 'total_tokens': total_in + total_out, 'sessions': count, 'minutes': mins}))
+"
+```
+
+### Step 3: Count Commits
+
+```bash
+cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public"
+git log --oneline | wc -l | tr -d ' '
+```
+
+### Step 4: Update Totals
+
+Read `docs/metrics/tasks.json`. Update the totals section:
+
 ```json
 {
-  "total_tasks": "count of completed tasks",
-  "total_duration_minutes": "sum of all duration_minutes",
-  "total_tokens": "sum of all estimated_tokens",
-  "total_commits": "total from git log"
+  "total_tasks": <count of tasks with status "completed">,
+  "total_duration_minutes": <sum of all task duration_minutes>,
+  "total_tokens": <from Step 2>,
+  "total_commits": <from Step 3>
 }
 ```
 
-### 5. Display Summary
+Write the updated file.
 
-Print metrics summary to terminal:
+### Step 5: Display Summary
+
+Output formatted metrics to the terminal:
 
 ```
 📊 XBO Market Kit — Development Metrics
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Tasks completed: 5/12
-Total dev time:  3h 45m
-Total tokens:    450,000
-Total commits:   15
-Test pass rate:  100% (42 tests)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
-
-## Creating the Metrics Directory
-
-Ensure `docs/metrics/` directory exists before writing:
-
-```bash
-mkdir -p docs/metrics
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Tasks completed: [N]/[total]
+Total dev time:  [H]h [M]m
+Total tokens:    [N formatted with commas]
+Total commits:   [N]
+Sessions:        [N]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```

@@ -59,6 +59,12 @@ total_tokens=$((total_input + total_output))
 hours=$((total_minutes / 60))
 mins=$((total_minutes % 60))
 
+# JSON output mode
+if [ "${1:-}" = "--json" ]; then
+    echo "{\"total_input\":$total_input,\"total_output\":$total_output,\"total_tokens\":$total_tokens,\"sessions\":$total_sessions,\"minutes\":$total_minutes}"
+    exit 0
+fi
+
 echo "📊 XBO Market Kit — Token & Time Report"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Sessions:      $total_sessions"
