@@ -1,12 +1,34 @@
 {
   "hooks": [
     {
+      "type": "PreToolUse",
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'FILE=\"$TOOL_INPUT_FILE_PATH\"; if [[ \"$FILE\" == *xbo-market-kit*.php ]]; then php -l \"$FILE\" 2>&1 || echo \"BLOCK: PHP syntax error in $FILE\"; fi'",
+          "timeout": 10
+        }
+      ]
+    },
+    {
+      "type": "PostToolUse",
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'FILE=\"$TOOL_INPUT_FILE_PATH\"; PLUGIN_DIR=\"wp-content/plugins/xbo-market-kit\"; if [[ \"$FILE\" == *xbo-market-kit*.php ]] && command -v \"$PLUGIN_DIR/vendor/bin/phpcbf\" &>/dev/null; then cd \"$(dirname \"$FILE\")\" && \"$PLUGIN_DIR/vendor/bin/phpcbf\" --standard=\"$PLUGIN_DIR/phpcs.xml\" \"$FILE\" 2>/dev/null; fi'",
+          "timeout": 30
+        }
+      ]
+    },
+    {
       "type": "Stop",
       "matcher": "",
       "hooks": [
         {
           "type": "command",
-          "command": "echo '\\n📊 Session ending. Remember to run /worklog-update and /readme-update to keep docs current.'"
+          "command": "bash -c 'echo \"\\n📊 Session ending.\\n📝 Remember to run: /worklog-update, /readme-update, /metrics\\n💡 Or run /docs to update all documentation at once.\"'"
         }
       ]
     }
