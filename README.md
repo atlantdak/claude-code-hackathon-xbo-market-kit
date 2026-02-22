@@ -37,7 +37,7 @@
 
 <!-- Dynamic metrics — updated by /readme-update skill -->
 
-| ![Dev Time](https://img.shields.io/badge/Dev%20Time-Day%201-blue?style=flat-square&logo=clockify&logoColor=white) | ![Tasks](https://img.shields.io/badge/Tasks-8%20completed-orange?style=flat-square&logo=todoist&logoColor=white) | ![Commits](https://img.shields.io/badge/Commits-18-lightgrey?style=flat-square&logo=git&logoColor=white) | ![Agents](https://img.shields.io/badge/AI%20Agents-5-purple?style=flat-square&logo=anthropic&logoColor=white) | ![Skills](https://img.shields.io/badge/Skills-4%20+%206%20cmds-teal?style=flat-square&logo=zap&logoColor=white) |
+| ![Dev Time](https://img.shields.io/badge/Dev%20Time-3h%203m-blue?style=flat-square&logo=clockify&logoColor=white) | ![Tasks](https://img.shields.io/badge/Tasks-4%20completed-orange?style=flat-square&logo=todoist&logoColor=white) | ![Commits](https://img.shields.io/badge/Commits-20-lightgrey?style=flat-square&logo=git&logoColor=white) | ![Agents](https://img.shields.io/badge/AI%20Agents-5-purple?style=flat-square&logo=anthropic&logoColor=white) | ![Skills](https://img.shields.io/badge/Skills-4%20+%206%20cmds-teal?style=flat-square&logo=zap&logoColor=white) |
 |:---:|:---:|:---:|:---:|:---:|
 
 </div>

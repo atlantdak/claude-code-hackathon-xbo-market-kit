@@ -1,9 +1,54 @@
 {
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "2026-02-22-project-initialization",
+      "description": "Initialize repository, plugin scaffold, documentation structure, CLAUDE.md, README, setup scripts",
+      "plan": "docs/plans/2026-02-22-project-setup-plan.md",
+      "started": "2026-02-22T15:33:00+02:00",
+      "completed": "2026-02-22T16:21:00+02:00",
+      "duration_minutes": 48,
+      "commits": 1,
+      "coverage": null,
+      "status": "completed"
+    },
+    {
+      "id": "2026-02-22-ai-workflow-v1",
+      "description": "Design and implement xbo-ai-flow Claude Code plugin v0.1.0: 5 agents, 4 skills, hooks, metrics script, MCP config",
+      "plan": "docs/plans/2026-02-22-ai-workflow-plan.md",
+      "started": "2026-02-22T16:21:00+02:00",
+      "completed": "2026-02-22T17:12:00+02:00",
+      "duration_minutes": 51,
+      "commits": 6,
+      "coverage": null,
+      "status": "completed"
+    },
+    {
+      "id": "2026-02-22-workflow-improvements-v2",
+      "description": "Design and implement full autonomy upgrade v0.2.0: executable skills, hooks, commands, TDD enforcement, security scanning, ADR system",
+      "plan": "docs/plans/2026-02-22-workflow-improvements-plan.md",
+      "started": "2026-02-22T17:30:00+02:00",
+      "completed": "2026-02-22T18:40:00+02:00",
+      "duration_minutes": 70,
+      "commits": 12,
+      "coverage": null,
+      "status": "completed"
+    },
+    {
+      "id": "2026-02-22-metrics-collector-fix",
+      "description": "Fix metrics collector to parse JSONL session transcripts instead of empty session-meta files",
+      "plan": null,
+      "started": "2026-02-22T18:40:00+02:00",
+      "completed": "2026-02-22T18:54:00+02:00",
+      "duration_minutes": 14,
+      "commits": 1,
+      "coverage": null,
+      "status": "completed"
+    }
+  ],
   "totals": {
-    "total_tasks": 0,
-    "total_duration_minutes": 0,
-    "total_tokens": 0,
-    "total_commits": 0
+    "total_tasks": 4,
+    "total_duration_minutes": 183,
+    "total_tokens": 48295,
+    "total_commits": 20
   }
 }
