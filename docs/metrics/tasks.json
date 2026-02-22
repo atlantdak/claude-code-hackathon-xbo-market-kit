@@ -8,7 +8,7 @@
       "completed": "2026-02-22T16:21:00+02:00",
       "duration_minutes": 48,
       "commits": 1,
-      "cost_usd": 5.50,
+      "cost_usd": 5.82,
       "coverage": null,
       "status": "completed"
     },
@@ -20,7 +20,7 @@
       "completed": "2026-02-22T17:12:00+02:00",
       "duration_minutes": 51,
       "commits": 6,
-      "cost_usd": 5.85,
+      "cost_usd": 6.19,
       "coverage": null,
       "status": "completed"
     },
@@ -32,19 +32,19 @@
       "completed": "2026-02-22T18:40:00+02:00",
       "duration_minutes": 70,
       "commits": 12,
-      "cost_usd": 8.03,
+      "cost_usd": 8.49,
       "coverage": null,
       "status": "completed"
     },
     {
       "id": "2026-02-22-metrics-collector-fix",
-      "description": "Fix metrics collector to parse JSONL session transcripts instead of empty session-meta files",
+      "description": "Fix metrics collector, integrate ccusage for accurate cost tracking, add visual dashboard to README",
       "plan": null,
       "started": "2026-02-22T18:40:00+02:00",
-      "completed": "2026-02-22T18:54:00+02:00",
+      "completed": "2026-02-22T19:30:00+02:00",
       "duration_minutes": 14,
       "commits": 2,
-      "cost_usd": 1.61,
+      "cost_usd": 1.70,
       "coverage": null,
       "status": "completed"
     }
@@ -52,8 +52,8 @@
   "totals": {
     "total_tasks": 4,
     "total_duration_minutes": 183,
-    "total_tokens": 10305,
-    "total_commits": 21,
-    "total_cost_usd": 20.99
+    "total_tokens": 10542,
+    "total_commits": 23,
+    "total_cost_usd": 22.20
   }
 }

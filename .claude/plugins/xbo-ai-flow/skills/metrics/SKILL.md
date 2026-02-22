@@ -27,7 +27,8 @@ Check if `docs/metrics/tasks.json` exists. If not, create it:
     "total_tasks": 0,
     "total_duration_minutes": 0,
     "total_tokens": 0,
-    "total_commits": 0
+    "total_commits": 0,
+    "total_cost_usd": 0
   }
 }
 ```
@@ -83,8 +84,9 @@ Read `docs/metrics/tasks.json`. Update the totals section:
 {
   "total_tasks": <count of tasks with status "completed">,
   "total_duration_minutes": <sum of all task duration_minutes>,
-  "total_tokens": <from Step 2>,
-  "total_commits": <from Step 3>
+  "total_tokens": <total_tokens from Step 2>,
+  "total_commits": <from Step 3>,
+  "total_cost_usd": <cost_total from Step 2>
 }
 ```
 
@@ -101,6 +103,7 @@ Tasks completed: [N]/[total]
 Total dev time:  [H]h [M]m
 Total tokens:    [N formatted with commas]
 Total commits:   [N]
+Total cost:      $[cost_total from Step 2]
 Sessions:        [N]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```

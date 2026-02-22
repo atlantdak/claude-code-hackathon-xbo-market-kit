@@ -39,12 +39,12 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>$20.99</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>$22.20</h2><sub>Total Cost</sub></td>
 <td align="center" width="130"><h2>3h 3m</h2><sub>Dev Time</sub></td>
 <td align="center" width="130"><h2>4 / 4</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>21</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>31.7M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>565</h2><sub>API Calls</sub></td>
+<td align="center" width="130"><h2>23</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>34.4M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>599</h2><sub>API Calls</sub></td>
 </tr>
 </table>
 
@@ -89,33 +89,31 @@ gantt
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Category ($20.99 total)
-    "Cache Read — $46.15" : 4615
-    "Cache Create — $17.87" : 1787
-    "Output — $0.52" : 52
-    "Input — $0.05" : 5
+pie title Cost by Model ($22.20 total)
+    "Claude Opus 4.6 ($21.95)" : 2195
+    "Claude Haiku 4.5 ($0.25)" : 25
 ```
 
-> **Note:** ~97% of cost comes from prompt caching (context window). Actual input/output is only $0.57.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) — uses actual billed `costUSD` from API responses, per-model pricing.
 
 ### Token Usage
 
 ```mermaid
-pie title Token Distribution (31.7M total)
-    "Cache Read (30.8M)" : 30766
-    "Cache Create (953K)" : 953
-    "Output (7.0K)" : 7
-    "Input (3.3K)" : 3
+pie title Token Distribution (34.4M total)
+    "Cache Read (33.4M)" : 33400
+    "Cache Create (1.0M)" : 1032
+    "Output (7.2K)" : 7
+    "Input (3.4K)" : 3
 ```
 
 ### Task Details
 
 | # | Task | Duration | Commits | Cost | Status |
 |:-:|:-----|:--------:|:-------:|:----:|:------:|
-| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $5.50 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $5.85 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $8.03 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 4 | **Metrics Fix** — JSONL transcript parsing + ccusage integration | 14m | 2 | $1.61 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $5.82 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $6.19 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $8.49 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $1.70 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 ---
 

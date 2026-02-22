@@ -36,6 +36,7 @@ Read `docs/metrics/tasks.json`, then add a new task entry:
   "completed": null,
   "duration_minutes": 0,
   "commits": 0,
+  "cost_usd": 0,
   "coverage": null,
   "status": "in_progress"
 }
@@ -130,14 +131,17 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 ### Step 8: Record Task End
 
+Run `bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json` to get fresh `cost_total`.
+
 Update the task entry in `docs/metrics/tasks.json`:
 - Set `completed` to current ISO-8601 timestamp
 - Calculate `duration_minutes` from start to now
 - Count commits: `git log --oneline --after="[started]" | wc -l`
 - Set `status` to "completed"
 - Set `plan` to the plan file path
+- Set `cost_usd` — estimate proportionally: `(duration_minutes / total_duration_all_tasks) * cost_total`
 
-Recalculate totals section.
+Recalculate totals section (including `total_cost_usd`).
 
 ## Error Recovery
 

@@ -21,6 +21,9 @@ Generate a visually impactful README.md serving as the GitHub landing page with 
 - `totals.total_duration_minutes` → convert to "Xh Ym" format
 - `totals.total_tokens` → format with commas
 - `totals.total_commits` → commit count
+- `totals.total_cost_usd` → format as "$X.XX"
+
+**Live cost data:** Run `bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json` to get fresh `cost_total` from ccusage. Use this value for the Cost KPI card and pie chart.
 
 **Git stats:**
 ```bash
@@ -55,12 +58,18 @@ composer run test 2>&1 | tail -5
 
 Read the current `README.md` to understand existing structure. Then generate the full README with all 11 sections using the collected data.
 
-**Badge format for metrics:**
-```
-![Dev Time](https://img.shields.io/badge/Dev%20Time-[VALUE]-blue?style=flat-square&logo=clockify&logoColor=white)
-![Tasks](https://img.shields.io/badge/Tasks-[VALUE]-orange?style=flat-square&logo=todoist&logoColor=white)
-![Commits](https://img.shields.io/badge/Commits-[VALUE]-lightgrey?style=flat-square&logo=git&logoColor=white)
-```
+**KPI cards format (HTML table):**
+The dashboard uses an HTML `<table>` with `<h2>` headings for each KPI. Update these values:
+- **Total Cost** — `$X.XX` from `cost_total`
+- **Dev Time** — `Xh Ym` from `total_duration_minutes`
+- **Tasks Done** — `N / N` from `total_tasks`
+- **Commits** — from `git log --oneline | wc -l`
+- **Tokens** — formatted from `total_all_tokens` (e.g. "34.4M")
+- **API Calls** — from `assistant_messages`
+
+**Cost Breakdown pie chart:** Use per-model data from ccusage `--breakdown` output.
+
+**Task Details table:** Include Cost column (`cost_usd` from each task in tasks.json).
 
 Replace `[VALUE]` with actual numbers. URL-encode spaces as `%20`, hyphens as `--`.
 

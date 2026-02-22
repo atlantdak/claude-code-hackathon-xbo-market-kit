@@ -40,6 +40,7 @@ Read `docs/worklog/YYYY-MM-DD.md`. If file does not exist, create it with this t
 | Tasks completed | 0 |
 | Total dev time | 0m |
 | Commits | 0 |
+| **Total cost** | **$0** |
 
 ## Tools Used
 
@@ -73,11 +74,17 @@ If tasks are from a plan, reference the plan file.
 
 ### Step 5: Update Metrics Table
 
+Run `bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json` to get fresh token and cost data.
+
 | Metric | Value |
 |--------|-------|
 | Tasks completed | [count from tasks.json] |
 | Total dev time | [sum of durations]m |
 | Commits | [from git log] |
+| Tokens (in+out) | [total_tokens from script] |
+| Tokens (all incl. cache) | [total_all_tokens from script] |
+| **Total cost** | **$[cost_total from script]** |
+| Cost source | [source from script] |
 
 ### Step 6: Update Day Summary
 
