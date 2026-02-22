@@ -1,94 +1,147 @@
 ---
 name: orchestrate
-description: This skill should be used when the user asks to "implement a feature", "build", "develop", "create a new widget", "add functionality", or any task requiring the full AI development pipeline. It orchestrates the entire workflow from brainstorming through implementation, verification, review, and documentation.
-version: 0.1.0
+description: This skill should be used when the user asks to "implement a feature", "build", "develop", "create a new widget", "add functionality", "orchestrate", or any task requiring the full AI development pipeline. It orchestrates the entire workflow from brainstorming through implementation, verification, review, and documentation.
+version: 0.2.0
 ---
 
 # Orchestrate — Full AI Development Pipeline
 
 ## Overview
 
-Entry point for autonomous feature development. Wraps Superpowers process skills with project-specific agent routing, verification loops, and automatic documentation updates.
+Entry point for autonomous feature development. Invoke Superpowers process skills with project-specific agent routing, verification loops, and automatic documentation updates.
 
-## Pipeline
+**Announce at start:** "Using the orchestrate skill to run the full development pipeline."
 
-```
-1. Record task start → docs/metrics/tasks.json
-2. Brainstorm → superpowers:brainstorming
-3. Plan → superpowers:writing-plans
-4. Execute → superpowers:subagent-driven-development
-   ├── Route to backend-dev or frontend-dev agent
-   ├── After each task → verifier agent
-   ├── If UI task → integration-tester agent
-   └── Before commit → reviewer agent
-5. Document → /worklog-update, /metrics, /readme-update
-6. Record task end → docs/metrics/tasks.json
-```
+## Pre-Flight Checks
 
-## Task Recording
+Before starting, verify:
+1. Read `CLAUDE.md` to confirm project conventions
+2. Read `docs/plans/2026-02-22-xbo-market-kit-spec.md` for product context
+3. Check `docs/metrics/tasks.json` for any in-progress tasks
 
-Before starting work, record the task in `docs/metrics/tasks.json`:
+## Pipeline Steps
+
+Execute these steps in order. Do NOT skip any step.
+
+### Step 1: Record Task Start
+
+Read `docs/metrics/tasks.json`, then add a new task entry:
 
 ```json
 {
-  "id": "task-slug-from-plan",
-  "plan": "docs/plans/YYYY-MM-DD-feature-plan.md",
-  "started": "ISO-8601 timestamp",
+  "id": "YYYY-MM-DD-task-slug",
+  "description": "Brief task description",
+  "plan": "",
+  "started": "YYYY-MM-DDTHH:MM:SSZ",
+  "completed": null,
+  "duration_minutes": 0,
+  "commits": 0,
+  "coverage": null,
   "status": "in_progress"
 }
 ```
 
-After completion, update with:
-```json
-{
-  "completed": "ISO-8601 timestamp",
-  "duration_minutes": calculated,
-  "commits": count,
-  "status": "completed"
-}
+Write the updated file back. The task slug should be lowercase-hyphenated from the feature name.
+
+### Step 2: Brainstorm
+
+Invoke `superpowers:brainstorming` skill via the Skill tool.
+
+Follow the brainstorming process completely:
+- Explore project context
+- Ask clarifying questions (one at a time)
+- Propose 2-3 approaches
+- Present design sections for approval
+- Save design doc to `docs/plans/YYYY-MM-DD-<topic>-design.md`
+
+### Step 3: Write Implementation Plan
+
+Invoke `superpowers:writing-plans` skill via the Skill tool.
+
+The plan MUST structure each task as TDD cycle:
+- Step 1: Write failing test
+- Step 2: Verify it fails
+- Step 3: Write minimal implementation
+- Step 4: Verify it passes
+- Step 5: Commit
+
+Save plan to `docs/plans/YYYY-MM-DD-<topic>-plan.md`.
+
+### Step 4: Execute Plan with Subagents
+
+Invoke `superpowers:subagent-driven-development` skill via the Skill tool.
+
+**Agent Routing Rules:**
+
+Analyze each task in the plan and route to the correct agent:
+
+| Task content keywords | Route to |
+|----------------------|----------|
+| PHP, class, namespace, hook, filter, action, REST, endpoint, shortcode, admin, cache, transient, API client | `backend-dev` agent |
+| CSS, JavaScript, JS, Tailwind, style, responsive, Gutenberg block UI, Elementor widget template, animation, layout | `frontend-dev` agent |
+| Mixed PHP + CSS/JS | `backend-dev` first, then `frontend-dev` |
+
+**TDD Enforcement:**
+
+Tell EVERY implementation subagent:
+> "REQUIRED: Use superpowers:test-driven-development skill. Write failing test FIRST, then implement. No production code without a failing test."
+
+### Step 5: Verification Loop
+
+After each implementation subtask completes:
+
+1. **Run verifier:** Dispatch the `verifier` agent via Task tool
+2. **If FAIL:** Send exact error messages back to the implementing agent. Say: "Fix these errors: [paste errors]. Do NOT change the test — fix the implementation."
+3. **If PASS and task involves UI:** Dispatch `integration-tester` agent
+4. **If integration FAIL:** Send errors back to implementing agent
+5. **If all PASS:** Dispatch `reviewer` agent
+6. **If reviewer says REQUEST CHANGES with CRITICAL:** Send back to implementing agent
+7. **If reviewer APPROVES:** Proceed to commit
+
+**Maximum 3 retry loops per subtask.** If still failing after 3 retries, stop and ask the user for guidance.
+
+### Step 6: Commit Changes
+
+After reviewer approval:
+
+```bash
+cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public"
+git add [specific files from the task]
+git commit -m "feat: [description from task]
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ```
 
-## Agent Routing
+### Step 7: Update Documentation
 
-Route subtasks to the appropriate agent based on content:
+After ALL plan tasks are complete:
 
-| Task involves | Agent |
-|---------------|-------|
-| PHP classes, WP hooks, REST endpoints, caching, shortcode PHP | `backend-dev` |
-| CSS, JavaScript, Tailwind, Gutenberg block UI, Elementor UI | `frontend-dev` |
-| Code quality checks (phpcs, phpstan, phpunit) | `verifier` |
-| Live WP page testing, shortcode rendering, block rendering | `integration-tester` |
-| Code review, security audit, pre-commit check | `reviewer` |
-
-## Verification Loop
-
-After each implementation subtask:
-
-1. Run `verifier` agent
-2. If FAIL → send errors back to the implementing agent with fix instructions
-3. If PASS and UI-related → run `integration-tester` agent
-4. If integration FAIL → send errors back to implementing agent
-5. If all PASS → run `reviewer` agent
-6. If reviewer says REQUEST CHANGES with CRITICAL → send back to implementing agent
-7. If reviewer APPROVES → commit the changes
-
-Maximum retry loops: 3 per subtask. If still failing after 3 retries, escalate to user.
-
-## Documentation Updates
-
-After all subtasks complete:
-
-1. Invoke `/worklog-update` skill to add worklog entry
-2. Invoke `/metrics` skill to update metrics
+1. Invoke `/metrics` skill to update task metrics
+2. Invoke `/worklog-update` skill to add worklog entry
 3. Invoke `/readme-update` skill to regenerate README.md
-4. Final commit with documentation changes
+4. Commit documentation changes:
 
-## Process Skills Integration
+```bash
+git add docs/ README.md
+git commit -m "docs: update metrics, worklog, and README after [feature]
 
-This skill builds on top of Superpowers. Invoke them in order:
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+```
 
-1. `superpowers:brainstorming` — for design exploration
-2. `superpowers:writing-plans` — for implementation plan creation
-3. `superpowers:subagent-driven-development` — for parallel task execution
-4. `superpowers:verification-before-completion` — for final verification
-5. `superpowers:finishing-a-development-branch` — for merge/commit workflow
+### Step 8: Record Task End
+
+Update the task entry in `docs/metrics/tasks.json`:
+- Set `completed` to current ISO-8601 timestamp
+- Calculate `duration_minutes` from start to now
+- Count commits: `git log --oneline --after="[started]" | wc -l`
+- Set `status` to "completed"
+- Set `plan` to the plan file path
+
+Recalculate totals section.
+
+## Error Recovery
+
+- If brainstorming is declined → stop, ask user what to do
+- If plan is rejected → loop back to brainstorming
+- If verification fails 3x → stop loop, report errors, ask user
+- If reviewer blocks → show review comments, ask user to decide
