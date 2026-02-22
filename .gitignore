@@ -1,0 +1,68 @@
+# =============================================================================
+# WordPress Project — Whitelist .gitignore
+# =============================================================================
+# Strategy: Ignore EVERYTHING, then explicitly allow project files.
+# This keeps WP core, uploads, and local configs out of the repo automatically.
+# =============================================================================
+
+# Ignore everything by default
+*
+
+# ---------- Git & editor configs ----------
+!.gitignore
+!.editorconfig
+!.gitattributes
+
+# ---------- Project root files ----------
+!CLAUDE.md
+!README.md
+!LICENSE
+
+# ---------- PHPStorm / IDE ----------
+!.idea/
+!.idea/php.xml
+!.idea/wordpress.xml
+!.idea/vcs.xml
+!.idea/xbo-market-kit.iml
+!.idea/inspectionProfiles/
+!.idea/inspectionProfiles/**
+# Ignore local IDE files that vary per machine
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/shelf/
+.idea/.name
+.idea/misc.xml
+.idea/modules.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/libraries/
+.idea/caches/
+.idea/artifacts/
+
+# ---------- Documentation ----------
+!docs/
+!docs/**
+
+# ---------- Scripts ----------
+!scripts/
+!scripts/**
+
+# ---------- Plugin: xbo-market-kit ----------
+!wp-content/
+!wp-content/plugins/
+!wp-content/plugins/xbo-market-kit/
+!wp-content/plugins/xbo-market-kit/**
+
+# Ignore vendor inside plugin (installed via composer)
+wp-content/plugins/xbo-market-kit/vendor/
+wp-content/plugins/xbo-market-kit/node_modules/
+
+# ---------- Always ignore ----------
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*~
+local-xdebuginfo.php
