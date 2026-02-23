@@ -32,7 +32,16 @@ class Plugin {
 	}
 
 	public function register_rest_routes(): void {
-		// Will be implemented in Task 4-5.
+		$controllers = array(
+			new Rest\TickerController(),
+			new Rest\MoversController(),
+			new Rest\OrderbookController(),
+			new Rest\TradesController(),
+			new Rest\SlippageController(),
+		);
+		foreach ( $controllers as $controller ) {
+			$controller->register_routes();
+		}
 	}
 
 	public function register_shortcodes(): void {
