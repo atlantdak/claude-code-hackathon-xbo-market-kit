@@ -39,12 +39,12 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>$22.20</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>$36.30</h2><sub>Total Cost</sub></td>
 <td align="center" width="130"><h2>3h 3m</h2><sub>Dev Time</sub></td>
 <td align="center" width="130"><h2>4 / 4</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>23</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>34.4M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>599</h2><sub>API Calls</sub></td>
+<td align="center" width="130"><h2>31</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>52.5M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>1,012</h2><sub>API Calls</sub></td>
 </tr>
 </table>
 
@@ -72,38 +72,41 @@ xychart-beta
     bar [1, 6, 12, 2]
 ```
 
-### Day 1 Timeline
+### Timeline
 
 ```mermaid
 gantt
-    title Day 1 — Feb 22, 2026
-    dateFormat HH:mm
-    axisFormat %H:%M
-    section Development
-    Project Setup & Scaffold     :done, setup, 15:33, 48min
-    AI Workflow v1 (Plugin)      :done, wf1, 16:21, 51min
-    Workflow v2 (Full Autonomy)  :done, wf2, 17:30, 70min
-    Metrics Collector Fix        :done, fix, 18:40, 14min
+    title Development Timeline
+    dateFormat YYYY-MM-DD HH:mm
+    axisFormat %b %d %H:%M
+    section Day 1 (Feb 22)
+    Project Setup & Scaffold     :done, setup, 2026-02-22 15:33, 48min
+    AI Workflow v1 (Plugin)      :done, wf1, 2026-02-22 16:21, 51min
+    Workflow v2 (Full Autonomy)  :done, wf2, 2026-02-22 17:30, 70min
+    Metrics Collector Fix        :done, fix, 2026-02-22 18:40, 14min
+    section Day 2 (Feb 23)
+    Plugin Design & Planning     :done, plan, 2026-02-23 10:00, 60min
+    Metrics Auto-Update Fix      :active, mfix, 2026-02-23 12:00, 30min
 ```
 
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Model ($22.20 total)
-    "Claude Opus 4.6 ($21.95)" : 2195
-    "Claude Haiku 4.5 ($0.25)" : 25
+pie title Cost by Model ($36.30 total)
+    "Claude Opus 4.6 ($35.90)" : 3590
+    "Claude Haiku 4.5 ($0.40)" : 40
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) — uses actual billed `costUSD` from API responses, per-model pricing.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) — uses actual billed `costUSD` from API responses, per-model pricing. Auto-updated on session end.
 
 ### Token Usage
 
 ```mermaid
-pie title Token Distribution (34.4M total)
-    "Cache Read (33.4M)" : 33400
-    "Cache Create (1.0M)" : 1032
-    "Output (7.2K)" : 7
-    "Input (3.4K)" : 3
+pie title Token Distribution (52.5M total)
+    "Cache Read (50.5M)" : 50500
+    "Cache Create (2.0M)" : 2000
+    "Output (12.6K)" : 13
+    "Input (4.7K)" : 5
 ```
 
 ### Task Details
@@ -331,7 +334,7 @@ app/public/                             # Git root
 | Day | Focus | Progress |
 |:----|:------|:---------|
 | **Day 1** | Repo setup, plugin scaffold, AI workflow (full autonomy) | `████████████████████` 100% |
-| **Day 2** | API client, caching, REST endpoints | `░░░░░░░░░░░░░░░░░░░░` 0% |
+| **Day 2** | Plugin design, implementation plan, metrics fix | `████░░░░░░░░░░░░░░░░` 20% |
 | **Day 3** | Shortcodes: ticker + movers | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | **Day 4** | Shortcodes: orderbook + trades | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | **Day 5** | Slippage calculator + UX polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
