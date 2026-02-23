@@ -1,16 +1,13 @@
 {
-  "mcpServers": {
-    "codex-subagent": {
-      "command": "uvx",
-      "args": [
-        "codex-as-mcp@latest"
-      ]
-    },
-    "chrome-devtools": {
-      "command": "npx",
-      "args": [
-        "chrome-devtools-mcp"
-      ]
+    "mcpServers": {
+        "wordpress": {
+            "command": "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public/scripts/wp-local.sh",
+            "args": [
+                "mcp-adapter",
+                "serve",
+                "--server=mcp-adapter-default-server",
+                "--user=admin"
+            ]
+        }
     }
-  }
 }
