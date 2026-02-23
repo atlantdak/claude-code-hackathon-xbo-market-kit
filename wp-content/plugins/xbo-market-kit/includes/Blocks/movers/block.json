@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "xbo-market-kit/movers",
+	"version": "0.1.0",
+	"title": "XBO Top Movers",
+	"category": "xbo-market-kit",
+	"icon": "sort",
+	"description": "Top gainers and losers widget with tabbed interface.",
+	"textdomain": "xbo-market-kit",
+	"attributes": {
+		"mode": {
+			"type": "string",
+			"default": "gainers"
+		},
+		"limit": {
+			"type": "string",
+			"default": "10"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"render": "file:./render.php"
+}

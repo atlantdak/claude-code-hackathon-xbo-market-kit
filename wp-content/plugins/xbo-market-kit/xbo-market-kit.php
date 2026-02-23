@@ -42,7 +42,7 @@ add_action( 'plugins_loaded', 'xbo_market_kit_init' );
  * Plugin activation.
  */
 function xbo_market_kit_activate(): void {
-	// Demo page creation will be added in Task 10.
+	\XboMarketKit\Admin\DemoPage::create();
 }
 register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
 
@@ -50,6 +50,6 @@ register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
  * Plugin deactivation.
  */
 function xbo_market_kit_deactivate(): void {
-	// Cleanup will be added in Task 10.
+	\XboMarketKit\Admin\DemoPage::delete();
 }
 register_deactivation_hook( __FILE__, 'xbo_market_kit_deactivate' );

@@ -58,11 +58,13 @@ class Plugin {
 	}
 
 	public function register_blocks(): void {
-		// Will be implemented in Task 9.
+		$registrar = new Blocks\BlockRegistrar();
+		$registrar->register();
 	}
 
 	public function register_admin(): void {
-		// Will be implemented in Task 10.
+		$settings = new Admin\AdminSettings();
+		$settings->register();
 	}
 
 	public function get_api_client(): ApiClient {
