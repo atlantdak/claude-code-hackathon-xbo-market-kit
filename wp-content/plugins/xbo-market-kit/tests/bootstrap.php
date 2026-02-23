@@ -24,8 +24,8 @@ if ( ! defined( 'XBO_MARKET_KIT_URL' ) ) {
 if ( ! class_exists( 'WP_REST_Controller' ) ) {
 	// phpcs:disable
 	class WP_REST_Controller {
-		protected string $namespace = '';
-		protected string $rest_base = '';
+		protected $namespace = '';
+		protected $rest_base = '';
 		public function register_routes(): void {}
 		public function get_public_item_schema(): array { return array(); }
 	}

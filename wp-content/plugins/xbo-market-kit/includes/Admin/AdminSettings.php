@@ -1,14 +1,47 @@
 <?php
+/**
+ * AdminSettings class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Admin;
 
+/**
+ * Plugin admin settings page under Settings > XBO Market Kit.
+ *
+ * Handles settings registration, rendering, sanitization, and AJAX cache clearing.
+ */
 class AdminSettings {
 
+	/**
+	 * Settings option group name.
+	 *
+	 * @var string
+	 */
 	private const OPTION_GROUP = 'xbo_market_kit_settings';
-	private const OPTION_NAME  = 'xbo_market_kit_settings';
-	private const PAGE_SLUG    = 'xbo-market-kit';
 
+	/**
+	 * Settings option name in the database.
+	 *
+	 * @var string
+	 */
+	private const OPTION_NAME = 'xbo_market_kit_settings';
+
+	/**
+	 * Admin page slug.
+	 *
+	 * @var string
+	 */
+	private const PAGE_SLUG = 'xbo-market-kit';
+
+	/**
+	 * Register the admin settings page, settings fields, and AJAX handler.
+	 *
+	 * @return void
+	 */
 	public function register(): void {
 		add_options_page(
 			__( 'XBO Market Kit', 'xbo-market-kit' ),
@@ -22,6 +55,11 @@ class AdminSettings {
 		add_action( 'wp_ajax_xbo_market_kit_clear_cache', array( $this, 'ajax_clear_cache' ) );
 	}
 
+	/**
+	 * Register settings, sections, and fields with the WordPress Settings API.
+	 *
+	 * @return void
+	 */
 	public function register_settings(): void {
 		register_setting( self::OPTION_GROUP, self::OPTION_NAME, array( 'sanitize_callback' => array( $this, 'sanitize' ) ) );
 
@@ -91,6 +129,12 @@ class AdminSettings {
 		return $output;
 	}
 
+	/**
+	 * Render a text input settings field.
+	 *
+	 * @param array $args Field arguments including label_for and default.
+	 * @return void
+	 */
 	public function render_text_field( array $args ): void {
 		$options = get_option( self::OPTION_NAME, array() );
 		$value   = $options[ $args['label_for'] ] ?? $args['default'];
@@ -103,6 +147,12 @@ class AdminSettings {
 		);
 	}
 
+	/**
+	 * Render a select dropdown settings field.
+	 *
+	 * @param array $args Field arguments including label_for, options, and default.
+	 * @return void
+	 */
 	public function render_select_field( array $args ): void {
 		$options = get_option( self::OPTION_NAME, array() );
 		$value   = $options[ $args['label_for'] ] ?? $args['default'];
@@ -119,6 +169,12 @@ class AdminSettings {
 		echo '</select>';
 	}
 
+	/**
+	 * Render a checkbox settings field.
+	 *
+	 * @param array $args Field arguments including label_for and default.
+	 * @return void
+	 */
 	public function render_checkbox_field( array $args ): void {
 		$options = get_option( self::OPTION_NAME, array() );
 		$value   = $options[ $args['label_for'] ] ?? $args['default'];
@@ -131,6 +187,11 @@ class AdminSettings {
 		);
 	}
 
+	/**
+	 * Render the full admin settings page.
+	 *
+	 * @return void
+	 */
 	public function render_page(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -167,6 +228,11 @@ class AdminSettings {
 		echo '</div>';
 	}
 
+	/**
+	 * AJAX handler to clear all plugin cache entries.
+	 *
+	 * @return void
+	 */
 	public function ajax_clear_cache(): void {
 		check_ajax_referer( 'xbo_market_kit_clear_cache', 'nonce' );
 

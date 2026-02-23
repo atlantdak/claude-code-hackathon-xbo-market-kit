@@ -1,4 +1,10 @@
 <?php
+/**
+ * Plugin class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit;
@@ -6,12 +12,40 @@ namespace XboMarketKit;
 use XboMarketKit\Api\ApiClient;
 use XboMarketKit\Cache\CacheManager;
 
+/**
+ * Main plugin singleton class.
+ *
+ * Bootstraps all plugin components including REST controllers,
+ * shortcodes, Gutenberg blocks, and admin settings.
+ */
 class Plugin {
 
+	/**
+	 * Singleton instance.
+	 *
+	 * @var self|null
+	 */
 	private static ?self $instance = null;
+
+	/**
+	 * XBO API client instance.
+	 *
+	 * @var ApiClient
+	 */
 	private ApiClient $api_client;
+
+	/**
+	 * Cache manager instance.
+	 *
+	 * @var CacheManager
+	 */
 	private CacheManager $cache_manager;
 
+	/**
+	 * Get the singleton instance of the plugin.
+	 *
+	 * @return self Plugin instance.
+	 */
 	public static function instance(): self {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -19,11 +53,19 @@ class Plugin {
 		return self::$instance;
 	}
 
+	/**
+	 * Constructor. Initializes core services.
+	 */
 	private function __construct() {
 		$this->cache_manager = new CacheManager();
 		$this->api_client    = new ApiClient( $this->cache_manager );
 	}
 
+	/**
+	 * Initialize the plugin by registering WordPress hooks.
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
@@ -31,6 +73,11 @@ class Plugin {
 		add_action( 'admin_menu', array( $this, 'register_admin' ) );
 	}
 
+	/**
+	 * Register all REST API route controllers.
+	 *
+	 * @return void
+	 */
 	public function register_rest_routes(): void {
 		$controllers = array(
 			new Rest\TickerController(),
@@ -44,6 +91,11 @@ class Plugin {
 		}
 	}
 
+	/**
+	 * Register all shortcode handlers.
+	 *
+	 * @return void
+	 */
 	public function register_shortcodes(): void {
 		$shortcodes = array(
 			new Shortcodes\TickerShortcode(),
@@ -57,20 +109,40 @@ class Plugin {
 		}
 	}
 
+	/**
+	 * Register Gutenberg blocks.
+	 *
+	 * @return void
+	 */
 	public function register_blocks(): void {
 		$registrar = new Blocks\BlockRegistrar();
 		$registrar->register();
 	}
 
+	/**
+	 * Register admin settings page.
+	 *
+	 * @return void
+	 */
 	public function register_admin(): void {
 		$settings = new Admin\AdminSettings();
 		$settings->register();
 	}
 
+	/**
+	 * Get the API client instance.
+	 *
+	 * @return ApiClient API client.
+	 */
 	public function get_api_client(): ApiClient {
 		return $this->api_client;
 	}
 
+	/**
+	 * Get the cache manager instance.
+	 *
+	 * @return CacheManager Cache manager.
+	 */
 	public function get_cache_manager(): CacheManager {
 		return $this->cache_manager;
 	}

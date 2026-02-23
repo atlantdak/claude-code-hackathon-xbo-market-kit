@@ -10,3 +10,8 @@ parameters:
 		- ../../..
 	excludePaths:
 		- vendor/
+		- includes/Blocks/*/render.php
+	bootstrapFiles:
+		- xbo-market-kit.php
+	ignoreErrors:
+		- identifier: missingType.iterableValue

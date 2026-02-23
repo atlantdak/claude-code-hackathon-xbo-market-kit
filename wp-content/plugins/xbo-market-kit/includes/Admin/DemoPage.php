@@ -1,10 +1,27 @@
 <?php
+/**
+ * DemoPage class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Admin;
 
+/**
+ * Manages the demo page created on plugin activation.
+ *
+ * Creates a draft WordPress page showcasing all plugin shortcodes
+ * and removes it on deactivation.
+ */
 class DemoPage {
 
+	/**
+	 * Option key storing the demo page post ID.
+	 *
+	 * @var string
+	 */
 	private const OPTION_KEY = 'xbo_market_kit_demo_page_id';
 
 	/**
@@ -43,6 +60,11 @@ class DemoPage {
 		}
 	}
 
+	/**
+	 * Build the demo page content with all plugin shortcode examples.
+	 *
+	 * @return string Block editor content string.
+	 */
 	private static function get_demo_content(): string {
 		$content = '';
 

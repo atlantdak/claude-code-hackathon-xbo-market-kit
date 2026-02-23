@@ -1,14 +1,35 @@
 <?php
+/**
+ * MoversShortcode class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Shortcodes;
 
+/**
+ * Shortcode handler for the [xbo_movers] shortcode.
+ *
+ * Renders a table of top gaining or losing trading pairs.
+ */
 class MoversShortcode extends AbstractShortcode {
 
+	/**
+	 * Get the shortcode tag name.
+	 *
+	 * @return string Shortcode tag.
+	 */
 	protected function get_tag(): string {
 		return 'xbo_movers';
 	}
 
+	/**
+	 * Get default shortcode attributes.
+	 *
+	 * @return array Default attribute values.
+	 */
 	protected function get_defaults(): array {
 		return array(
 			'mode'  => 'gainers',
@@ -16,11 +37,22 @@ class MoversShortcode extends AbstractShortcode {
 		);
 	}
 
+	/**
+	 * Enqueue movers-specific frontend assets.
+	 *
+	 * @return void
+	 */
 	protected function enqueue_assets(): void {
 		parent::enqueue_assets();
 		$this->enqueue_interactivity_script( 'xbo-market-kit-movers', 'movers.js' );
 	}
 
+	/**
+	 * Render the movers shortcode HTML output.
+	 *
+	 * @param array $atts Processed shortcode attributes.
+	 * @return string Rendered HTML.
+	 */
 	protected function render( array $atts ): string {
 		$mode  = in_array( $atts['mode'], array( 'gainers', 'losers' ), true ) ? $atts['mode'] : 'gainers';
 		$limit = max( 1, min( 50, (int) $atts['limit'] ) );

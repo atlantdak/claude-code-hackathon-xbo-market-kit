@@ -1,10 +1,24 @@
 <?php
+/**
+ * BlockRegistrar class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Blocks;
 
+/**
+ * Registers all Gutenberg blocks and the custom block category.
+ */
 class BlockRegistrar {
 
+	/**
+	 * List of block directory names to register.
+	 *
+	 * @var array
+	 */
 	private const BLOCKS = array(
 		'ticker',
 		'movers',
@@ -13,6 +27,11 @@ class BlockRegistrar {
 		'slippage',
 	);
 
+	/**
+	 * Register block category and all plugin blocks.
+	 *
+	 * @return void
+	 */
 	public function register(): void {
 		add_filter( 'block_categories_all', array( $this, 'register_category' ) );
 		foreach ( self::BLOCKS as $block ) {

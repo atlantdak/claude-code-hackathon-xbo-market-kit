@@ -1,14 +1,35 @@
 <?php
+/**
+ * SlippageShortcode class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Shortcodes;
 
+/**
+ * Shortcode handler for the [xbo_slippage] shortcode.
+ *
+ * Renders an interactive slippage calculator with real-time order book data.
+ */
 class SlippageShortcode extends AbstractShortcode {
 
+	/**
+	 * Get the shortcode tag name.
+	 *
+	 * @return string Shortcode tag.
+	 */
 	protected function get_tag(): string {
 		return 'xbo_slippage';
 	}
 
+	/**
+	 * Get default shortcode attributes.
+	 *
+	 * @return array Default attribute values.
+	 */
 	protected function get_defaults(): array {
 		return array(
 			'symbol' => 'BTC_USDT',
@@ -17,11 +38,22 @@ class SlippageShortcode extends AbstractShortcode {
 		);
 	}
 
+	/**
+	 * Enqueue slippage-specific frontend assets.
+	 *
+	 * @return void
+	 */
 	protected function enqueue_assets(): void {
 		parent::enqueue_assets();
 		$this->enqueue_interactivity_script( 'xbo-market-kit-slippage', 'slippage.js' );
 	}
 
+	/**
+	 * Render the slippage calculator shortcode HTML output.
+	 *
+	 * @param array $atts Processed shortcode attributes.
+	 * @return string Rendered HTML.
+	 */
 	protected function render( array $atts ): string {
 		$symbol = sanitize_text_field( $atts['symbol'] );
 		$side   = in_array( $atts['side'], array( 'buy', 'sell' ), true ) ? $atts['side'] : 'buy';

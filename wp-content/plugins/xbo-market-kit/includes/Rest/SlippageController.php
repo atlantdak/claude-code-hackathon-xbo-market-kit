@@ -1,4 +1,10 @@
 <?php
+/**
+ * SlippageController class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Rest;
@@ -7,12 +13,25 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * REST controller for the slippage calculator endpoint.
+ *
+ * Calculates estimated slippage for a given trade amount by walking the order book.
+ */
 class SlippageController extends AbstractController {
 
+	/**
+	 * Constructor. Sets the REST base path.
+	 */
 	public function __construct() {
 		$this->rest_base = 'slippage';
 	}
 
+	/**
+	 * Register REST API routes for the slippage endpoint.
+	 *
+	 * @return void
+	 */
 	public function register_routes(): void {
 		register_rest_route(
 			$this->namespace,
@@ -28,6 +47,12 @@ class SlippageController extends AbstractController {
 		);
 	}
 
+	/**
+	 * Calculate slippage for the requested trade parameters.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_REST_Response REST response with slippage calculation data.
+	 */
 	public function get_items( $request ): WP_REST_Response {
 		$symbol = $request->get_param( 'symbol' );
 		$side   = $request->get_param( 'side' );
@@ -115,6 +140,11 @@ class SlippageController extends AbstractController {
 		);
 	}
 
+	/**
+	 * Get the query parameters for the slippage endpoint.
+	 *
+	 * @return array Collection parameters.
+	 */
 	public function get_collection_params(): array {
 		return array(
 			'symbol' => array(

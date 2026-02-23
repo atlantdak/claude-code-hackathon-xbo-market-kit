@@ -1,4 +1,10 @@
 <?php
+/**
+ * MoversController class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Rest;
@@ -7,12 +13,25 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * REST controller for the top movers endpoint.
+ *
+ * Returns the biggest gainers or losers by 24-hour price change percentage.
+ */
 class MoversController extends AbstractController {
 
+	/**
+	 * Constructor. Sets the REST base path.
+	 */
 	public function __construct() {
 		$this->rest_base = 'movers';
 	}
 
+	/**
+	 * Register REST API routes for the movers endpoint.
+	 *
+	 * @return void
+	 */
 	public function register_routes(): void {
 		register_rest_route(
 			$this->namespace,
@@ -28,6 +47,12 @@ class MoversController extends AbstractController {
 		);
 	}
 
+	/**
+	 * Get top mover items sorted by 24-hour price change.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_REST_Response REST response with movers data.
+	 */
 	public function get_items( $request ): WP_REST_Response {
 		$mode  = $request->get_param( 'mode' );
 		$limit = $request->get_param( 'limit' );
@@ -58,7 +83,7 @@ class MoversController extends AbstractController {
 		$normalized = array_map(
 			fn( $item ) => array(
 				'symbol'         => $item['symbol'] ?? '',
-				'base'           => explode( '/', $item['symbol'] ?? '' )[0] ?? '',
+				'base'           => explode( '/', $item['symbol'] ?? '' )[0],
 				'quote'          => explode( '/', $item['symbol'] ?? '' )[1] ?? '',
 				'last_price'     => (float) ( $item['lastPrice'] ?? 0 ),
 				'change_pct_24h' => (float) ( $item['priceChangePercent24H'] ?? 0 ),
@@ -70,6 +95,11 @@ class MoversController extends AbstractController {
 		return $this->success_response( $normalized );
 	}
 
+	/**
+	 * Get the query parameters for the movers collection.
+	 *
+	 * @return array Collection parameters.
+	 */
 	public function get_collection_params(): array {
 		return array(
 			'mode'  => array(

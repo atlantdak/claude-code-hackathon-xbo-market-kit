@@ -1,4 +1,10 @@
 <?php
+/**
+ * TradesController class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Rest;
@@ -7,12 +13,25 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
+/**
+ * REST controller for the recent trades endpoint.
+ *
+ * Returns the most recent trades for a specified trading pair.
+ */
 class TradesController extends AbstractController {
 
+	/**
+	 * Constructor. Sets the REST base path.
+	 */
 	public function __construct() {
 		$this->rest_base = 'trades';
 	}
 
+	/**
+	 * Register REST API routes for the trades endpoint.
+	 *
+	 * @return void
+	 */
 	public function register_routes(): void {
 		register_rest_route(
 			$this->namespace,
@@ -28,6 +47,12 @@ class TradesController extends AbstractController {
 		);
 	}
 
+	/**
+	 * Get recent trades for the requested trading pair.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_REST_Response REST response with trades data.
+	 */
 	public function get_items( $request ): WP_REST_Response {
 		$symbol = $request->get_param( 'symbol' );
 		$limit  = $request->get_param( 'limit' );
@@ -54,6 +79,11 @@ class TradesController extends AbstractController {
 		return $this->success_response( $normalized );
 	}
 
+	/**
+	 * Get the query parameters for the trades collection.
+	 *
+	 * @return array Collection parameters.
+	 */
 	public function get_collection_params(): array {
 		return array(
 			'symbol' => array(

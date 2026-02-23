@@ -16,7 +16,14 @@
 	<config name="testVersion" value="8.1-" />
 
 	<rule ref="WordPress">
+		<!-- PSR-4 autoloading requires PascalCase filenames. -->
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+	</rule>
+
+	<!-- Block render.php files use $attributes from WP core. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>includes/Blocks/*/render.php</exclude-pattern>
 	</rule>
 
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">

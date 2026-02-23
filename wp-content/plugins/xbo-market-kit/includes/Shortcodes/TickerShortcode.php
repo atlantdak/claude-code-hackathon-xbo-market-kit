@@ -1,14 +1,35 @@
 <?php
+/**
+ * TickerShortcode class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Shortcodes;
 
+/**
+ * Shortcode handler for the [xbo_ticker] shortcode.
+ *
+ * Renders live cryptocurrency price ticker cards with auto-refresh.
+ */
 class TickerShortcode extends AbstractShortcode {
 
+	/**
+	 * Get the shortcode tag name.
+	 *
+	 * @return string Shortcode tag.
+	 */
 	protected function get_tag(): string {
 		return 'xbo_ticker';
 	}
 
+	/**
+	 * Get default shortcode attributes.
+	 *
+	 * @return array Default attribute values.
+	 */
 	protected function get_defaults(): array {
 		return array(
 			'symbols' => 'BTC/USDT,ETH/USDT',
@@ -17,11 +38,22 @@ class TickerShortcode extends AbstractShortcode {
 		);
 	}
 
+	/**
+	 * Enqueue ticker-specific frontend assets.
+	 *
+	 * @return void
+	 */
 	protected function enqueue_assets(): void {
 		parent::enqueue_assets();
 		$this->enqueue_interactivity_script( 'xbo-market-kit-ticker', 'ticker.js' );
 	}
 
+	/**
+	 * Render the ticker shortcode HTML output.
+	 *
+	 * @param array $atts Processed shortcode attributes.
+	 * @return string Rendered HTML.
+	 */
 	protected function render( array $atts ): string {
 		$symbols  = array_map( 'trim', explode( ',', $atts['symbols'] ) );
 		$refresh  = max( 5, (int) $atts['refresh'] );
@@ -37,7 +69,7 @@ class TickerShortcode extends AbstractShortcode {
 		$cards = '';
 		foreach ( $symbols as $symbol ) {
 			$parts = explode( '/', $symbol );
-			$base  = $parts[0] ?? '';
+			$base  = $parts[0];
 			$first = substr( $base, 0, 1 );
 
 			$cards .= '<div class="xbo-mk-ticker-card bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow">';

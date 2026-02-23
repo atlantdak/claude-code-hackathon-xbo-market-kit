@@ -1,14 +1,35 @@
 <?php
+/**
+ * TradesShortcode class file.
+ *
+ * @package XboMarketKit
+ */
+
 declare(strict_types=1);
 
 namespace XboMarketKit\Shortcodes;
 
+/**
+ * Shortcode handler for the [xbo_trades] shortcode.
+ *
+ * Renders a live table of recent trades for a specified trading pair.
+ */
 class TradesShortcode extends AbstractShortcode {
 
+	/**
+	 * Get the shortcode tag name.
+	 *
+	 * @return string Shortcode tag.
+	 */
 	protected function get_tag(): string {
 		return 'xbo_trades';
 	}
 
+	/**
+	 * Get default shortcode attributes.
+	 *
+	 * @return array Default attribute values.
+	 */
 	protected function get_defaults(): array {
 		return array(
 			'symbol'  => 'BTC/USDT',
@@ -17,11 +38,22 @@ class TradesShortcode extends AbstractShortcode {
 		);
 	}
 
+	/**
+	 * Enqueue trades-specific frontend assets.
+	 *
+	 * @return void
+	 */
 	protected function enqueue_assets(): void {
 		parent::enqueue_assets();
 		$this->enqueue_interactivity_script( 'xbo-market-kit-trades', 'trades.js' );
 	}
 
+	/**
+	 * Render the trades shortcode HTML output.
+	 *
+	 * @param array $atts Processed shortcode attributes.
+	 * @return string Rendered HTML.
+	 */
 	protected function render( array $atts ): string {
 		$symbol  = sanitize_text_field( $atts['symbol'] );
 		$limit   = max( 1, min( 100, (int) $atts['limit'] ) );
