@@ -1,7 +1,7 @@
 ---
 name: readme-update
 description: This skill should be used when the user asks to "update README", "refresh README", "regenerate README", "update project landing page", or after completing a significant feature via the orchestrate skill.
-version: 0.2.0
+version: 0.3.0
 ---
 
 # README Update — Landing Page Generator
@@ -16,74 +16,52 @@ Generate a visually impactful README.md serving as the GitHub landing page with 
 
 ### Step 1: Collect Data
 
-**Metrics:** Read `docs/metrics/tasks.json` to get:
-- `totals.total_tasks` → task count
-- `totals.total_duration_minutes` → convert to "Xh Ym" format
-- `totals.total_tokens` → format with commas
-- `totals.total_commits` → commit count
-- `totals.total_cost_usd` → format as "$X.XX"
+**Sessions data:** Read `docs/metrics/sessions.json` for:
+- `totals.total_cost_usd` → Cost KPI
+- `totals.total_all_tokens` → Tokens KPI (format as "160M")
+- `totals.total_sessions` → Sessions KPI
+- `totals.total_messages` → API Calls KPI
+- `totals.total_active_min` → Dev Time KPI (format as "Xh Ym")
+- `by_day` → per-day cost breakdown for pie chart
 
-**Live cost data:** Run `bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --json` to get fresh `cost_total` from ccusage. Use this value for the Cost KPI card and pie chart.
+If sessions.json is missing or stale, regenerate it:
+```bash
+bash ".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh" --full
+```
+
+**Tasks data:** Read `docs/metrics/tasks.json` for:
+- `totals.total_tasks` → Tasks Done KPI
+- `totals.total_commits` → Commits KPI
+- `tasks[]` → Task Details table (duration, cost, sessions, coverage)
 
 **Git stats:**
 ```bash
-cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public"
 git log --oneline | wc -l | tr -d ' '
 ```
 
 **Day number:** Calculate from project start (2026-02-22). Day 1 = Feb 22, Day 2 = Feb 23, etc.
 
-**Feature status:** Check which PHP classes exist to determine implementation status:
+**Feature status:** Check which PHP classes exist under `wp-content/plugins/xbo-market-kit/includes/`:
+- Use ✅ if file exists and has >50 lines
+- Use 🔄 if file exists but is skeleton (<50 lines)
+- Use ⬜ if file does not exist
 
-| Feature | Check for file |
-|---------|---------------|
-| Live Ticker | `includes/Shortcodes/Ticker.php` |
-| Top Movers | `includes/Shortcodes/Movers.php` |
-| Mini Orderbook | `includes/Shortcodes/Orderbook.php` |
-| Recent Trades | `includes/Shortcodes/Trades.php` |
-| Slippage Calculator | `includes/Shortcodes/Slippage.php` |
-| API Client | `includes/Api/Client.php` |
-| Cache Layer | `includes/Cache/TransientCache.php` |
-| REST Endpoints | `includes/Rest/` (any controller files) |
+### Step 2: Update KPI Cards
 
-Use ✅ if file exists and has >50 lines, 🔄 if file exists but is skeleton (<50 lines), ⬜ if file does not exist.
+The dashboard uses an HTML `<table>` with `<h2>` headings. Update these values:
+- **Total Cost** — `$X.XX` from `sessions.json totals.total_cost_usd`
+- **Dev Time** — from `sessions.json totals.total_active_min` (convert to "Xh Ym")
+- **Tasks Done** — `N / N` from `tasks.json totals.total_tasks`
+- **Commits** — from `tasks.json totals.total_commits`
+- **Tokens** — from `sessions.json totals.total_all_tokens` (format as "160M")
+- **Sessions** — from `sessions.json totals.total_sessions`
 
-**Test results (if available):**
-```bash
-cd "/Users/atlantdak/Local Sites/claude-code-hackathon-xbo-market-kit/app/public/wp-content/plugins/xbo-market-kit"
-composer run test 2>&1 | tail -5
-```
+### Step 3: Update Charts and Tables
 
-### Step 2: Generate README
+- **Cost Breakdown:** Use `sessions.json by_day` for per-day cost
+- **Task Details:** Include Cost column from each task's `cost_usd`
+- **Feature table:** Check actual file existence for status icons
 
-Read the current `README.md` to understand existing structure. Then generate the full README with all 11 sections using the collected data.
+### Step 4: Write and Verify
 
-**KPI cards format (HTML table):**
-The dashboard uses an HTML `<table>` with `<h2>` headings for each KPI. Update these values:
-- **Total Cost** — `$X.XX` from `cost_total`
-- **Dev Time** — `Xh Ym` from `total_duration_minutes`
-- **Tasks Done** — `N / N` from `total_tasks`
-- **Commits** — from `git log --oneline | wc -l`
-- **Tokens** — formatted from `total_all_tokens` (e.g. "34.4M")
-- **API Calls** — from `assistant_messages`
-
-**Cost Breakdown pie chart:** Use per-model data from ccusage `--breakdown` output.
-
-**Task Details table:** Include Cost column (`cost_usd` from each task in tasks.json).
-
-Replace `[VALUE]` with actual numbers. URL-encode spaces as `%20`, hyphens as `--`.
-
-**Feature table:** Use status from Step 1 for Shortcode/Block/Elementor columns.
-
-**Timeline progress bars:** Calculate per-day progress:
-- 0% = `░░░░░░░░░░░░░░░░░░░░`
-- 50% = `██████████░░░░░░░░░░`
-- 100% = `████████████████████`
-
-### Step 3: Write README.md
-
-Write the generated content to `README.md` at project root.
-
-### Step 4: Verify
-
-Read back the file. Check no broken markdown, valid badge URLs, proper Mermaid fencing.
+Write `README.md`, then read back to check for broken markdown, valid Mermaid, proper formatting.

@@ -39,16 +39,16 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>$36.30</h2><sub>Day 1 Cost</sub></td>
-<td align="center" width="130"><h2>12h 24m</h2><sub>Dev Time</sub></td>
+<td align="center" width="130"><h2>$66</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>6h 53m</h2><sub>Active Time</sub></td>
 <td align="center" width="130"><h2>5 / 5</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>44</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>8,400+</h2><sub>Lines Added</sub></td>
-<td align="center" width="130"><h2>54</h2><sub>Files Changed</sub></td>
+<td align="center" width="130"><h2>41</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>173M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>13</h2><sub>Sessions</sub></td>
 </tr>
 </table>
 
-> *Day 1 cost tracked per-task via [ccusage](https://github.com/ryoppippi/ccusage). Day 2 not separately trackable (shared ccusage account).*
+> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 + Haiku 4.5). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
 
 </div>
 
@@ -70,7 +70,7 @@ xychart-beta
     title "Commits by Task"
     x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2, 11]
+    bar [1, 6, 12, 2, 13]
 ```
 
 ### Timeline
@@ -98,22 +98,22 @@ gantt
 ### Cost Breakdown
 
 ```mermaid
-pie title Day 1 Cost by Model ($36.30)
-    "Claude Opus 4.6 ($35.90)" : 3590
-    "Claude Haiku 4.5 ($0.40)" : 40
+pie title Cost by Day ($66 total)
+    "Day 1 Feb 22 ($28)" : 28
+    "Day 2 Feb 23 ($38)" : 38
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage). Day 1 cost tracked per-task ($36.30). Day 2 cost not separately trackable — ccusage reports $81.64 total for Feb 23 across all projects.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: $65 (99%) + Haiku 4.5: $1 (1%). 13 sessions across 2 days.
 
 ### Task Details
 
 | # | Task | Duration | Commits | Cost | Status |
 |:-:|:-----|:--------:|:-------:|:----:|:------:|
-| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $5.82 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $6.19 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $8.49 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $1.70 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 5 | **Plugin MVP** — full implementation (11 sub-tasks below) | 9h 21m | 13 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $7.28 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $7.74 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5 | **Plugin MVP** — full implementation (11 sub-tasks below) | 9h 21m | 13 | $38.64 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 <details>
 <summary><strong>Task 5 — Implementation Sub-tasks (11)</strong></summary>
@@ -410,7 +410,7 @@ composer run test         # PHPUnit tests
 | [AI Workflow Design](docs/plans/2026-02-22-ai-workflow-design.md) | Agent architecture & orchestration design |
 | [Project Setup Design](docs/plans/2026-02-22-project-setup-design.md) | Environment & repository decisions |
 | [Work Log](docs/worklog/) | Daily development journal |
-| [Metrics](docs/metrics/) | Task analytics (time, tokens, commits) |
+| [Metrics](docs/metrics/) | Task & session analytics (tokens, cost, active time) |
 | [Architecture](docs/architecture/) | Key technical decisions (ADRs) |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 

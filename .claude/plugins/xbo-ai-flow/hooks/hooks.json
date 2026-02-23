@@ -29,11 +29,11 @@
         {
           "type": "command",
           "command": "bash \".claude/plugins/xbo-ai-flow/scripts/update-metrics-totals.sh\"",
-          "timeout": 60
+          "timeout": 120
         },
         {
           "type": "prompt",
-          "prompt": "MANDATORY: Before ending, update README.md dashboard with fresh data from docs/metrics/tasks.json.\n\n1. Read docs/metrics/tasks.json (it was just updated by the metrics script)\n2. Run `bash \".claude/plugins/xbo-ai-flow/scripts/collect-metrics.sh\" --json` for token details\n3. Update README.md: KPI cards (cost, time, tasks, commits, tokens, API calls), all Mermaid charts\n4. Commit: `git add docs/ README.md && git commit -m 'docs: auto-update metrics on session end'`\n\nDo NOT push. Do NOT skip this step."
+          "prompt": "Session metrics were auto-updated in docs/metrics/sessions.json and docs/metrics/tasks.json.\n\n1. Commit metrics: `git add docs/metrics/ && git commit -m 'docs: auto-update session metrics'`\n2. Optionally update README.md dashboard KPIs from docs/metrics/sessions.json totals (cost, tokens, sessions, messages).\n\nDo NOT push."
         }
       ]
     }
