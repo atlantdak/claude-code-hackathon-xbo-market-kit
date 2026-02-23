@@ -29,3 +29,27 @@ define( 'XBO_MARKET_KIT_URL', plugin_dir_url( __FILE__ ) );
 if ( file_exists( XBO_MARKET_KIT_DIR . 'vendor/autoload.php' ) ) {
 	require_once XBO_MARKET_KIT_DIR . 'vendor/autoload.php';
 }
+
+/**
+ * Initialize the plugin.
+ */
+function xbo_market_kit_init(): void {
+	\XboMarketKit\Plugin::instance()->init();
+}
+add_action( 'plugins_loaded', 'xbo_market_kit_init' );
+
+/**
+ * Plugin activation.
+ */
+function xbo_market_kit_activate(): void {
+	// Demo page creation will be added in Task 10.
+}
+register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
+
+/**
+ * Plugin deactivation.
+ */
+function xbo_market_kit_deactivate(): void {
+	// Cleanup will be added in Task 10.
+}
+register_deactivation_hook( __FILE__, 'xbo_market_kit_deactivate' );
