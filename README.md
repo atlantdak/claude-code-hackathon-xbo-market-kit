@@ -39,16 +39,16 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>$36.30+</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>$36.30</h2><sub>Day 1 Cost</sub></td>
 <td align="center" width="130"><h2>12h 24m</h2><sub>Dev Time</sub></td>
 <td align="center" width="130"><h2>5 / 5</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>42</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>52.5M+</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>44</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>8,400+</h2><sub>Lines Added</sub></td>
 <td align="center" width="130"><h2>54</h2><sub>Files Changed</sub></td>
 </tr>
 </table>
 
-> *Cost calculated by [ccusage](https://github.com/ryoppippi/ccusage) — Claude Opus 4.6 + Haiku 4.5 pricing*
+> *Day 1 cost tracked per-task via [ccusage](https://github.com/ryoppippi/ccusage). Day 2 not separately trackable (shared ccusage account).*
 
 </div>
 
@@ -80,17 +80,17 @@ gantt
     title Development Timeline
     dateFormat YYYY-MM-DD HH:mm
     axisFormat %b %d %H:%M
-    section Day 1 (Feb 22)
-    Project Setup & Scaffold     :done, setup, 2026-02-22 15:33, 48min
-    AI Workflow v1 (Plugin)      :done, wf1, 2026-02-22 16:21, 51min
-    Workflow v2 (Full Autonomy)  :done, wf2, 2026-02-22 17:30, 70min
+    section Day 1 — Feb 22
+    Project Setup and Scaffold   :done, setup, 2026-02-22 15:33, 48min
+    AI Workflow v1               :done, wf1, 2026-02-22 16:21, 51min
+    Workflow v2 Full Autonomy    :done, wf2, 2026-02-22 17:30, 70min
     Metrics Collector Fix        :done, fix, 2026-02-22 18:40, 14min
-    section Day 2 (Feb 23)
-    Design Doc & Plan            :done, plan, 2026-02-23 08:26, 128min
-    Core: Bootstrap + API + Cache :done, core, 2026-02-23 16:18, 5min
-    REST API Controllers (5)     :done, rest, 2026-02-23 16:22, 4min
-    Shortcodes + Interactivity (5) :done, sc, 2026-02-23 16:26, 5min
-    Gutenberg Blocks + Admin     :done, blk, 2026-02-23 16:31, 23min
+    section Day 2 — Feb 23
+    Design Doc and Plan          :done, plan, 2026-02-23 08:26, 128min
+    Bootstrap API Cache          :done, core, 2026-02-23 16:18, 5min
+    REST Controllers x5          :done, rest, 2026-02-23 16:22, 4min
+    Shortcodes Interactivity x5  :done, sc, 2026-02-23 16:26, 5min
+    Gutenberg Blocks Admin       :done, blk, 2026-02-23 16:31, 23min
     Code Quality Fixes           :done, qa, 2026-02-23 16:54, 52min
     data-wp-each Bugfix          :done, bugfix, 2026-02-23 17:46, 1min
 ```
@@ -98,12 +98,12 @@ gantt
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Model (Day 1 — $36.30)
+pie title Day 1 Cost by Model ($36.30)
     "Claude Opus 4.6 ($35.90)" : 3590
     "Claude Haiku 4.5 ($0.40)" : 40
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) — Day 1 tracked. Day 2 cost pending ccusage refresh.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage). Day 1 cost tracked per-task ($36.30). Day 2 cost not separately trackable — ccusage reports $81.64 total for Feb 23 across all projects.
 
 ### Task Details
 
@@ -113,7 +113,26 @@ pie title Cost by Model (Day 1 — $36.30)
 | 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $6.19 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $8.49 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $1.70 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 5 | **Plugin MVP** — API, cache, 5 REST, 5 shortcodes, 5 blocks, admin, bugfix | 9h 21m | 11 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5 | **Plugin MVP** — full implementation (11 sub-tasks below) | 9h 21m | 13 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+
+<details>
+<summary><strong>Task 5 — Implementation Sub-tasks (11)</strong></summary>
+
+| Sub | Task | Phase |
+|:---:|:-----|:-----:|
+| 5.1 | Plugin bootstrap, autoloader, activation hook | Phase 1 |
+| 5.2 | ApiClient with error handling, timeouts, filterable base URL | Phase 1 |
+| 5.3 | CacheManager with per-endpoint TTL via transients | Phase 1 |
+| 5.4 | REST controllers: Ticker + Movers (stats-based) | Phase 2 |
+| 5.5 | REST controllers: Orderbook + Trades + Slippage (symbol-based) | Phase 2 |
+| 5.6 | Shortcodes: Ticker + Movers with Interactivity API | Phase 3 |
+| 5.7 | Shortcodes: Orderbook + Trades with Interactivity API | Phase 3 |
+| 5.8 | Shortcode: Slippage Calculator with debounced auto-calc | Phase 3 |
+| 5.9 | 5 Gutenberg blocks (server-rendered via render.php) | Phase 4 |
+| 5.10 | Admin settings page + demo page on activation | Phase 4 |
+| 5.11 | Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | Phase 5 |
+
+</details>
 
 ---
 
@@ -131,40 +150,40 @@ pie title Cost by Model (Day 1 — $36.30)
 <td><strong>Live Ticker</strong></td>
 <td>Real-time prices for selected trading pairs with 24h change + sparklines</td>
 <td align="center">✅</td>
-<td align="center">✅</td>
+<td align="center">🔄</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Top Movers</strong></td>
 <td>Biggest gainers and losers by 24h % change with tab switching</td>
 <td align="center">✅</td>
-<td align="center">✅</td>
+<td align="center">🔄</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Mini Orderbook</strong></td>
 <td>Live bid/ask depth table with depth bars and spread indicator</td>
 <td align="center">✅</td>
-<td align="center">✅</td>
+<td align="center">🔄</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Recent Trades</strong></td>
 <td>Trade feed with color-coded side, price, volume, timestamp</td>
 <td align="center">✅</td>
-<td align="center">✅</td>
+<td align="center">🔄</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Slippage Calculator</strong></td>
 <td>Avg execution price, slippage %, spread, total cost from orderbook depth</td>
 <td align="center">✅</td>
-<td align="center">✅</td>
+<td align="center">🔄</td>
 <td align="center">⬜</td>
 </tr>
 </table>
 
-> **Legend:** ✅ Done &nbsp; 🔄 In Progress &nbsp; ⬜ Planned
+> **Legend:** ✅ Done &nbsp; 🔄 Server render only (no editor UI) &nbsp; ⬜ Planned
 
 ### Shortcode Examples
 
