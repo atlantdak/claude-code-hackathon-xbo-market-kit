@@ -1,0 +1,20 @@
+.xbo-mk-price-up { animation: xbo-mk-flash-green 0.5s; }
+.xbo-mk-price-down { animation: xbo-mk-flash-red 0.5s; }
+
+@keyframes xbo-mk-flash-green {
+	0%, 100% { background: transparent; }
+	50% { background: rgba(34, 197, 94, 0.2); }
+}
+
+@keyframes xbo-mk-flash-red {
+	0%, 100% { background: transparent; }
+	50% { background: rgba(239, 68, 68, 0.2); }
+}
+
+.xbo-mk-ticker-card {
+	transition: box-shadow 0.2s ease;
+}
+
+.xbo-mk-orderbook .xbo-mk-depth-bar {
+	transition: width 0.3s ease;
+}

@@ -45,7 +45,16 @@ class Plugin {
 	}
 
 	public function register_shortcodes(): void {
-		// Will be implemented in Task 6-8.
+		$shortcodes = array(
+			new Shortcodes\TickerShortcode(),
+			new Shortcodes\MoversShortcode(),
+			new Shortcodes\OrderbookShortcode(),
+			new Shortcodes\TradesShortcode(),
+			new Shortcodes\SlippageShortcode(),
+		);
+		foreach ( $shortcodes as $shortcode ) {
+			$shortcode->register();
+		}
 	}
 
 	public function register_blocks(): void {
