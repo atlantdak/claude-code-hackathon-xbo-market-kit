@@ -39,12 +39,12 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>$36.30</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>3h 3m</h2><sub>Dev Time</sub></td>
-<td align="center" width="130"><h2>4 / 4</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>31</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>52.5M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>1,012</h2><sub>API Calls</sub></td>
+<td align="center" width="130"><h2>$36.30+</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>12h 24m</h2><sub>Dev Time</sub></td>
+<td align="center" width="130"><h2>5 / 5</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>42</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>52.5M+</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>54</h2><sub>Files Changed</sub></td>
 </tr>
 </table>
 
@@ -55,11 +55,12 @@
 ### Time Allocation
 
 ```mermaid
-pie title Dev Time by Task (183 min total)
+pie title Dev Time by Task (744 min total)
     "Project Setup (48m)" : 48
     "AI Workflow v1 (51m)" : 51
     "Workflow Improvements v2 (70m)" : 70
     "Metrics Fix (14m)" : 14
+    "Plugin MVP (561m)" : 561
 ```
 
 ### Commits per Task
@@ -67,9 +68,9 @@ pie title Dev Time by Task (183 min total)
 ```mermaid
 xychart-beta
     title "Commits by Task"
-    x-axis ["Project Setup", "AI Workflow v1", "Workflow v2", "Metrics Fix"]
+    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2]
+    bar [1, 6, 12, 2, 11]
 ```
 
 ### Timeline
@@ -85,29 +86,24 @@ gantt
     Workflow v2 (Full Autonomy)  :done, wf2, 2026-02-22 17:30, 70min
     Metrics Collector Fix        :done, fix, 2026-02-22 18:40, 14min
     section Day 2 (Feb 23)
-    Plugin Design & Planning     :done, plan, 2026-02-23 10:00, 60min
-    Metrics Auto-Update Fix      :active, mfix, 2026-02-23 12:00, 30min
+    Design Doc & Plan            :done, plan, 2026-02-23 08:26, 128min
+    Core: Bootstrap + API + Cache :done, core, 2026-02-23 16:18, 5min
+    REST API Controllers (5)     :done, rest, 2026-02-23 16:22, 4min
+    Shortcodes + Interactivity (5) :done, sc, 2026-02-23 16:26, 5min
+    Gutenberg Blocks + Admin     :done, blk, 2026-02-23 16:31, 23min
+    Code Quality Fixes           :done, qa, 2026-02-23 16:54, 52min
+    data-wp-each Bugfix          :done, bugfix, 2026-02-23 17:46, 1min
 ```
 
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Model ($36.30 total)
+pie title Cost by Model (Day 1 — $36.30)
     "Claude Opus 4.6 ($35.90)" : 3590
     "Claude Haiku 4.5 ($0.40)" : 40
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) — uses actual billed `costUSD` from API responses, per-model pricing. Auto-updated on session end.
-
-### Token Usage
-
-```mermaid
-pie title Token Distribution (52.5M total)
-    "Cache Read (50.5M)" : 50500
-    "Cache Create (2.0M)" : 2000
-    "Output (12.6K)" : 13
-    "Input (4.7K)" : 5
-```
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) — Day 1 tracked. Day 2 cost pending ccusage refresh.
 
 ### Task Details
 
@@ -117,6 +113,7 @@ pie title Token Distribution (52.5M total)
 | 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $6.19 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $8.49 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $1.70 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5 | **Plugin MVP** — API, cache, 5 REST, 5 shortcodes, 5 blocks, admin, bugfix | 9h 21m | 11 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 ---
 
@@ -132,37 +129,37 @@ pie title Token Distribution (52.5M total)
 </tr>
 <tr>
 <td><strong>Live Ticker</strong></td>
-<td>Real-time prices for selected trading pairs with 24h change</td>
-<td align="center">⬜</td>
-<td align="center">⬜</td>
+<td>Real-time prices for selected trading pairs with 24h change + sparklines</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Top Movers</strong></td>
-<td>Biggest gainers and losers by 24h % change</td>
-<td align="center">⬜</td>
-<td align="center">⬜</td>
+<td>Biggest gainers and losers by 24h % change with tab switching</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Mini Orderbook</strong></td>
-<td>Live bid/ask depth table with spread indicator</td>
-<td align="center">⬜</td>
-<td align="center">⬜</td>
+<td>Live bid/ask depth table with depth bars and spread indicator</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Recent Trades</strong></td>
-<td>Trade feed with side, price, volume, timestamp</td>
-<td align="center">⬜</td>
-<td align="center">⬜</td>
+<td>Trade feed with color-coded side, price, volume, timestamp</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Slippage Calculator</strong></td>
-<td>Estimate execution price from orderbook depth</td>
-<td align="center">⬜</td>
-<td align="center">⬜</td>
+<td>Avg execution price, slippage %, spread, total cost from orderbook depth</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 </table>
@@ -334,12 +331,14 @@ app/public/                             # Git root
 | Day | Focus | Progress |
 |:----|:------|:---------|
 | **Day 1** | Repo setup, plugin scaffold, AI workflow (full autonomy) | `████████████████████` 100% |
-| **Day 2** | Plugin design, implementation plan, metrics fix | `████░░░░░░░░░░░░░░░░` 20% |
-| **Day 3** | Shortcodes: ticker + movers | `░░░░░░░░░░░░░░░░░░░░` 0% |
-| **Day 4** | Shortcodes: orderbook + trades | `░░░░░░░░░░░░░░░░░░░░` 0% |
-| **Day 5** | Slippage calculator + UX polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
-| **Day 6** | Gutenberg blocks for all widgets | `░░░░░░░░░░░░░░░░░░░░` 0% |
-| **Day 7** | Elementor widgets, demo, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
+| **Day 2** | Full plugin MVP — all 5 widgets, blocks, admin, demo page | `████████████████████` 100% |
+| ~~Day 3~~ | ~~Shortcodes: ticker + movers~~ — *completed in Day 2* | `████████████████████` 100% |
+| ~~Day 4~~ | ~~Shortcodes: orderbook + trades~~ — *completed in Day 2* | `████████████████████` 100% |
+| ~~Day 5~~ | ~~Slippage calculator + UX polish~~ — *completed in Day 2* | `████████████████████` 100% |
+| ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
+| **Day 7** | Elementor widgets, demo video, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
+
+> Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
 
 ---
 
@@ -387,8 +386,9 @@ composer run test         # PHPUnit tests
 | Document | Description |
 |:---------|:------------|
 | [Product Spec](docs/plans/2026-02-22-xbo-market-kit-spec.md) | Full product specification & API reference |
+| [Plugin Design](docs/plans/2026-02-23-xbo-market-kit-full-design.md) | Complete plugin architecture & widget design |
+| [Implementation Plan](docs/plans/2026-02-23-xbo-market-kit-implementation-plan.md) | 11-task plan with parallelism map |
 | [AI Workflow Design](docs/plans/2026-02-22-ai-workflow-design.md) | Agent architecture & orchestration design |
-| [AI Workflow Plan](docs/plans/2026-02-22-ai-workflow-plan.md) | Implementation plan for AI infrastructure |
 | [Project Setup Design](docs/plans/2026-02-22-project-setup-design.md) | Environment & repository decisions |
 | [Work Log](docs/worklog/) | Daily development journal |
 | [Metrics](docs/metrics/) | Task analytics (time, tokens, commits) |
@@ -399,11 +399,11 @@ composer run test         # PHPUnit tests
 
 ## Demo Pages
 
-| Page | Content |
-|:-----|:--------|
-| **Landing Showcase** | Hero + live ticker + top movers + CTA |
-| **Trading Insights** | Orderbook + recent trades + slippage calculator |
-| **Ops Status** | Currency availability + deposit/withdraw status |
+| Page | Content | Status |
+|:-----|:--------|:------:|
+| **XBO Market Kit Demo** | All 5 widgets: ticker, movers, orderbook, trades, slippage | ✅ Auto-created on activation |
+| **Landing Showcase** | Hero + live ticker + top movers + CTA | ⬜ Planned |
+| **Trading Insights** | Orderbook + recent trades + slippage calculator | ⬜ Planned |
 
 ---
 
