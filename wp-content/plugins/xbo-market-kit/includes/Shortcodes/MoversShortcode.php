@@ -75,8 +75,8 @@ class MoversShortcode extends AbstractShortcode {
 		$html .= '<th class="px-4 py-2 text-right text-gray-500 font-medium">' . esc_html__( 'Price', 'xbo-market-kit' ) . '</th>';
 		$html .= '<th class="px-4 py-2 text-right text-gray-500 font-medium">' . esc_html__( '24h Change', 'xbo-market-kit' ) . '</th>';
 		$html .= '</tr></thead>';
-		$html .= '<tbody data-wp-each="state.moversItems">';
-		$html .= '<template>';
+		$html .= '<tbody>';
+		$html .= '<template data-wp-each="state.moversItems">';
 		$html .= '<tr class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750">';
 		$html .= '<td class="px-4 py-3"><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold" data-wp-text="context.item.firstLetter"></div><span class="font-medium" data-wp-text="context.item.symbol"></span></div></td>';
 		$html .= '<td class="px-4 py-3 text-right font-mono" data-wp-text="context.item.price"></td>';

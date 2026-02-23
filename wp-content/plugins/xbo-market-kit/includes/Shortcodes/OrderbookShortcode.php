@@ -77,7 +77,7 @@ class OrderbookShortcode extends AbstractShortcode {
 		// Bids column.
 		$html .= '<div class="p-2">';
 		$html .= '<div class="text-xs font-medium text-gray-500 mb-1 flex justify-between px-2"><span>' . esc_html__( 'Price', 'xbo-market-kit' ) . '</span><span>' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</span></div>';
-		$html .= '<div data-wp-each="state.orderbookBids"><template>';
+		$html .= '<div><template data-wp-each="state.orderbookBids">';
 		$html .= '<div class="relative flex justify-between px-2 py-0.5 text-xs font-mono">';
 		$html .= '<div class="absolute inset-0 bg-green-500/10 origin-right" data-wp-style--width="context.item.depthPct"></div>';
 		$html .= '<span class="relative text-green-600" data-wp-text="context.item.price"></span>';
@@ -88,7 +88,7 @@ class OrderbookShortcode extends AbstractShortcode {
 		// Asks column.
 		$html .= '<div class="p-2">';
 		$html .= '<div class="text-xs font-medium text-gray-500 mb-1 flex justify-between px-2"><span>' . esc_html__( 'Price', 'xbo-market-kit' ) . '</span><span>' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</span></div>';
-		$html .= '<div data-wp-each="state.orderbookAsks"><template>';
+		$html .= '<div><template data-wp-each="state.orderbookAsks">';
 		$html .= '<div class="relative flex justify-between px-2 py-0.5 text-xs font-mono">';
 		$html .= '<div class="absolute inset-0 bg-red-500/10 origin-left" data-wp-style--width="context.item.depthPct"></div>';
 		$html .= '<span class="relative text-red-600" data-wp-text="context.item.price"></span>';

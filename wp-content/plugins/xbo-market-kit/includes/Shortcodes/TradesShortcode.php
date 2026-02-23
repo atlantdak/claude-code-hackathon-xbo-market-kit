@@ -78,8 +78,8 @@ class TradesShortcode extends AbstractShortcode {
 		$html .= '<th class="px-3 py-2 text-right text-gray-500">' . esc_html__( 'Price', 'xbo-market-kit' ) . '</th>';
 		$html .= '<th class="px-3 py-2 text-right text-gray-500">' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</th>';
 		$html .= '</tr></thead>';
-		$html .= '<tbody data-wp-each="state.tradesItems">';
-		$html .= '<template>';
+		$html .= '<tbody>';
+		$html .= '<template data-wp-each="state.tradesItems">';
 		$html .= '<tr class="border-b border-gray-100 dark:border-gray-700">';
 		$html .= '<td class="px-3 py-2 text-gray-500 font-mono" data-wp-text="context.item.time"></td>';
 		$html .= '<td class="px-3 py-2 text-center"><span class="px-2 py-0.5 rounded text-xs font-medium" data-wp-class--bg-green-100="context.item.isBuy" data-wp-class--text-green-700="context.item.isBuy" data-wp-class--bg-red-100="!context.item.isBuy" data-wp-class--text-red-700="!context.item.isBuy" data-wp-text="context.item.sideLabel"></span></td>';
