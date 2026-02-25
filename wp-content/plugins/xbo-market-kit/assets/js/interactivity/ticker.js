@@ -40,12 +40,12 @@ const { state, actions } = store( 'xbo-market-kit', {
 
 							// Flash animation.
 							if ( prevPrice && prevPrice !== `$${ newPrice }` ) {
-								const cards = document.querySelectorAll( '.xbo-mk-ticker-card' );
+								const cards = document.querySelectorAll( '.xbo-mk-ticker__card' );
 								cards.forEach( ( card ) => {
 									if ( card.textContent.includes( item.symbol ) ) {
 										const cls = item.change_pct_24h >= 0 ? 'xbo-mk-price-up' : 'xbo-mk-price-down';
 										card.classList.add( cls );
-										setTimeout( () => card.classList.remove( cls ), 500 );
+										setTimeout( () => card.classList.remove( cls ), 2000 );
 									}
 								} );
 							}

@@ -1,1 +1,110 @@
-/* Ticker — placeholder, will be implemented */
+/* XBO Market Kit — Ticker Widget */
+
+.xbo-mk-ticker {
+  display: grid;
+  gap: var(--xbo-mk--space-lg);
+}
+
+/* Responsive grid columns — controlled by 'columns' attribute */
+.xbo-mk-ticker--cols-1 { grid-template-columns: 1fr; }
+.xbo-mk-ticker--cols-2 { grid-template-columns: repeat(2, 1fr); }
+.xbo-mk-ticker--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.xbo-mk-ticker--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 768px) {
+  .xbo-mk-ticker--cols-3,
+  .xbo-mk-ticker--cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .xbo-mk-ticker--cols-2,
+  .xbo-mk-ticker--cols-3,
+  .xbo-mk-ticker--cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.xbo-mk-ticker__card {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  padding: var(--xbo-mk--space-lg);
+  transition: var(--xbo-mk--transition-default);
+}
+
+.xbo-mk-ticker__card:hover {
+  box-shadow: var(--xbo-mk--shadow-hover);
+}
+
+.xbo-mk-ticker__header {
+  display: flex;
+  align-items: center;
+  gap: var(--xbo-mk--space-md);
+  margin-bottom: var(--xbo-mk--space-md);
+}
+
+.xbo-mk-ticker__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--xbo-mk--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: var(--xbo-mk--font-weight-bold);
+  font-size: var(--xbo-mk--font-size-sm);
+  flex-shrink: 0;
+}
+
+.xbo-mk-ticker__pair {
+  min-width: 0;
+}
+
+.xbo-mk-ticker__symbol {
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  color: var(--xbo-mk--color-text-heading);
+  font-size: var(--xbo-mk--font-size-sm);
+  line-height: var(--xbo-mk--line-height-tight);
+}
+
+.xbo-mk-ticker__name {
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-secondary);
+}
+
+.xbo-mk-ticker__price {
+  font-size: var(--xbo-mk--font-size-lg);
+  font-weight: var(--xbo-mk--font-weight-bold);
+  color: var(--xbo-mk--color-text-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+.xbo-mk-ticker__change {
+  font-size: var(--xbo-mk--font-size-sm);
+  margin-top: var(--xbo-mk--space-xs);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-secondary);
+}
+
+.xbo-mk-ticker__change--positive {
+  color: var(--xbo-mk--color-positive);
+}
+
+.xbo-mk-ticker__change--negative {
+  color: var(--xbo-mk--color-negative);
+}
+
+.xbo-mk-ticker__sparkline {
+  margin-top: var(--xbo-mk--space-sm);
+  width: 100%;
+  height: 32px;
+}
+
+.xbo-mk-ticker__sparkline polyline {
+  stroke: var(--xbo-mk--color-primary-light);
+}
