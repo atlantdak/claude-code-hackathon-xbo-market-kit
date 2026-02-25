@@ -146,13 +146,41 @@
           "status": "pending"
         }
       ]
+    },
+    {
+      "id": "2026-02-26-sparkline-ticker",
+      "description": "Replace hardcoded fake SVG sparklines with algorithmically generated trend visualizations using constrained random walk, ring buffer for live updates",
+      "plan": "docs/plans/2026-02-25-sparkline-ticker-implementation.md",
+      "started": "2026-02-26T00:00:00+02:00",
+      "completed": "2026-02-26T01:00:00+02:00",
+      "duration_minutes": null,
+      "commits": 8,
+      "cost_usd": null,
+      "coverage": "49 tests, 798 assertions (22 new)",
+      "issue_number": null,
+      "status": "completed",
+      "sessions": []
+    },
+    {
+      "id": "2026-02-26-slippage-ux-redesign",
+      "description": "Slippage calculator UX redesign with dropdown symbol/side selectors, PairCatalog service, context-based Interactivity API state",
+      "plan": "docs/plans/2026-02-25-slippage-ux-implementation.md",
+      "started": "2026-02-26T00:00:00+02:00",
+      "completed": "2026-02-26T01:00:00+02:00",
+      "duration_minutes": null,
+      "commits": 8,
+      "cost_usd": null,
+      "coverage": null,
+      "issue_number": null,
+      "status": "completed",
+      "sessions": []
     }
   ],
   "totals": {
-    "total_tasks": 8,
+    "total_tasks": 10,
     "total_duration_minutes": null,
     "total_tokens": 271522901,
-    "total_commits": 73,
+    "total_commits": 89,
     "total_cost_usd": 109.43,
     "total_sessions": 23,
     "total_active_minutes": 670.2,

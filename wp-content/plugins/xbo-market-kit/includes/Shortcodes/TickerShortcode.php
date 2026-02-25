@@ -59,7 +59,23 @@ class TickerShortcode extends AbstractShortcode {
 		$refresh = max( 5, (int) $atts['refresh'] );
 		$columns = max( 1, min( 4, (int) $atts['columns'] ) );
 
-		$context = array(
+		$widget_id = 'xbo-ticker-' . wp_unique_id();
+		$generator = new \XboMarketKit\Sparkline\SparklineGenerator();
+
+		// Fetch current stats for sparkline generation.
+		$api_client   = new \XboMarketKit\Api\ApiClient(
+			new \XboMarketKit\Cache\CacheManager()
+		);
+		$api_response = $api_client->get_stats();
+		$stats_map    = array();
+		if ( $api_response->success ) {
+			foreach ( $api_response->data as $item ) {
+				$stats_map[ $item['symbol'] ?? '' ] = $item;
+			}
+		}
+
+		$sparkline_data = array();
+		$context        = array(
 			'symbols' => $atts['symbols'],
 			'refresh' => $refresh,
 			'items'   => array(),
@@ -74,6 +90,32 @@ class TickerShortcode extends AbstractShortcode {
 			$parts = explode( '/', $symbol );
 			$base  = $parts[0];
 			$key   = sanitize_key( $symbol );
+
+			// Get stats for this symbol.
+			$stat        = $stats_map[ $symbol ] ?? array();
+			$last_price  = (float) ( $stat['lastPrice'] ?? 0 );
+			$high_24h    = (float) ( $stat['highestPrice24H'] ?? 0 );
+			$low_24h     = (float) ( $stat['lowestPrice24H'] ?? 0 );
+			$change_pct  = (float) ( $stat['priceChangePercent24H'] ?? 0 );
+			$trend       = $generator->get_trend_direction( $change_pct );
+			$gradient_id = 'spark-grad-' . $key . '-' . $widget_id;
+
+			// Generate sparkline data.
+			$prices    = array();
+			$svg_attrs = array(
+				'polyline_points' => '',
+				'polygon_points'  => '',
+			);
+			if ( $last_price > 0 ) {
+				$prices    = $generator->generate_prices( $last_price, $high_24h, $low_24h, $change_pct, $symbol );
+				$svg_attrs = $generator->render_svg_points( $prices );
+			}
+
+			$sparkline_data[ $key ] = array(
+				'prices'    => $prices,
+				'updatedAt' => time(),
+				'trend'     => $trend,
+			);
 
 			$icon_url = $icon_resolver->url( $base );
 
@@ -92,11 +134,30 @@ class TickerShortcode extends AbstractShortcode {
 				. ' data-wp-class--xbo-mk-ticker__change--positive="state.tickerUp_' . esc_attr( $key ) . '"'
 				. ' data-wp-class--xbo-mk-ticker__change--negative="state.tickerDown_' . esc_attr( $key ) . '"'
 				. ' data-wp-text="state.tickerChange_' . esc_attr( $key ) . '">0.00%</div>';
-			$cards .= '<svg class="xbo-mk-ticker__sparkline" viewBox="0 0 100 30" preserveAspectRatio="none">';
-			$cards .= '<polyline fill="none" stroke="currentColor" stroke-width="1.5" points="0,25 15,20 30,22 45,15 60,18 75,10 100,5"/>';
+
+			// Sparkline SVG with gradient fill.
+			$cards .= '<svg class="xbo-mk-ticker__sparkline xbo-mk-ticker__sparkline--' . esc_attr( $trend ) . '"'
+				. ' viewBox="0 0 100 30" preserveAspectRatio="none" data-symbol="' . esc_attr( $key ) . '">';
+			$cards .= '<defs>';
+			$cards .= '<linearGradient id="' . esc_attr( $gradient_id ) . '" x1="0" y1="0" x2="0" y2="1">';
+			$cards .= '<stop offset="0%" stop-opacity="0.3"/>';
+			$cards .= '<stop offset="100%" stop-opacity="0"/>';
+			$cards .= '</linearGradient>';
+			$cards .= '</defs>';
+			if ( ! empty( $svg_attrs['polygon_points'] ) ) {
+				$cards .= '<polygon class="xbo-mk-ticker__sparkline-fill" fill="url(#' . esc_attr( $gradient_id ) . ')"'
+					. ' points="' . esc_attr( $svg_attrs['polygon_points'] ) . '"/>';
+			}
+			if ( ! empty( $svg_attrs['polyline_points'] ) ) {
+				$cards .= '<polyline class="xbo-mk-ticker__sparkline-line" fill="none" stroke-width="1.5"'
+					. ' points="' . esc_attr( $svg_attrs['polyline_points'] ) . '"/>';
+			}
 			$cards .= '</svg>';
 			$cards .= '</div>';
 		}
+
+		$context['sparklineData'] = $sparkline_data;
+		$context['widgetId']      = $widget_id;
 
 		$html = '<div class="xbo-mk-ticker xbo-mk-ticker--cols-' . esc_attr( (string) $columns ) . '"'
 			. ' data-wp-init="actions.initTicker">'
