@@ -40,12 +40,12 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>~$109</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>~11h 10m</h2><sub>Active Time</sub></td>
+<td align="center" width="130"><h2>~$138</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>~13h 53m</h2><sub>Active Time</sub></td>
 <td align="center" width="130"><h2>11 / 11</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>92</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>~272M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>23</h2><sub>Sessions</sub></td>
+<td align="center" width="130"><h2>104</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>~344M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>30</h2><sub>Sessions</sub></td>
 </tr>
 </table>
 
@@ -56,7 +56,7 @@
 ### Time Allocation
 
 ```mermaid
-pie title Active Dev Time by Task (~820 min total)
+pie title Active Dev Time by Task (~833 min total)
     "Project Setup (62m)" : 62
     "AI Workflow v1 (66m)" : 66
     "Workflow Improvements v2 (90m)" : 90
@@ -116,14 +116,14 @@ gantt
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Day (~$109+ total)
+pie title Cost by Day (~$138 total)
     "Day 1 Feb 22 ($28)" : 28
     "Day 2 Feb 23 ($40)" : 40
-    "Day 4-5 Feb 25 ($41)" : 41
-    "Day 5 Feb 26" : 10
+    "Day 4-5 Feb 25 ($52)" : 52
+    "Day 5 Feb 26 ($18)" : 18
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: ~$92 (84%) + Sonnet 4.6: ~$4 (4%) + Haiku 4.5: ~$1 (1%). 23 sessions across 3 days.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6 + Sonnet 4.6 + Haiku 4.5. 30 sessions across 4 days.
 
 ### Task Details
 
@@ -147,7 +147,7 @@ pie title Cost by Day (~$109+ total)
 | 5.11 | &nbsp;&nbsp;↳ Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | | | *Phase 5* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | ~$10 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | — | — | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | ~20m | 5 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 8.1 | &nbsp;&nbsp;↳ Update production URL in OAS3 spec when deploying | | | | ![pending](https://img.shields.io/badge/-pending-F59E0B?style=flat-square) |
 | 9 | **Sparkline Ticker** — constrained random walk SVG generation, ring buffer live updates | ~60m | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 10 | **Slippage UX Redesign** — dropdown selectors, PairCatalog, context-based state | ~60m | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
@@ -163,8 +163,8 @@ pie title Cost by Day (~$109+ total)
 | Feb 22 | Tasks 1–4 | 24h 50m | 3h 56m | 20h 54m | 4 |
 | Feb 23 | Task 5 (Plugin MVP) | 8h 43m | 3h 5m | 5h 38m | 9 |
 | Feb 25 | Tasks 6–8 | 10h 38m | 4h 9m | 6h 29m | 10 |
-| Feb 26 | Tasks 9–11 | ~2h 30m | ~2h 30m | — | — |
-| **Total** | **All 11 tasks** | **~46h 30m** | **~13h 40m** | **~33h** | **23+** |
+| Feb 26 | Tasks 9–11 | ~2h 30m | ~2h 30m | — | 7 |
+| **Total** | **All 11 tasks** | **~46h 30m** | **~13h 53m** | **~33h** | **30** |
 
 Active time = continuous Claude Code processing with no gap > 5 min between API calls. Source: `docs/metrics/sessions.json`.
 
@@ -471,13 +471,11 @@ wp xbo icons status         # Show icon sync status
 | [Sparkline Ticker Plan](docs/plans/2026-02-25-sparkline-ticker-implementation.md) | Sparkline ticker implementation plan |
 | [Slippage UX Design](docs/plans/2026-02-25-slippage-ux-design.md) | Slippage calculator UX redesign architecture |
 | [Slippage UX Plan](docs/plans/2026-02-25-slippage-ux-implementation.md) | Slippage UX implementation plan |
-| [REST API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) | Interactive Swagger UI for all plugin endpoints |
-| [Sparkline Ticker Design](docs/plans/2026-02-25-sparkline-ticker-design.md) | Algorithmic sparkline generation architecture |
-| [Sparkline Ticker Plan](docs/plans/2026-02-25-sparkline-ticker-implementation.md) | Implementation plan for sparkline ticker |
-| [Slippage UX Design](docs/plans/2026-02-25-slippage-ux-design.md) | Slippage calculator UX redesign architecture |
-| [Slippage UX Plan](docs/plans/2026-02-25-slippage-ux-implementation.md) | Implementation plan for slippage UX redesign |
 | [Slippage Layout Fix Plan](docs/plans/2026-02-26-slippage-redesign-plan.md) | CSS grid layout fix and icon binding plan |
+| [REST API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) | Interactive Swagger UI for all plugin endpoints |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
+
+> **104 total commits** — task commits (79) + documentation/metrics/readme updates (25).
 
 ---
 
