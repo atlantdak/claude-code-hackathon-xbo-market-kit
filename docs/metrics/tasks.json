@@ -174,16 +174,30 @@
       "issue_number": null,
       "status": "completed",
       "sessions": []
+    },
+    {
+      "id": "2026-02-26-slippage-layout-fix",
+      "description": "Fix slippage form layout: 2-column CSS grid (3fr 2fr), full-width toggle row, reactive icon binding via data-wp-bind--src, remove redundant Side label, reorder fields",
+      "plan": "docs/plans/2026-02-26-slippage-redesign-plan.md",
+      "started": "2026-02-26T15:00:00+02:00",
+      "completed": "2026-02-26T15:30:00+02:00",
+      "duration_minutes": 30,
+      "commits": 3,
+      "cost_usd": null,
+      "coverage": "56 tests, 817 assertions",
+      "issue_number": null,
+      "status": "completed",
+      "sessions": []
     }
   ],
   "totals": {
-    "total_tasks": 10,
+    "total_tasks": 11,
     "total_duration_minutes": null,
     "total_tokens": 271522901,
-    "total_commits": 89,
+    "total_commits": 92,
     "total_cost_usd": 109.43,
     "total_sessions": 23,
-    "total_active_minutes": 670.2,
+    "total_active_minutes": 700.2,
     "total_messages": 2960
   }
 }
