@@ -1,1 +1,57 @@
-/* Animations — placeholder, will be implemented */
+/* XBO Market Kit — Animations */
+/* Price update flash animations matching xbo.com (2s fade) */
+
+@keyframes xbo-mk-flash-positive {
+  0% {
+    color: var(--xbo-mk--color-positive);
+    background-color: var(--xbo-mk--color-positive-bg);
+  }
+  100% {
+    color: inherit;
+    background-color: transparent;
+  }
+}
+
+@keyframes xbo-mk-flash-negative {
+  0% {
+    color: var(--xbo-mk--color-negative);
+    background-color: var(--xbo-mk--color-negative-bg);
+  }
+  100% {
+    color: inherit;
+    background-color: transparent;
+  }
+}
+
+/* Applied via JS (Interactivity API) when price changes */
+.xbo-mk-price-up {
+  animation: xbo-mk-flash-positive 2s ease-out;
+}
+
+.xbo-mk-price-down {
+  animation: xbo-mk-flash-negative 2s ease-out;
+}
+
+/* Depth bar transition (orderbook) */
+.xbo-mk-depth-bar {
+  transition: width var(--xbo-mk--transition-default);
+}
+
+/* Card hover transition */
+.xbo-mk-hoverable {
+  transition: box-shadow var(--xbo-mk--transition-default);
+}
+
+.xbo-mk-hoverable:hover {
+  box-shadow: var(--xbo-mk--shadow-hover);
+}
+
+/* Loading pulse */
+@keyframes xbo-mk-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.xbo-mk-loading {
+  animation: xbo-mk-pulse 1.5s ease-in-out infinite;
+}

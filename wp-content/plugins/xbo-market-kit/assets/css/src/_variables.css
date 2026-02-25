@@ -1,1 +1,101 @@
-/* Variables — placeholder, will be implemented */
+/* XBO Market Kit — Design Tokens */
+/* Inspired by xbo.com visual design language */
+
+:root {
+  /* ===== Brand Colors ===== */
+  --xbo-mk--color-primary: #6319ff;
+  --xbo-mk--color-primary-dark: #3b0f99;
+  --xbo-mk--color-primary-light: #e5ddf9;
+  --xbo-mk--color-primary-bg: #f4f3f8;
+
+  /* ===== Financial Colors ===== */
+  --xbo-mk--color-positive: #49b47a;
+  --xbo-mk--color-positive-bg: #e3f9f4;
+  --xbo-mk--color-negative: #fd3b5e;
+  --xbo-mk--color-negative-bg: #fdeeee;
+
+  /* ===== Neutral Colors ===== */
+  --xbo-mk--color-bg: #ffffff;
+  --xbo-mk--color-bg-secondary: #f3f3f6;
+  --xbo-mk--color-bg-header: #f9f9f9;
+  --xbo-mk--color-text-heading: #270a66;
+  --xbo-mk--color-text-primary: #140533;
+  --xbo-mk--color-text-secondary: #828282;
+  --xbo-mk--color-text-muted: #98a9c4;
+  --xbo-mk--color-border: #e5ddf9;
+  --xbo-mk--color-border-light: #f0edf7;
+
+  /* ===== Typography ===== */
+  --xbo-mk--font-primary: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --xbo-mk--font-heading: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --xbo-mk--font-size-xs: 0.75rem;    /* 12px */
+  --xbo-mk--font-size-sm: 0.875rem;   /* 14px */
+  --xbo-mk--font-size-base: 1rem;     /* 16px */
+  --xbo-mk--font-size-lg: 1.25rem;    /* 20px */
+  --xbo-mk--font-size-xl: 1.5rem;     /* 24px */
+
+  --xbo-mk--font-weight-normal: 400;
+  --xbo-mk--font-weight-medium: 500;
+  --xbo-mk--font-weight-semibold: 600;
+  --xbo-mk--font-weight-bold: 700;
+
+  --xbo-mk--line-height-tight: 1.2;
+  --xbo-mk--line-height-normal: 1.5;
+
+  /* ===== Spacing ===== */
+  --xbo-mk--space-xs: 4px;
+  --xbo-mk--space-sm: 8px;
+  --xbo-mk--space-md: 12px;
+  --xbo-mk--space-lg: 16px;
+  --xbo-mk--space-xl: 20px;
+  --xbo-mk--space-2xl: 32px;
+
+  /* ===== Border Radius ===== */
+  --xbo-mk--radius-sm: 4px;
+  --xbo-mk--radius-md: 12px;
+  --xbo-mk--radius-lg: 16px;
+  --xbo-mk--radius-xl: 32px;
+
+  /* ===== Shadows ===== */
+  --xbo-mk--shadow-card: 1px 25px 34px rgba(116, 124, 153, 0.1);
+  --xbo-mk--shadow-chart: 1px 10px 24px rgba(29, 42, 68, 0.12);
+  --xbo-mk--shadow-hover: 0 4px 16px rgba(99, 25, 255, 0.12);
+
+  /* ===== Transitions ===== */
+  --xbo-mk--transition-fast: all 0.15s ease-in-out;
+  --xbo-mk--transition-default: all 0.3s ease-in-out;
+  --xbo-mk--transition-slow: all 0.45s ease-in-out;
+}
+
+/* ===== Dark Mode ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --xbo-mk--color-bg: #121418;
+    --xbo-mk--color-bg-secondary: #1f2127;
+    --xbo-mk--color-bg-header: #24242a;
+    --xbo-mk--color-text-heading: #ffffff;
+    --xbo-mk--color-text-primary: #e0e0e0;
+    --xbo-mk--color-text-secondary: #98a9c4;
+    --xbo-mk--color-text-muted: #6b7280;
+    --xbo-mk--color-border: #2a2a35;
+    --xbo-mk--color-border-light: #1f2127;
+    --xbo-mk--shadow-card: 1px 25px 34px rgba(0, 0, 0, 0.3);
+    --xbo-mk--shadow-hover: 0 4px 16px rgba(99, 25, 255, 0.2);
+  }
+}
+
+/* Manual dark mode toggle */
+.xbo-mk--dark {
+  --xbo-mk--color-bg: #121418;
+  --xbo-mk--color-bg-secondary: #1f2127;
+  --xbo-mk--color-bg-header: #24242a;
+  --xbo-mk--color-text-heading: #ffffff;
+  --xbo-mk--color-text-primary: #e0e0e0;
+  --xbo-mk--color-text-secondary: #98a9c4;
+  --xbo-mk--color-text-muted: #6b7280;
+  --xbo-mk--color-border: #2a2a35;
+  --xbo-mk--color-border-light: #1f2127;
+  --xbo-mk--shadow-card: 1px 25px 34px rgba(0, 0, 0, 0.3);
+  --xbo-mk--shadow-hover: 0 4px 16px rgba(99, 25, 255, 0.2);
+}
