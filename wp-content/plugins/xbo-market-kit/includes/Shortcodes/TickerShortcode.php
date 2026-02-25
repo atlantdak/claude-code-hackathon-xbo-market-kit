@@ -72,9 +72,16 @@ class TickerShortcode extends AbstractShortcode {
 			$first = substr( $base, 0, 1 );
 			$key   = sanitize_key( $symbol );
 
+			$icon_url     = 'https://assets.xbo.com/token-icons/svg/' . rawurlencode( strtoupper( $base ) ) . '.svg';
+			$fallback_url = 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/' . rawurlencode( strtolower( $base ) ) . '.svg';
+
 			$cards .= '<div class="xbo-mk-ticker__card">';
 			$cards .= '<div class="xbo-mk-ticker__header">';
-			$cards .= '<div class="xbo-mk-ticker__icon">' . esc_html( $first ) . '</div>';
+			$cards .= '<div class="xbo-mk-ticker__icon">';
+			$cards .= '<img class="xbo-mk-ticker__icon-img" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr( $base ) . '"'
+				. ' onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=\'' . esc_attr( esc_url( $fallback_url ) ) . '\'}else{this.style.display=\'none\';this.nextElementSibling.style.display=\'\'}">';
+			$cards .= '<span class="xbo-mk-ticker__icon-text" style="display:none">' . esc_html( $first ) . '</span>';
+			$cards .= '</div>';
 			$cards .= '<div class="xbo-mk-ticker__pair">';
 			$cards .= '<div class="xbo-mk-ticker__symbol">' . esc_html( $base ) . '</div>';
 			$cards .= '<div class="xbo-mk-ticker__name">' . esc_html( $symbol ) . '</div>';

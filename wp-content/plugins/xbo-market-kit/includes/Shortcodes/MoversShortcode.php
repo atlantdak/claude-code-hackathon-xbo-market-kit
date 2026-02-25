@@ -85,7 +85,13 @@ class MoversShortcode extends AbstractShortcode {
 		$html .= '<template data-wp-each="state.moversItems">';
 		$html .= '<tr class="xbo-mk-movers__row">';
 		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--pair">'
-			. '<div class="xbo-mk-movers__icon" data-wp-text="context.item.firstLetter"></div>'
+			. '<div class="xbo-mk-movers__icon">'
+			. '<img class="xbo-mk-movers__icon-img" data-wp-bind--src="context.item.iconUrl"'
+			. ' data-wp-bind--alt="context.item.symbol"'
+			. ' data-wp-bind--data-fallback="context.item.iconFallbackUrl"'
+			. ' onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.dataset.fallback}else{this.style.display=\'none\';this.nextElementSibling.style.display=\'\'}">'
+			. '<span class="xbo-mk-movers__icon-text" style="display:none" data-wp-text="context.item.firstLetter"></span>'
+			. '</div>'
 			. '<span class="xbo-mk-movers__symbol" data-wp-text="context.item.symbol"></span></td>';
 		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--price" data-wp-text="context.item.price"></td>';
 		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--change"'

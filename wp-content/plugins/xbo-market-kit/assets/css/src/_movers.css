@@ -101,6 +101,21 @@
   font-size: var(--xbo-mk--font-size-xs);
   font-weight: var(--xbo-mk--font-weight-bold);
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.xbo-mk-movers__icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.xbo-mk-movers__icon-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .xbo-mk-movers__symbol {
