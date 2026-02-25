@@ -63,24 +63,35 @@ class MoversShortcode extends AbstractShortcode {
 			'items' => array(),
 		);
 
-		$html  = '<div class="xbo-mk-movers bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden" data-wp-init="actions.initMovers">';
-		$html .= '<div class="flex border-b border-gray-200 dark:border-gray-700">';
-		$html .= '<button class="flex-1 px-4 py-3 text-sm font-medium transition-colors" data-wp-class--bg-blue-500="state.moversIsGainers" data-wp-class--text-white="state.moversIsGainers" data-wp-class--text-gray-600="!state.moversIsGainers" data-wp-on--click="actions.setMoversGainers">' . esc_html__( 'Gainers', 'xbo-market-kit' ) . '</button>';
-		$html .= '<button class="flex-1 px-4 py-3 text-sm font-medium transition-colors" data-wp-class--bg-red-500="state.moversIsLosers" data-wp-class--text-white="state.moversIsLosers" data-wp-class--text-gray-600="!state.moversIsLosers" data-wp-on--click="actions.setMoversLosers">' . esc_html__( 'Losers', 'xbo-market-kit' ) . '</button>';
+		$html  = '<div class="xbo-mk-movers" data-wp-init="actions.initMovers">';
+		$html .= '<div class="xbo-mk-movers__tabs">';
+		$html .= '<button class="xbo-mk-movers__tab"'
+			. ' data-wp-class--xbo-mk-movers__tab--gainers-active="state.moversIsGainers"'
+			. ' data-wp-on--click="actions.setMoversGainers">'
+			. esc_html__( 'Gainers', 'xbo-market-kit' ) . '</button>';
+		$html .= '<button class="xbo-mk-movers__tab"'
+			. ' data-wp-class--xbo-mk-movers__tab--losers-active="state.moversIsLosers"'
+			. ' data-wp-on--click="actions.setMoversLosers">'
+			. esc_html__( 'Losers', 'xbo-market-kit' ) . '</button>';
 		$html .= '</div>';
-		$html .= '<div class="overflow-x-auto">';
-		$html .= '<table class="w-full text-sm">';
-		$html .= '<thead class="bg-gray-50 dark:bg-gray-900"><tr>';
-		$html .= '<th class="px-4 py-2 text-left text-gray-500 font-medium">' . esc_html__( 'Pair', 'xbo-market-kit' ) . '</th>';
-		$html .= '<th class="px-4 py-2 text-right text-gray-500 font-medium">' . esc_html__( 'Price', 'xbo-market-kit' ) . '</th>';
-		$html .= '<th class="px-4 py-2 text-right text-gray-500 font-medium">' . esc_html__( '24h Change', 'xbo-market-kit' ) . '</th>';
+		$html .= '<div class="xbo-mk-movers__scroll">';
+		$html .= '<table class="xbo-mk-movers__table">';
+		$html .= '<thead class="xbo-mk-movers__thead"><tr>';
+		$html .= '<th class="xbo-mk-movers__th">' . esc_html__( 'Pair', 'xbo-market-kit' ) . '</th>';
+		$html .= '<th class="xbo-mk-movers__th xbo-mk-movers__th--price">' . esc_html__( 'Price', 'xbo-market-kit' ) . '</th>';
+		$html .= '<th class="xbo-mk-movers__th xbo-mk-movers__th--change">' . esc_html__( '24h Change', 'xbo-market-kit' ) . '</th>';
 		$html .= '</tr></thead>';
 		$html .= '<tbody>';
 		$html .= '<template data-wp-each="state.moversItems">';
-		$html .= '<tr class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750">';
-		$html .= '<td class="px-4 py-3"><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold" data-wp-text="context.item.firstLetter"></div><span class="font-medium" data-wp-text="context.item.symbol"></span></div></td>';
-		$html .= '<td class="px-4 py-3 text-right font-mono" data-wp-text="context.item.price"></td>';
-		$html .= '<td class="px-4 py-3 text-right font-mono" data-wp-class--text-green-500="context.item.isUp" data-wp-class--text-red-500="!context.item.isUp" data-wp-text="context.item.change"></td>';
+		$html .= '<tr class="xbo-mk-movers__row">';
+		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--pair">'
+			. '<div class="xbo-mk-movers__icon" data-wp-text="context.item.firstLetter"></div>'
+			. '<span class="xbo-mk-movers__symbol" data-wp-text="context.item.symbol"></span></td>';
+		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--price" data-wp-text="context.item.price"></td>';
+		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--change"'
+			. ' data-wp-class--xbo-mk-movers__change--positive="context.item.isUp"'
+			. ' data-wp-class--xbo-mk-movers__change--negative="!context.item.isUp"'
+			. ' data-wp-text="context.item.change"></td>';
 		$html .= '</tr>';
 		$html .= '</template>';
 		$html .= '</tbody>';
