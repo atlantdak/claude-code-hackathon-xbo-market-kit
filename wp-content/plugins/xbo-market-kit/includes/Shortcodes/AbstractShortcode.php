@@ -61,46 +61,33 @@ abstract class AbstractShortcode {
 	}
 
 	/**
-	 * Enqueue common frontend assets (Tailwind CSS and widget styles).
+	 * Enqueue common frontend assets.
 	 *
 	 * @return void
 	 */
 	protected function enqueue_assets(): void {
-		$this->enqueue_tailwind();
 		$this->enqueue_widget_css();
 	}
 
 	/**
-	 * Enqueue the Tailwind CSS CDN script if enabled in settings.
-	 *
-	 * @return void
-	 */
-	protected function enqueue_tailwind(): void {
-		if ( ! wp_script_is( 'xbo-market-kit-tailwind', 'enqueued' ) ) {
-			$settings = get_option( 'xbo_market_kit_settings', array() );
-			if ( ( $settings['enable_tailwind'] ?? '1' ) === '1' ) {
-				wp_enqueue_script(
-					'xbo-market-kit-tailwind',
-					'https://cdn.tailwindcss.com',
-					array(),
-					null,
-					false
-				);
-			}
-		}
-	}
-
-	/**
-	 * Enqueue the widget stylesheet.
+	 * Enqueue the widget stylesheet and web fonts.
 	 *
 	 * @return void
 	 */
 	protected function enqueue_widget_css(): void {
 		if ( ! wp_style_is( 'xbo-market-kit-widgets', 'enqueued' ) ) {
 			wp_enqueue_style(
-				'xbo-market-kit-widgets',
-				XBO_MARKET_KIT_URL . 'assets/css/widgets.css',
+				'xbo-market-kit-fonts',
+				'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap',
 				array(),
+				null
+			);
+
+			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+			wp_enqueue_style(
+				'xbo-market-kit-widgets',
+				XBO_MARKET_KIT_URL . 'assets/css/dist/widgets' . $suffix . '.css',
+				array( 'xbo-market-kit-fonts' ),
 				XBO_MARKET_KIT_VERSION
 			);
 		}

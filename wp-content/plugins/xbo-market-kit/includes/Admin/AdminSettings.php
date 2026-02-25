@@ -98,18 +98,6 @@ class AdminSettings {
 				'default'   => 'normal',
 			)
 		);
-
-		add_settings_field(
-			'enable_tailwind',
-			__( 'Enable Tailwind CSS', 'xbo-market-kit' ),
-			array( $this, 'render_checkbox_field' ),
-			self::PAGE_SLUG,
-			'xbo_market_kit_general',
-			array(
-				'label_for' => 'enable_tailwind',
-				'default'   => '1',
-			)
-		);
 	}
 
 	/**
@@ -124,8 +112,6 @@ class AdminSettings {
 		$output['default_symbols'] = sanitize_text_field( $input['default_symbols'] ?? 'BTC/USDT,ETH/USDT' );
 		$output['cache_mode']      = in_array( $input['cache_mode'] ?? '', array( 'fast', 'normal', 'slow' ), true )
 			? $input['cache_mode'] : 'normal';
-		$output['enable_tailwind'] = isset( $input['enable_tailwind'] ) ? '1' : '0';
-
 		return $output;
 	}
 
