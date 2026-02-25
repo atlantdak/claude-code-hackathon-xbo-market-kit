@@ -1,32 +1,16 @@
 /* XBO Market Kit — Ticker Widget */
 
 .xbo-mk-ticker {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--xbo-mk--space-lg);
+  justify-content: center;
 }
 
-/* Responsive grid columns — controlled by 'columns' attribute */
-.xbo-mk-ticker--cols-1 { grid-template-columns: 1fr; }
-.xbo-mk-ticker--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.xbo-mk-ticker--cols-3 { grid-template-columns: repeat(3, 1fr); }
-.xbo-mk-ticker--cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-@media (max-width: 768px) {
-  .xbo-mk-ticker--cols-3,
-  .xbo-mk-ticker--cols-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .xbo-mk-ticker--cols-2,
-  .xbo-mk-ticker--cols-3,
-  .xbo-mk-ticker--cols-4 {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Cards: flexible sizing, wrap when container is narrow, centered overflow row */
 .xbo-mk-ticker__card {
+  flex: 1 1 220px;
+  min-width: 200px;
   background: var(--xbo-mk--color-bg);
   border: 1px solid var(--xbo-mk--color-border);
   border-radius: var(--xbo-mk--radius-lg);
@@ -34,6 +18,12 @@
   padding: var(--xbo-mk--space-lg);
   transition: var(--xbo-mk--transition-default);
 }
+
+/* Column hints — limit max cards per row via max-width */
+.xbo-mk-ticker--cols-1 .xbo-mk-ticker__card { flex-basis: 100%; max-width: 100%; }
+.xbo-mk-ticker--cols-2 .xbo-mk-ticker__card { max-width: calc(50% - var(--xbo-mk--space-lg) / 2); }
+.xbo-mk-ticker--cols-3 .xbo-mk-ticker__card { max-width: calc(33.333% - var(--xbo-mk--space-lg) * 2 / 3); }
+.xbo-mk-ticker--cols-4 .xbo-mk-ticker__card { max-width: calc(25% - var(--xbo-mk--space-lg) * 3 / 4); }
 
 .xbo-mk-ticker__card:hover {
   box-shadow: var(--xbo-mk--shadow-hover);

@@ -15,9 +15,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Widget container base */
-[class^="xbo-mk-"][class$="-widget"],
-.xbo-mk-ticker,
+/* Widget container base — single-card widgets only */
+/* Ticker is excluded: it's a flex grid of individual cards, not a single card */
 .xbo-mk-movers,
 .xbo-mk-orderbook,
 .xbo-mk-trades,
