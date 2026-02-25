@@ -582,7 +582,7 @@
 }
 .xbo-mk-slippage__fields {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 3fr 2fr;
   gap: var(--xbo-mk--space-md);
 }
 @media (max-width: 768px) {
@@ -593,6 +593,9 @@
 .xbo-mk-slippage__field {
   display: flex;
   flex-direction: column;
+}
+.xbo-mk-slippage__field:last-child {
+  grid-column: 1 / -1;
 }
 .xbo-mk-slippage__label {
   display: block;
