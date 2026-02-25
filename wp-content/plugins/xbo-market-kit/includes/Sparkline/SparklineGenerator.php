@@ -160,6 +160,16 @@ class SparklineGenerator {
 	}
 
 	/**
+	 * Get trend direction string based on 24h percent change.
+	 *
+	 * @param float $change_pct_24h 24-hour percent change.
+	 * @return string 'positive' or 'negative'.
+	 */
+	public function get_trend_direction( float $change_pct_24h ): string {
+		return $change_pct_24h >= 0 ? 'positive' : 'negative';
+	}
+
+	/**
 	 * Compute a deterministic seed from symbol and trend bucket.
 	 *
 	 * @param string $symbol         Trading pair symbol.
