@@ -25,6 +25,7 @@
 [Features](#features) &bull;
 [AI Agents](#ai-powered-development) &bull;
 [Architecture](#architecture) &bull;
+[API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) &bull;
 [Quick Start](#quick-start) &bull;
 [Documentation](#documentation)
 
@@ -39,23 +40,23 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>~$90</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>~8h 20m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>7 / 7</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>64</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>~250M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>16</h2><sub>Sessions</sub></td>
+<td align="center" width="130"><h2>~$109</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>~11h 10m</h2><sub>Active Time</sub></td>
+<td align="center" width="130"><h2>8 / 8</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>73</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>~272M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>23</h2><sub>Sessions</sub></td>
 </tr>
 </table>
 
-> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 + Haiku 4.5). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
+> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 + Sonnet 4.6 + Haiku 4.5). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
 
 </div>
 
 ### Time Allocation
 
 ```mermaid
-pie title Active Dev Time by Task (~501 min total)
+pie title Active Dev Time by Task (~670 min total)
     "Project Setup (62m)" : 62
     "AI Workflow v1 (66m)" : 66
     "Workflow Improvements v2 (90m)" : 90
@@ -63,6 +64,7 @@ pie title Active Dev Time by Task (~501 min total)
     "Plugin MVP (178m)" : 178
     "Widget Styling (34m)" : 34
     "Local Icons (53m)" : 53
+    "API Documentation" : 20
 ```
 
 ### Commits per Task
@@ -70,9 +72,9 @@ pie title Active Dev Time by Task (~501 min total)
 ```mermaid
 xychart-beta
     title "Commits by Task"
-    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP", "Styling", "Icons"]
+    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP", "Styling", "Icons", "API Docs"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2, 13, 9, 12]
+    bar [1, 6, 12, 2, 13, 9, 12, 5]
 ```
 
 ### Timeline
@@ -100,18 +102,20 @@ gantt
     section Day 5 — Feb 25 (PM)
     Local Icons Implementation :done, icons, 2026-02-25 14:00, 53min
     Icon Transparency Fix      :done, iconfix, 2026-02-25 15:00, 5min
+    section Day 5 — Feb 25 (Evening)
+    API Documentation + Swagger UI :done, apidocs, 2026-02-25 21:00, 70min
 ```
 
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Day (~$90 total)
+pie title Cost by Day (~$109 total)
     "Day 1 Feb 22 ($28)" : 28
-    "Day 2 Feb 23 ($38)" : 38
-    "Day 4-5 Feb 25 ($24)" : 24
+    "Day 2 Feb 23 ($40)" : 40
+    "Day 4-5 Feb 25 ($41)" : 41
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: ~$89 (99%) + Haiku 4.5: ~$1 (1%). 16 sessions across 3 days.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: ~$92 (84%) + Sonnet 4.6: ~$4 (4%) + Haiku 4.5: ~$1 (1%). 23 sessions across 3 days.
 
 ### Task Details
 
@@ -135,6 +139,8 @@ pie title Cost by Day (~$90 total)
 | 5.11 | &nbsp;&nbsp;↳ Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | | | *Phase 5* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | ~$10 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | — | — | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 8.1 | &nbsp;&nbsp;↳ Update production URL in OAS3 spec when deploying | | | | ![pending](https://img.shields.io/badge/-pending-F59E0B?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 
@@ -143,10 +149,10 @@ pie title Cost by Day (~$90 total)
 
 | Day | Tasks | Wall Clock | Active Time | Idle/Pauses | Sessions |
 |:----|:------|:----------:|:-----------:|:-----------:|:--------:|
-| Feb 22 | Tasks 1–4 | 5h 39m | 3h 56m | 1h 43m | 4 |
-| Feb 23 | Task 5 (Plugin MVP) | 9h 21m | 2h 58m | 6h 23m | 9 |
-| Feb 25 | Tasks 6–7 | ~2h | ~1h 27m | ~33m | 3 |
-| **Total** | **All 7 tasks** | **~17h** | **~8h 21m** | **~8h 39m** | **16** |
+| Feb 22 | Tasks 1–4 | 24h 50m | 3h 56m | 20h 54m | 4 |
+| Feb 23 | Task 5 (Plugin MVP) | 8h 43m | 3h 5m | 5h 38m | 9 |
+| Feb 25 | Tasks 6–8 | 10h 38m | 4h 9m | 6h 29m | 10 |
+| **Total** | **All 8 tasks** | **~44h** | **~11h 10m** | **~33h** | **23** |
 
 Active time = continuous Claude Code processing with no gap > 5 min between API calls. Source: `docs/metrics/sessions.json`.
 
@@ -378,7 +384,7 @@ app/public/                             # Git root
 | ~~Day 4~~ | ~~Shortcodes: orderbook + trades~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 5~~ | ~~Slippage calculator + UX polish~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
-| **Day 4-5** | Widget styling + Local crypto icons (205 SVGs, zero CDN) | `████████████████████` 100% |
+| **Day 4-5** | Widget styling + Local crypto icons (205 SVGs, zero CDN) + API Docs | `████████████████████` 100% |
 | **Day 7** | Elementor widgets, demo video, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
 > Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
@@ -448,6 +454,7 @@ wp xbo icons status         # Show icon sync status
 | [Widget Styling Plan](docs/plans/2026-02-25-widget-styling-plan.md) | 10-task implementation plan |
 | [Local Icons Design](docs/plans/2026-02-25-local-icons-design.md) | Icon sync architecture & cascade strategy |
 | [Local Icons Plan](docs/plans/2026-02-25-local-icons-plan.md) | 9-task TDD implementation plan |
+| [REST API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) | Interactive Swagger UI for all plugin endpoints |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
 ---

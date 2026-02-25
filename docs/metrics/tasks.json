@@ -92,16 +92,70 @@
         "d8bf3b45",
         "ec08d051"
       ]
+    },
+    {
+      "id": "2026-02-25-widget-styling",
+      "description": "Replace Tailwind CDN with custom BEM CSS + CSS Custom Properties design system, PostCSS build pipeline, editor styles",
+      "plan": "docs/plans/2026-02-25-widget-styling-plan.md",
+      "started": "2026-02-25T10:00:00+02:00",
+      "completed": "2026-02-25T10:34:00+02:00",
+      "duration_minutes": 34,
+      "commits": 9,
+      "cost_usd": null,
+      "coverage": null,
+      "issue_number": null,
+      "status": "completed",
+      "sessions": [
+        "903d236b"
+      ]
+    },
+    {
+      "id": "2026-02-25-local-icons",
+      "description": "IconResolver, IconSync cascade engine, WP-CLI command, WP-Cron daily sync, 205 local SVG icons, zero CDN dependency",
+      "plan": "docs/plans/2026-02-25-local-icons-plan.md",
+      "started": "2026-02-25T14:00:00+02:00",
+      "completed": "2026-02-25T15:05:00+02:00",
+      "duration_minutes": 53,
+      "commits": 12,
+      "cost_usd": null,
+      "coverage": null,
+      "issue_number": null,
+      "status": "completed",
+      "sessions": [
+        "903d236b",
+        "d3c6dc8f"
+      ]
+    },
+    {
+      "id": "2026-02-25-api-documentation",
+      "description": "Generate OAS3 (OpenAPI 3.0) documentation for all 5 REST API endpoints, Swagger UI page for GitHub Pages, mp-api-docs plugin integration",
+      "plan": null,
+      "started": "2026-02-25T21:00:00+02:00",
+      "completed": "2026-02-25T22:10:00+02:00",
+      "duration_minutes": null,
+      "commits": null,
+      "cost_usd": null,
+      "coverage": null,
+      "issue_number": null,
+      "status": "completed",
+      "sessions": [],
+      "subtasks": [
+        {
+          "id": "2026-02-25-api-docs-production-url",
+          "description": "Update docs/api/xbo-v1.json servers[0].url with production site URL when deploying to production",
+          "status": "pending"
+        }
+      ]
     }
   ],
   "totals": {
-    "total_tasks": 5,
-    "total_duration_minutes": 744,
-    "total_tokens": 174208369,
-    "total_commits": 41,
-    "total_cost_usd": 66.41,
-    "total_sessions": 13,
-    "total_active_minutes": 414.1,
-    "total_messages": 1781
+    "total_tasks": 8,
+    "total_duration_minutes": null,
+    "total_tokens": 271522901,
+    "total_commits": 73,
+    "total_cost_usd": 109.43,
+    "total_sessions": 23,
+    "total_active_minutes": 670.2,
+    "total_messages": 2960
   }
 }

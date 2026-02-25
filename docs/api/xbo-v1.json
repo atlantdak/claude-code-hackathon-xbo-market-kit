@@ -1,0 +1,303 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "XBO Market Kit REST API",
+    "version": "1",
+    "description": "WordPress REST API endpoints for XBO Market Kit plugin. Provides real-time cryptocurrency market data from XBO exchange."
+  },
+  "servers": [
+    {
+      "url": "https://your-site.com/wp-json/xbo/v1",
+      "description": "Production"
+    },
+    {
+      "url": "http://claude-code-hackathon-xbo-market-kit.local/wp-json/xbo/v1",
+      "description": "Local Development"
+    }
+  ],
+  "paths": {
+    "/ticker": {
+      "get": {
+        "description": "",
+        "summary": "",
+        "tags": [
+          "Xbo / Ticker"
+        ],
+        "operationId": "GetXbo/Ticker",
+        "parameters": [
+          {
+            "name": "symbols",
+            "in": "query",
+            "description": "Comma-separated trading pair symbols (e.g. BTC/USDT,ETH/USDT).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated trading pair symbols (e.g. BTC/USDT,ETH/USDT)."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/xbo-ticker"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/movers": {
+      "get": {
+        "description": "",
+        "summary": "",
+        "tags": [
+          ""
+        ],
+        "operationId": "Get",
+        "parameters": [
+          {
+            "name": "mode",
+            "in": "query",
+            "description": "Sort mode: gainers or losers.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Sort mode: gainers or losers.",
+              "enum": [
+                "gainers",
+                "losers"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "Number of items to return."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/orderbook": {
+      "get": {
+        "description": "",
+        "summary": "",
+        "tags": [
+          ""
+        ],
+        "operationId": "Get_1",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Trading pair in underscore format (e.g. BTC_USDT).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Trading pair in underscore format (e.g. BTC_USDT)."
+            }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "Order book depth.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "Order book depth."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/trades": {
+      "get": {
+        "description": "",
+        "summary": "",
+        "tags": [
+          ""
+        ],
+        "operationId": "Get_2",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Trading pair in slash format (e.g. BTC/USDT).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Trading pair in slash format (e.g. BTC/USDT)."
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of trades to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "Number of trades to return."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/slippage": {
+      "get": {
+        "description": "",
+        "summary": "",
+        "tags": [
+          ""
+        ],
+        "operationId": "Get_3",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Trading pair in underscore format (e.g. BTC_USDT).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Trading pair in underscore format (e.g. BTC_USDT)."
+            }
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "description": "Trade side: buy or sell.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Trade side: buy or sell.",
+              "enum": [
+                "buy",
+                "sell"
+              ]
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "Trade amount in base currency.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "description": "Trade amount in base currency."
+            }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "Order book depth to fetch.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "Order book depth to fetch."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Xbo / Ticker"
+    }
+  ],
+  "externalDocs": {
+    "description": "",
+    "url": ""
+  },
+  "components": {
+    "schemas": {
+      "xbo-ticker": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "base": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          },
+          "last_price": {
+            "type": "number"
+          },
+          "change_pct_24h": {
+            "type": "number"
+          },
+          "high_24h": {
+            "type": "number"
+          },
+          "low_24h": {
+            "type": "number"
+          },
+          "volume_24h": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
