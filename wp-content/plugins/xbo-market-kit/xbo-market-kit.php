@@ -64,6 +64,9 @@ add_action( 'enqueue_block_editor_assets', 'xbo_market_kit_editor_assets' );
  */
 function xbo_market_kit_activate(): void {
 	\XboMarketKit\Admin\DemoPage::create();
+	if ( ! wp_next_scheduled( 'xbo_market_kit_sync_icons' ) ) {
+		wp_schedule_event( time(), 'daily', 'xbo_market_kit_sync_icons' );
+	}
 }
 register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
 
@@ -72,6 +75,7 @@ register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
  */
 function xbo_market_kit_deactivate(): void {
 	\XboMarketKit\Admin\DemoPage::delete();
+	wp_clear_scheduled_hook( 'xbo_market_kit_sync_icons' );
 }
 register_deactivation_hook( __FILE__, 'xbo_market_kit_deactivate' );
 
