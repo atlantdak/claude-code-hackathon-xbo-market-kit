@@ -55,12 +55,12 @@
 ### Time Allocation
 
 ```mermaid
-pie title Dev Time by Task (~831 min total)
-    "Project Setup (48m)" : 48
-    "AI Workflow v1 (51m)" : 51
-    "Workflow Improvements v2 (70m)" : 70
-    "Metrics Fix (14m)" : 14
-    "Plugin MVP (561m)" : 561
+pie title Active Dev Time by Task (~501 min total)
+    "Project Setup (62m)" : 62
+    "AI Workflow v1 (66m)" : 66
+    "Workflow Improvements v2 (90m)" : 90
+    "Metrics Fix (18m)" : 18
+    "Plugin MVP (178m)" : 178
     "Widget Styling (34m)" : 34
     "Local Icons (53m)" : 53
 ```
@@ -83,11 +83,11 @@ gantt
     dateFormat YYYY-MM-DD HH:mm
     axisFormat %b %d %H:%M
     section Day 1 — Feb 22
-    Project Setup and Scaffold   :done, setup, 2026-02-22 15:33, 48min
-    AI Workflow v1               :done, wf1, 2026-02-22 16:21, 51min
-    Workflow v2 Full Autonomy    :done, wf2, 2026-02-22 17:30, 70min
-    Metrics Collector Fix        :done, fix, 2026-02-22 18:40, 14min
-    section Day 2 — Feb 23
+    Project Setup and Scaffold   :done, setup, 2026-02-22 15:33, 62min
+    AI Workflow v1               :done, wf1, 2026-02-22 16:35, 66min
+    Workflow v2 Full Autonomy    :done, wf2, 2026-02-22 17:41, 90min
+    Metrics Collector Fix        :done, fix, 2026-02-22 19:11, 18min
+    section Day 2 — Feb 23 (active ~178m)
     Design Doc and Plan          :done, plan, 2026-02-23 08:26, 128min
     Bootstrap API Cache          :done, core, 2026-02-23 16:18, 5min
     REST Controllers x5          :done, rest, 2026-02-23 16:22, 4min
@@ -117,11 +117,11 @@ pie title Cost by Day (~$90 total)
 
 | # | Task | Duration | Commits | Cost | Status |
 |:-:|:-----|:--------:|:-------:|:----:|:------:|
-| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $7.28 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $7.74 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| **5** | **Plugin MVP** — full implementation (5 phases, 11 sub-tasks) | **9h 21m** | **13** | **$38.64** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 62m | 1 | $7.28 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 66m | 6 | $7.74 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 90m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 18m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| **5** | **Plugin MVP** — full implementation (5 phases, 11 sub-tasks) | **178m** | **13** | **$38.64** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.1 | &nbsp;&nbsp;↳ Plugin bootstrap, autoloader, activation hook | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.2 | &nbsp;&nbsp;↳ ApiClient with error handling, timeouts, filterable base URL | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.3 | &nbsp;&nbsp;↳ CacheManager with per-endpoint TTL via transients | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
@@ -135,6 +135,22 @@ pie title Cost by Day (~$90 total)
 | 5.11 | &nbsp;&nbsp;↳ Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | | | *Phase 5* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | ~$10 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+
+> **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
+
+<details>
+<summary><strong>Wall Clock vs Active Time</strong></summary>
+
+| Day | Tasks | Wall Clock | Active Time | Idle/Pauses | Sessions |
+|:----|:------|:----------:|:-----------:|:-----------:|:--------:|
+| Feb 22 | Tasks 1–4 | 5h 39m | 3h 56m | 1h 43m | 4 |
+| Feb 23 | Task 5 (Plugin MVP) | 9h 21m | 2h 58m | 6h 23m | 9 |
+| Feb 25 | Tasks 6–7 | ~2h | ~1h 27m | ~33m | 3 |
+| **Total** | **All 7 tasks** | **~17h** | **~8h 21m** | **~8h 39m** | **16** |
+
+Active time = continuous Claude Code processing with no gap > 5 min between API calls. Source: `docs/metrics/sessions.json`.
+
+</details>
 
 ---
 
