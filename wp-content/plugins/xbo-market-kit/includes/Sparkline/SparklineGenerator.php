@@ -95,6 +95,71 @@ class SparklineGenerator {
 	}
 
 	/**
+	 * Render price array to SVG polyline and polygon points strings.
+	 *
+	 * @param array<int, float> $prices     Array of price values.
+	 * @param float             $view_width  SVG viewBox width.
+	 * @param float             $view_height SVG viewBox height.
+	 * @return array{polyline_points: string, polygon_points: string}
+	 */
+	public function render_svg_points(
+		array $prices,
+		float $view_width = 100.0,
+		float $view_height = 30.0
+	): array {
+		$empty = array(
+			'polyline_points' => '',
+			'polygon_points'  => '',
+		);
+
+		$count = count( $prices );
+		if ( $count < 2 ) {
+			return $empty;
+		}
+
+		$buf_min = min( $prices );
+		$buf_max = max( $prices );
+		$range   = $buf_max - $buf_min;
+
+		// Flat line: all prices equal.
+		if ( $range < 1e-12 ) {
+			$mid    = $view_height / 2.0;
+			$points = array();
+			for ( $i = 0; $i < $count; $i++ ) {
+				$x        = $i * $view_width / ( $count - 1 );
+				$points[] = round( $x, 1 ) . ',' . round( $mid, 1 );
+			}
+			$polyline = implode( ' ', $points );
+			$polygon  = $polyline . ' ' . (int) $view_width . ',' . (int) $view_height . ' 0,' . (int) $view_height;
+			return array(
+				'polyline_points' => $polyline,
+				'polygon_points'  => $polygon,
+			);
+		}
+
+		$padding = $range * 0.1;
+		$y_min   = $buf_min - $padding;
+		$y_max   = $buf_max + $padding;
+		$y_range = $y_max - $y_min;
+
+		$points = array();
+		for ( $i = 0; $i < $count; $i++ ) {
+			$x = $i * $view_width / ( $count - 1 );
+			$y = $view_height - ( ( $prices[ $i ] - $y_min ) / $y_range ) * $view_height;
+			$y = max( 0.0, min( $view_height, $y ) );
+			$points[] = round( $x, 1 ) . ',' . round( $y, 1 );
+		}
+
+		$polyline = implode( ' ', $points );
+		$polygon  = $polyline . ' ' . (int) $view_width . ',' . (int) $view_height . ' 0,' . (int) $view_height;
+
+		return array(
+			'polyline_points' => $polyline,
+			'polygon_points'  => $polygon,
+		);
+	}
+
+	/**
 	 * Compute a deterministic seed from symbol and trend bucket.
 	 *
 	 * @param string $symbol         Trading pair symbol.

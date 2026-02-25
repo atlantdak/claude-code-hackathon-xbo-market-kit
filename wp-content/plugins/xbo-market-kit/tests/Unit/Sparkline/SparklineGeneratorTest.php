@@ -51,4 +51,44 @@ class SparklineGeneratorTest extends TestCase {
 			$this->assertTrue( is_finite( $price ) );
 		}
 	}
+
+	public function test_svg_points_within_viewbox(): void {
+		$prices = $this->generator->generate_prices( 68900.0, 69500.0, 68000.0, 2.5, 'BTC/USDT' );
+		$result = $this->generator->render_svg_points( $prices );
+
+		$pairs = explode( ' ', $result['polyline_points'] );
+		foreach ( $pairs as $pair ) {
+			[ $x, $y ] = explode( ',', $pair );
+			$this->assertGreaterThanOrEqual( 0.0, (float) $x );
+			$this->assertLessThanOrEqual( 100.0, (float) $x );
+			$this->assertGreaterThanOrEqual( 0.0, (float) $y );
+			$this->assertLessThanOrEqual( 30.0, (float) $y );
+		}
+	}
+
+	public function test_svg_polygon_closes_path(): void {
+		$prices = $this->generator->generate_prices( 68900.0, 69500.0, 68000.0, 2.5, 'BTC/USDT' );
+		$result = $this->generator->render_svg_points( $prices );
+
+		$this->assertStringEndsWith( '100,30 0,30', $result['polygon_points'] );
+	}
+
+	public function test_renderer_handles_empty_prices(): void {
+		$result = $this->generator->render_svg_points( array() );
+
+		$this->assertSame( '', $result['polyline_points'] );
+		$this->assertSame( '', $result['polygon_points'] );
+	}
+
+	public function test_renderer_handles_equal_prices(): void {
+		$prices = array_fill( 0, 40, 100.0 );
+		$result = $this->generator->render_svg_points( $prices );
+
+		// All y values should be at midpoint (15.0) for flat line.
+		$pairs = explode( ' ', $result['polyline_points'] );
+		foreach ( $pairs as $pair ) {
+			[ , $y ] = explode( ',', $pair );
+			$this->assertEqualsWithDelta( 15.0, (float) $y, 0.1 );
+		}
+	}
 }
