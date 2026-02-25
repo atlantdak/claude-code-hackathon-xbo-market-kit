@@ -73,7 +73,6 @@ class TickerShortcode extends AbstractShortcode {
 		foreach ( $symbols as $symbol ) {
 			$parts = explode( '/', $symbol );
 			$base  = $parts[0];
-			$first = substr( $base, 0, 1 );
 			$key   = sanitize_key( $symbol );
 
 			$icon_url = $icon_resolver->url( $base );
@@ -81,7 +80,6 @@ class TickerShortcode extends AbstractShortcode {
 			$cards .= '<div class="xbo-mk-ticker__card">';
 			$cards .= '<div class="xbo-mk-ticker__header">';
 			$cards .= '<div class="xbo-mk-ticker__icon">';
-			$cards .= '<span class="xbo-mk-ticker__icon-text">' . esc_html( $first ) . '</span>';
 			$cards .= '<img class="xbo-mk-ticker__icon-img" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr( $base ) . '"'
 				. ' width="40" height="40" loading="lazy" decoding="async">';
 			$cards .= '</div>';

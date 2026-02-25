@@ -47,7 +47,6 @@ const { state, actions } = store( 'xbo-market-kit', {
 				if ( Array.isArray( data ) ) {
 					state._moversItems = data.map( ( item ) => ( {
 						symbol: item.symbol,
-						firstLetter: item.base ? item.base[ 0 ] : '?',
 						iconUrl: `${ state._moversIconsUrl }/${ encodeURIComponent( ( item.base || '' ).toLowerCase() ) }.svg`,
 						price: `$${ parseFloat( item.last_price ).toLocaleString( 'en-US', { minimumFractionDigits: 2, maximumFractionDigits: 8 } ) }`,
 						change: `${ item.change_pct_24h >= 0 ? '+' : '' }${ parseFloat( item.change_pct_24h ).toFixed( 2 ) }%`,

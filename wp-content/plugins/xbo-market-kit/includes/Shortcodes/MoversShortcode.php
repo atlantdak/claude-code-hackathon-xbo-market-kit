@@ -87,7 +87,6 @@ class MoversShortcode extends AbstractShortcode {
 		$html .= '<tr class="xbo-mk-movers__row">';
 		$html .= '<td class="xbo-mk-movers__cell xbo-mk-movers__cell--pair">'
 			. '<div class="xbo-mk-movers__icon">'
-			. '<span class="xbo-mk-movers__icon-text" data-wp-text="context.item.firstLetter"></span>'
 			. '<img class="xbo-mk-movers__icon-img" data-wp-bind--src="context.item.iconUrl"'
 			. ' width="24" height="24">'
 			. '</div>'
