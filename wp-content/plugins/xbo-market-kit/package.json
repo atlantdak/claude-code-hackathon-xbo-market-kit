@@ -1,0 +1,15 @@
+{
+  "name": "xbo-market-kit",
+  "private": true,
+  "scripts": {
+    "css:dev": "postcss assets/css/src/widgets.css -o assets/css/dist/widgets.css --watch",
+    "css:build": "NODE_ENV=production postcss assets/css/src/widgets.css -o assets/css/dist/widgets.min.css"
+  },
+  "devDependencies": {
+    "postcss": "^8.5",
+    "postcss-cli": "^11.0",
+    "postcss-import": "^16.1",
+    "postcss-nesting": "^13.0",
+    "cssnano": "^7.0"
+  }
+}
