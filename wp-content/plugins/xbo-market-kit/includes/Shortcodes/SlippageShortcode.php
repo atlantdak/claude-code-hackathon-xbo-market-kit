@@ -186,10 +186,19 @@ class SlippageShortcode extends AbstractShortcode {
 
 		$html .= '</div></div>';
 
-		// Side toggle (second column).
+		// Amount input (second column).
 		$html .= '<div class="xbo-mk-slippage__field">';
 		$html .= '<label class="xbo-mk-slippage__label">'
-			. esc_html__( 'Side', 'xbo-market-kit' ) . '</label>';
+			. esc_html__( 'Amount', 'xbo-market-kit' ) . '</label>';
+		$html .= '<input type="number" step="0.001" min="0.001"'
+			. ' value="' . esc_attr( $amount ) . '"'
+			. ' placeholder="1.0"'
+			. ' class="xbo-mk-slippage__input"'
+			. ' data-wp-on--input="actions.slippageAmountChange" />';
+		$html .= '</div>';
+
+		// Buy/Sell toggle (full-width row).
+		$html .= '<div class="xbo-mk-slippage__field">';
 		$html .= '<div class="xbo-mk-slippage__toggle">';
 		$html .= '<button type="button" class="xbo-mk-slippage__toggle-btn"'
 			. ' data-wp-class--xbo-mk-slippage__toggle-btn--buy-active="state.slippageIsBuy"'
@@ -200,17 +209,6 @@ class SlippageShortcode extends AbstractShortcode {
 			. ' data-wp-on--click="actions.slippageSetSell">'
 			. esc_html__( 'Sell', 'xbo-market-kit' ) . '</button>';
 		$html .= '</div></div>';
-
-		// Amount input (third column).
-		$html .= '<div class="xbo-mk-slippage__field">';
-		$html .= '<label class="xbo-mk-slippage__label">'
-			. esc_html__( 'Amount', 'xbo-market-kit' ) . '</label>';
-		$html .= '<input type="number" step="0.001" min="0.001"'
-			. ' value="' . esc_attr( $amount ) . '"'
-			. ' placeholder="1.0"'
-			. ' class="xbo-mk-slippage__input"'
-			. ' data-wp-on--input="actions.slippageAmountChange" />';
-		$html .= '</div>';
 
 		$html .= '</div></div>'; // fields + form.
 
