@@ -67,7 +67,7 @@ class SparklineGenerator {
 
 		// Ensure high >= low.
 		if ( $high_24h < $low_24h ) {
-			[ $low_24h, $high_24h ] = [ $high_24h, $low_24h ];
+			[ $low_24h, $high_24h ] = array( $high_24h, $low_24h );
 		}
 
 		$price_range = max( $high_24h - $low_24h, $last_price * 0.001 );
@@ -79,15 +79,15 @@ class SparklineGenerator {
 		$seed = $this->compute_seed( $symbol, $change_pct_24h );
 		$rng  = $seed;
 
-		$prices              = array_fill( 0, $count, 0.0 );
+		$prices               = array_fill( 0, $count, 0.0 );
 		$prices[ $count - 1 ] = $last_price;
-		$price               = $last_price;
+		$price                = $last_price;
 
 		for ( $i = $count - 2; $i >= 0; $i-- ) {
-			$rng   = $this->next_random( $rng );
-			$rand  = ( $this->random_float( $rng ) - 0.5 ) * 2.0 * $noise_scale;
-			$step  = max( -$max_step, min( $max_step, $drift + $rand ) );
-			$price = max( self::PRICE_FLOOR, $price + $step );
+			$rng          = $this->next_random( $rng );
+			$rand         = ( $this->random_float( $rng ) - 0.5 ) * 2.0 * $noise_scale;
+			$step         = max( -$max_step, min( $max_step, $drift + $rand ) );
+			$price        = max( self::PRICE_FLOOR, $price + $step );
 			$prices[ $i ] = $price;
 		}
 
@@ -144,9 +144,9 @@ class SparklineGenerator {
 
 		$points = array();
 		for ( $i = 0; $i < $count; $i++ ) {
-			$x = $i * $view_width / ( $count - 1 );
-			$y = $view_height - ( ( $prices[ $i ] - $y_min ) / $y_range ) * $view_height;
-			$y = max( 0.0, min( $view_height, $y ) );
+			$x        = $i * $view_width / ( $count - 1 );
+			$y        = $view_height - ( ( $prices[ $i ] - $y_min ) / $y_range ) * $view_height;
+			$y        = max( 0.0, min( $view_height, $y ) );
 			$points[] = round( $x, 1 ) . ',' . round( $y, 1 );
 		}
 

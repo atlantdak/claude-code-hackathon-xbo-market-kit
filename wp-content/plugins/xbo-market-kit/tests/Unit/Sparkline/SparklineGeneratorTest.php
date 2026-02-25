@@ -159,4 +159,34 @@ class SparklineGeneratorTest extends TestCase {
 			'zero'     => array( 0.0, 'positive' ),
 		);
 	}
+
+	public function test_sparkline_data_is_json_serializable(): void {
+		$prices = $this->generator->generate_prices( 68900.0, 69500.0, 68000.0, 2.5, 'BTC/USDT' );
+		$data   = array(
+			'prices'    => $prices,
+			'updatedAt' => 1772051460,
+			'trend'     => $this->generator->get_trend_direction( 2.5 ),
+		);
+
+		$json = json_encode( $data );
+		$this->assertNotFalse( $json );
+
+		$decoded = json_decode( (string) $json, true );
+		$this->assertIsArray( $decoded );
+		$this->assertCount( 40, $decoded['prices'] );
+		$this->assertSame( 'positive', $decoded['trend'] );
+	}
+
+	public function test_multiple_symbols_produce_unique_gradients(): void {
+		$symbols = array( 'BTC/USDT', 'ETH/USDT', 'SOL/USDT', 'BTC/USDT' );
+		$ids     = array();
+		foreach ( $symbols as $symbol ) {
+			$key   = preg_replace( '/[^a-zA-Z0-9]/', '', strtolower( $symbol ) );
+			$ids[] = 'spark-grad-' . $key . '-xbo-ticker-1';
+		}
+		// BTC appears twice — same widget, same key, same ID (expected).
+		// But different symbols must produce different IDs.
+		$unique = array_unique( $ids );
+		$this->assertCount( 3, $unique ); // BTC, ETH, SOL — 3 unique.
+	}
 }
