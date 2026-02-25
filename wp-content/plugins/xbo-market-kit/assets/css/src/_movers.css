@@ -90,6 +90,7 @@
 }
 
 .xbo-mk-movers__icon {
+  position: relative;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -105,17 +106,11 @@
 }
 
 .xbo-mk-movers__icon-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.xbo-mk-movers__icon-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 .xbo-mk-movers__symbol {

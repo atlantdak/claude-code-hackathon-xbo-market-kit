@@ -78,10 +78,10 @@ class TickerShortcode extends AbstractShortcode {
 			$cards .= '<div class="xbo-mk-ticker__card">';
 			$cards .= '<div class="xbo-mk-ticker__header">';
 			$cards .= '<div class="xbo-mk-ticker__icon">';
+			$cards .= '<span class="xbo-mk-ticker__icon-text">' . esc_html( $first ) . '</span>';
 			$cards .= '<img class="xbo-mk-ticker__icon-img" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr( $base ) . '"'
 				. ' width="40" height="40" loading="lazy" decoding="async"'
-				. ' onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=\'' . esc_attr( esc_url( $fallback_url ) ) . '\'}else{this.style.display=\'none\';this.nextElementSibling.style.display=\'\'}">';
-			$cards .= '<span class="xbo-mk-ticker__icon-text" style="display:none">' . esc_html( $first ) . '</span>';
+				. ' onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=\'' . esc_attr( esc_url( $fallback_url ) ) . '\'}else{this.style.display=\'none\'}">';
 			$cards .= '</div>';
 			$cards .= '<div class="xbo-mk-ticker__pair">';
 			$cards .= '<div class="xbo-mk-ticker__symbol">' . esc_html( $base ) . '</div>';
