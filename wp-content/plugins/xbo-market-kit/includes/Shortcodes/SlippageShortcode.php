@@ -34,7 +34,30 @@ class SlippageShortcode extends AbstractShortcode {
 		return array(
 			'symbol' => 'BTC_USDT',
 			'side'   => 'buy',
-			'amount' => '',
+			'amount' => '1',
+		);
+	}
+
+	/**
+	 * Parse a trading pair symbol into base and quote currencies.
+	 *
+	 * @param string $symbol Symbol in underscore (BTC_USDT) or slash (BTC/USDT) format.
+	 * @return array{base: string, quote: string} Parsed currencies.
+	 */
+	protected function parse_symbol( string $symbol ): array {
+		$separator = str_contains( $symbol, '/' ) ? '/' : '_';
+		$parts     = explode( $separator, $symbol, 2 );
+
+		if ( count( $parts ) === 2 && '' !== $parts[0] && '' !== $parts[1] ) {
+			return array(
+				'base'  => strtoupper( trim( $parts[0] ) ),
+				'quote' => strtoupper( trim( $parts[1] ) ),
+			);
+		}
+
+		return array(
+			'base'  => 'BTC',
+			'quote' => 'USDT',
 		);
 	}
 
