@@ -89,6 +89,7 @@ class MoversShortcode extends AbstractShortcode {
 			. '<img class="xbo-mk-movers__icon-img" data-wp-bind--src="context.item.iconUrl"'
 			. ' data-wp-bind--alt="context.item.symbol"'
 			. ' data-wp-bind--data-fallback="context.item.iconFallbackUrl"'
+			. ' width="24" height="24" loading="lazy" decoding="async"'
 			. ' onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=this.dataset.fallback}else{this.style.display=\'none\';this.nextElementSibling.style.display=\'\'}">'
 			. '<span class="xbo-mk-movers__icon-text" style="display:none" data-wp-text="context.item.firstLetter"></span>'
 			. '</div>'
