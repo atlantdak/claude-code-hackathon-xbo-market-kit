@@ -11,6 +11,7 @@ namespace XboMarketKit;
 
 use XboMarketKit\Api\ApiClient;
 use XboMarketKit\Cache\CacheManager;
+use XboMarketKit\Icons\IconResolver;
 
 /**
  * Main plugin singleton class.
@@ -42,6 +43,13 @@ class Plugin {
 	private CacheManager $cache_manager;
 
 	/**
+	 * Icon resolver instance.
+	 *
+	 * @var IconResolver
+	 */
+	private IconResolver $icon_resolver;
+
+	/**
 	 * Get the singleton instance of the plugin.
 	 *
 	 * @return self Plugin instance.
@@ -59,6 +67,10 @@ class Plugin {
 	private function __construct() {
 		$this->cache_manager = new CacheManager();
 		$this->api_client    = new ApiClient( $this->cache_manager );
+		$this->icon_resolver = new IconResolver(
+			XBO_MARKET_KIT_DIR . 'assets/images/icons',
+			XBO_MARKET_KIT_URL . 'assets/images/icons'
+		);
 	}
 
 	/**
@@ -136,10 +148,7 @@ class Plugin {
 	 * @return void
 	 */
 	public function cron_sync_icons(): void {
-		$icons_dir = XBO_MARKET_KIT_DIR . 'assets/images/icons';
-		$icons_url = XBO_MARKET_KIT_URL . 'assets/images/icons';
-		$resolver  = new Icons\IconResolver( $icons_dir, $icons_url );
-		$sync      = new Icons\IconSync( $resolver );
+		$sync = new Icons\IconSync( $this->icon_resolver );
 
 		$response = $this->api_client->get_currencies();
 		if ( ! $response->success ) {
@@ -157,6 +166,15 @@ class Plugin {
 	 */
 	public function get_api_client(): ApiClient {
 		return $this->api_client;
+	}
+
+	/**
+	 * Get the icon resolver instance.
+	 *
+	 * @return IconResolver Icon resolver.
+	 */
+	public function get_icon_resolver(): IconResolver {
+		return $this->icon_resolver;
 	}
 
 	/**

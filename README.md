@@ -464,6 +464,10 @@ wp xbo icons status         # Show icon sync status
 | [Widget Styling Plan](docs/plans/2026-02-25-widget-styling-plan.md) | 10-task implementation plan |
 | [Local Icons Design](docs/plans/2026-02-25-local-icons-design.md) | Icon sync architecture & cascade strategy |
 | [Local Icons Plan](docs/plans/2026-02-25-local-icons-plan.md) | 9-task TDD implementation plan |
+| [Sparkline Ticker Design](docs/plans/2026-02-25-sparkline-ticker-design.md) | Algorithmic sparkline generation architecture |
+| [Sparkline Ticker Plan](docs/plans/2026-02-25-sparkline-ticker-implementation.md) | Sparkline ticker implementation plan |
+| [Slippage UX Design](docs/plans/2026-02-25-slippage-ux-design.md) | Slippage calculator UX redesign architecture |
+| [Slippage UX Plan](docs/plans/2026-02-25-slippage-ux-implementation.md) | Slippage UX implementation plan |
 | [REST API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) | Interactive Swagger UI for all plugin endpoints |
 | [Sparkline Ticker Design](docs/plans/2026-02-25-sparkline-ticker-design.md) | Algorithmic sparkline generation architecture |
 | [Sparkline Ticker Plan](docs/plans/2026-02-25-sparkline-ticker-implementation.md) | Implementation plan for sparkline ticker |

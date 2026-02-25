@@ -67,6 +67,24 @@ abstract class AbstractShortcode {
 	 */
 	protected function enqueue_assets(): void {
 		$this->enqueue_widget_css();
+		$this->enqueue_interactivity_config();
+	}
+
+	/**
+	 * Register Interactivity API configuration (REST URL, etc.). Runs once.
+	 *
+	 * @return void
+	 */
+	protected function enqueue_interactivity_config(): void {
+		static $registered = false;
+		if ( $registered ) {
+			return;
+		}
+		$registered = true;
+		wp_interactivity_config(
+			'xbo-market-kit',
+			array( 'restUrl' => rest_url( 'xbo/v1/' ) )
+		);
 	}
 
 	/**
