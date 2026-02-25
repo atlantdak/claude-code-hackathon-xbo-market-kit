@@ -69,6 +69,37 @@ class SlippageShortcode extends AbstractShortcode {
 	protected function enqueue_assets(): void {
 		parent::enqueue_assets();
 		$this->enqueue_interactivity_script( 'xbo-market-kit-slippage', 'slippage.js' );
+		$this->enqueue_pair_catalog();
+	}
+
+	/**
+	 * Schedule pair catalog JSON output in wp_footer (once per page).
+	 *
+	 * @return void
+	 */
+	private function enqueue_pair_catalog(): void {
+		static $enqueued = false;
+		if ( $enqueued ) {
+			return;
+		}
+		$enqueued = true;
+		add_action( 'wp_footer', array( $this, 'render_pair_catalog_json' ) );
+	}
+
+	/**
+	 * Output the pair catalog JSON script tag in the footer.
+	 *
+	 * @return void
+	 */
+	public function render_pair_catalog_json(): void {
+		$api     = \XboMarketKit\Plugin::instance()->get_api_client();
+		$icons   = \XboMarketKit\Plugin::instance()->get_icon_resolver();
+		$catalog = new PairCatalog( $api, $icons );
+		$data    = $catalog->build();
+
+		echo '<script type="application/json" id="xbo-mk-pairs-catalog">'
+			. wp_json_encode( $data )
+			. '</script>';
 	}
 
 	/**
