@@ -42,8 +42,8 @@
 <tr>
 <td align="center" width="130"><h2>~$109</h2><sub>Total Cost</sub></td>
 <td align="center" width="130"><h2>~11h 10m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>8 / 8</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>73</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>10 / 10</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>89</h2><sub>Commits</sub></td>
 <td align="center" width="130"><h2>~272M</h2><sub>Tokens</sub></td>
 <td align="center" width="130"><h2>23</h2><sub>Sessions</sub></td>
 </tr>
@@ -65,6 +65,8 @@ pie title Active Dev Time by Task (~670 min total)
     "Widget Styling (34m)" : 34
     "Local Icons (53m)" : 53
     "API Documentation" : 20
+    "Slippage UX Redesign" : 40
+    "Sparkline Ticker" : 40
 ```
 
 ### Commits per Task
@@ -72,9 +74,9 @@ pie title Active Dev Time by Task (~670 min total)
 ```mermaid
 xychart-beta
     title "Commits by Task"
-    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP", "Styling", "Icons", "API Docs"]
+    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "MVP", "Styling", "Icons", "API Docs", "Slippage UX", "Sparkline"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2, 13, 9, 12, 5]
+    bar [1, 6, 12, 2, 13, 9, 12, 5, 8, 8]
 ```
 
 ### Timeline
@@ -104,6 +106,9 @@ gantt
     Icon Transparency Fix      :done, iconfix, 2026-02-25 15:00, 5min
     section Day 5 — Feb 25 (Evening)
     API Documentation + Swagger UI :done, apidocs, 2026-02-25 21:00, 70min
+    section Day 5 — Feb 26
+    Slippage UX Redesign           :done, slippage, 2026-02-26 00:00, 40min
+    Sparkline Ticker               :done, sparkline, 2026-02-26 00:40, 40min
 ```
 
 ### Cost Breakdown
@@ -113,6 +118,7 @@ pie title Cost by Day (~$109 total)
     "Day 1 Feb 22 ($28)" : 28
     "Day 2 Feb 23 ($40)" : 40
     "Day 4-5 Feb 25 ($41)" : 41
+    "Day 5 Feb 26" : 10
 ```
 
 > **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: ~$92 (84%) + Sonnet 4.6: ~$4 (4%) + Haiku 4.5: ~$1 (1%). 23 sessions across 3 days.
@@ -141,6 +147,8 @@ pie title Cost by Day (~$109 total)
 | 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | — | — | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 8.1 | &nbsp;&nbsp;↳ Update production URL in OAS3 spec when deploying | | | | ![pending](https://img.shields.io/badge/-pending-F59E0B?style=flat-square) |
+| 9 | **Slippage UX Redesign** — Dropdown selectors, PairCatalog, context-based state | — | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 10 | **Sparkline Ticker** — Algorithmic sparklines, constrained random walk, ring buffer | — | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 
@@ -385,6 +393,7 @@ app/public/                             # Git root
 | ~~Day 5~~ | ~~Slippage calculator + UX polish~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
 | **Day 4-5** | Widget styling + Local crypto icons (205 SVGs, zero CDN) + API Docs | `████████████████████` 100% |
+| **Day 5** | Slippage UX redesign (dropdowns, PairCatalog) + Sparkline ticker (algo generation) | `████████████████████` 100% |
 | **Day 7** | Elementor widgets, demo video, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
 > Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
@@ -454,6 +463,10 @@ wp xbo icons status         # Show icon sync status
 | [Widget Styling Plan](docs/plans/2026-02-25-widget-styling-plan.md) | 10-task implementation plan |
 | [Local Icons Design](docs/plans/2026-02-25-local-icons-design.md) | Icon sync architecture & cascade strategy |
 | [Local Icons Plan](docs/plans/2026-02-25-local-icons-plan.md) | 9-task TDD implementation plan |
+| [Sparkline Ticker Design](docs/plans/2026-02-25-sparkline-ticker-design.md) | Algorithmic sparkline generation architecture |
+| [Sparkline Ticker Plan](docs/plans/2026-02-25-sparkline-ticker-implementation.md) | Sparkline ticker implementation plan |
+| [Slippage UX Design](docs/plans/2026-02-25-slippage-ux-design.md) | Slippage calculator UX redesign architecture |
+| [Slippage UX Plan](docs/plans/2026-02-25-slippage-ux-implementation.md) | Slippage UX implementation plan |
 | [REST API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) | Interactive Swagger UI for all plugin endpoints |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
