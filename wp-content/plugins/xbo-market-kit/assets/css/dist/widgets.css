@@ -240,14 +240,13 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--xbo-mk--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-weight: var(--xbo-mk--font-weight-bold);
-  font-size: var(--xbo-mk--font-size-sm);
   flex-shrink: 0;
+  overflow: hidden;
+}
+.xbo-mk-ticker__icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .xbo-mk-ticker__pair {
   min-width: 0;
@@ -368,14 +367,13 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--xbo-mk--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: var(--xbo-mk--font-size-xs);
-  font-weight: var(--xbo-mk--font-weight-bold);
   flex-shrink: 0;
+  overflow: hidden;
+}
+.xbo-mk-movers__icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .xbo-mk-movers__symbol {
   font-weight: var(--xbo-mk--font-weight-medium);
