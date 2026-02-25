@@ -58,9 +58,10 @@ class MoversShortcode extends AbstractShortcode {
 		$limit = max( 1, min( 50, (int) $atts['limit'] ) );
 
 		$context = array(
-			'mode'  => $mode,
-			'limit' => $limit,
-			'items' => array(),
+			'mode'     => $mode,
+			'limit'    => $limit,
+			'items'    => array(),
+			'iconsUrl' => XBO_MARKET_KIT_URL . 'assets/images/icons',
 		);
 
 		$html  = '<div class="xbo-mk-movers" data-wp-init="actions.initMovers">';
