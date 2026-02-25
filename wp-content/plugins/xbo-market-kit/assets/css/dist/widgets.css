@@ -280,13 +280,25 @@
 .xbo-mk-ticker__change--negative {
   color: var(--xbo-mk--color-negative);
 }
+/* Sparkline container */
 .xbo-mk-ticker__sparkline {
   margin-top: var(--xbo-mk--space-sm);
   width: 100%;
   height: 32px;
 }
-.xbo-mk-ticker__sparkline polyline {
-  stroke: var(--xbo-mk--color-primary-light);
+/* Sparkline stroke color by trend */
+.xbo-mk-ticker__sparkline--positive .xbo-mk-ticker__sparkline-line {
+  stroke: var(--xbo-mk--color-positive);
+}
+.xbo-mk-ticker__sparkline--negative .xbo-mk-ticker__sparkline-line {
+  stroke: var(--xbo-mk--color-negative);
+}
+/* Gradient fill inherits trend color via stop-color */
+.xbo-mk-ticker__sparkline--positive stop {
+  stop-color: var(--xbo-mk--color-positive);
+}
+.xbo-mk-ticker__sparkline--negative stop {
+  stop-color: var(--xbo-mk--color-negative);
 }
 /* XBO Market Kit — Movers Widget */
 .xbo-mk-movers {
