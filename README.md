@@ -121,28 +121,20 @@ pie title Cost by Day (~$90 total)
 | 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $7.74 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 5 | **Plugin MVP** — full implementation (11 sub-tasks below) | 9h 21m | 13 | $38.64 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| **5** | **Plugin MVP** — full implementation (5 phases, 11 sub-tasks) | **9h 21m** | **13** | **$38.64** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.1 | &nbsp;&nbsp;↳ Plugin bootstrap, autoloader, activation hook | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.2 | &nbsp;&nbsp;↳ ApiClient with error handling, timeouts, filterable base URL | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.3 | &nbsp;&nbsp;↳ CacheManager with per-endpoint TTL via transients | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.4 | &nbsp;&nbsp;↳ REST controllers: Ticker + Movers (stats-based) | | | *Phase 2* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.5 | &nbsp;&nbsp;↳ REST controllers: Orderbook + Trades + Slippage (symbol-based) | | | *Phase 2* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.6 | &nbsp;&nbsp;↳ Shortcodes: Ticker + Movers with Interactivity API | | | *Phase 3* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.7 | &nbsp;&nbsp;↳ Shortcodes: Orderbook + Trades with Interactivity API | | | *Phase 3* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.8 | &nbsp;&nbsp;↳ Shortcode: Slippage Calculator with debounced auto-calc | | | *Phase 3* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.9 | &nbsp;&nbsp;↳ 5 Gutenberg blocks (server-rendered via render.php) | | | *Phase 4* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.10 | &nbsp;&nbsp;↳ Admin settings page + demo page on activation | | | *Phase 4* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 5.11 | &nbsp;&nbsp;↳ Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | | | *Phase 5* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | ~$10 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-
-<details>
-<summary><strong>Task 5 — Implementation Sub-tasks (11)</strong></summary>
-
-| Sub | Task | Phase |
-|:---:|:-----|:-----:|
-| 5.1 | Plugin bootstrap, autoloader, activation hook | Phase 1 |
-| 5.2 | ApiClient with error handling, timeouts, filterable base URL | Phase 1 |
-| 5.3 | CacheManager with per-endpoint TTL via transients | Phase 1 |
-| 5.4 | REST controllers: Ticker + Movers (stats-based) | Phase 2 |
-| 5.5 | REST controllers: Orderbook + Trades + Slippage (symbol-based) | Phase 2 |
-| 5.6 | Shortcodes: Ticker + Movers with Interactivity API | Phase 3 |
-| 5.7 | Shortcodes: Orderbook + Trades with Interactivity API | Phase 3 |
-| 5.8 | Shortcode: Slippage Calculator with debounced auto-calc | Phase 3 |
-| 5.9 | 5 Gutenberg blocks (server-rendered via render.php) | Phase 4 |
-| 5.10 | Admin settings page + demo page on activation | Phase 4 |
-| 5.11 | Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | Phase 5 |
-
-</details>
 
 ---
 
@@ -243,7 +235,7 @@ graph LR
 | Agent | Role | Model | Specialty |
 |:------|:-----|:------|:----------|
 | **Backend Dev** | PHP/WordPress | Opus 4.6 | API client, REST endpoints, caching, shortcodes |
-| **Frontend Dev** | CSS/JS/Tailwind | Opus 4.6 | UI components, BEM CSS design system, Gutenberg blocks, Elementor widgets |
+| **Frontend Dev** | CSS/JS | Opus 4.6 | UI components, BEM CSS design system, Gutenberg blocks, Elementor widgets |
 | **Verifier** | Quality Gates | Haiku 4.5 | PHPCS, PHPStan (L6), PHPUnit |
 | **Integration Tester** | Live Testing | Haiku 4.5 | WP-CLI page testing, browser verification |
 | **Reviewer** | Code Review | Haiku 4.5 | Codex CLI review, security audit |
