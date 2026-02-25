@@ -74,3 +74,8 @@ function xbo_market_kit_deactivate(): void {
 	\XboMarketKit\Admin\DemoPage::delete();
 }
 register_deactivation_hook( __FILE__, 'xbo_market_kit_deactivate' );
+
+// Register WP-CLI commands.
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	\WP_CLI::add_command( 'xbo icons', \XboMarketKit\Cli\IconsCommand::class );
+}
