@@ -65,6 +65,10 @@ class TickerShortcode extends AbstractShortcode {
 			'items'   => array(),
 		);
 
+		$icons_dir     = XBO_MARKET_KIT_DIR . 'assets/images/icons';
+		$icons_url     = XBO_MARKET_KIT_URL . 'assets/images/icons';
+		$icon_resolver = new \XboMarketKit\Icons\IconResolver( $icons_dir, $icons_url );
+
 		$cards = '';
 		foreach ( $symbols as $symbol ) {
 			$parts = explode( '/', $symbol );
@@ -72,16 +76,14 @@ class TickerShortcode extends AbstractShortcode {
 			$first = substr( $base, 0, 1 );
 			$key   = sanitize_key( $symbol );
 
-			$icon_url     = 'https://assets.xbo.com/token-icons/svg/' . rawurlencode( strtoupper( $base ) ) . '.svg';
-			$fallback_url = 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/' . rawurlencode( strtolower( $base ) ) . '.svg';
+			$icon_url = $icon_resolver->url( $base );
 
 			$cards .= '<div class="xbo-mk-ticker__card">';
 			$cards .= '<div class="xbo-mk-ticker__header">';
 			$cards .= '<div class="xbo-mk-ticker__icon">';
 			$cards .= '<span class="xbo-mk-ticker__icon-text">' . esc_html( $first ) . '</span>';
 			$cards .= '<img class="xbo-mk-ticker__icon-img" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr( $base ) . '"'
-				. ' width="40" height="40" loading="lazy" decoding="async"'
-				. ' onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src=\'' . esc_attr( esc_url( $fallback_url ) ) . '\'}else{this.style.display=\'none\'}">';
+				. ' width="40" height="40" loading="lazy" decoding="async">';
 			$cards .= '</div>';
 			$cards .= '<div class="xbo-mk-ticker__pair">';
 			$cards .= '<div class="xbo-mk-ticker__symbol">' . esc_html( $base ) . '</div>';
