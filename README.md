@@ -39,12 +39,12 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>$66</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>6h 53m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>5 / 5</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>41</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>173M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>13</h2><sub>Sessions</sub></td>
+<td align="center" width="130"><h2>~$90</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>~8h 20m</h2><sub>Active Time</sub></td>
+<td align="center" width="130"><h2>7 / 7</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>64</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>~250M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>16</h2><sub>Sessions</sub></td>
 </tr>
 </table>
 
@@ -55,12 +55,14 @@
 ### Time Allocation
 
 ```mermaid
-pie title Dev Time by Task (744 min total)
+pie title Dev Time by Task (~831 min total)
     "Project Setup (48m)" : 48
     "AI Workflow v1 (51m)" : 51
     "Workflow Improvements v2 (70m)" : 70
     "Metrics Fix (14m)" : 14
     "Plugin MVP (561m)" : 561
+    "Widget Styling (34m)" : 34
+    "Local Icons (53m)" : 53
 ```
 
 ### Commits per Task
@@ -68,9 +70,9 @@ pie title Dev Time by Task (744 min total)
 ```mermaid
 xychart-beta
     title "Commits by Task"
-    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP"]
+    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "Plugin MVP", "Styling", "Icons"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2, 13]
+    bar [1, 6, 12, 2, 13, 9, 12]
 ```
 
 ### Timeline
@@ -93,17 +95,23 @@ gantt
     Gutenberg Blocks Admin       :done, blk, 2026-02-23 16:31, 23min
     Code Quality Fixes           :done, qa, 2026-02-23 16:54, 52min
     data-wp-each Bugfix          :done, bugfix, 2026-02-23 17:46, 1min
+    section Day 4 — Feb 25 (AM)
+    Widget Styling Redesign    :done, style, 2026-02-25 10:00, 34min
+    section Day 5 — Feb 25 (PM)
+    Local Icons Implementation :done, icons, 2026-02-25 14:00, 53min
+    Icon Transparency Fix      :done, iconfix, 2026-02-25 15:00, 5min
 ```
 
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Day ($66 total)
+pie title Cost by Day (~$90 total)
     "Day 1 Feb 22 ($28)" : 28
     "Day 2 Feb 23 ($38)" : 38
+    "Day 4-5 Feb 25 ($24)" : 24
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: $65 (99%) + Haiku 4.5: $1 (1%). 13 sessions across 2 days.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6: ~$89 (99%) + Haiku 4.5: ~$1 (1%). 16 sessions across 3 days.
 
 ### Task Details
 
@@ -114,6 +122,8 @@ pie title Cost by Day ($66 total)
 | 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5 | **Plugin MVP** — full implementation (11 sub-tasks below) | 9h 21m | 13 | $38.64 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | ~$10 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 <details>
 <summary><strong>Task 5 — Implementation Sub-tasks (11)</strong></summary>
@@ -184,6 +194,8 @@ pie title Cost by Day ($66 total)
 </table>
 
 > **Legend:** ✅ Done &nbsp; 🔄 Server render only (no editor UI) &nbsp; ⬜ Planned
+>
+> All crypto icons served locally (205 SVGs). Daily sync via WP-Cron.
 
 ### Shortcode Examples
 
@@ -336,6 +348,8 @@ app/public/                             # Git root
 │   │   ├── Shortcodes/                 # Shortcode handlers
 │   │   ├── Blocks/                     # Gutenberg blocks
 │   │   ├── Elementor/                  # Elementor widgets
+│   │   ├── Icons/                      # Icon resolver + sync engine
+│   │   ├── Cli/                        # WP-CLI commands
 │   │   └── Admin/                      # Settings page
 │   ├── assets/                         # CSS (BEM + PostCSS), JS (Interactivity API)
 │   └── tests/                          # PHPUnit tests
@@ -356,7 +370,7 @@ app/public/                             # Git root
 | ~~Day 4~~ | ~~Shortcodes: orderbook + trades~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 5~~ | ~~Slippage calculator + UX polish~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
-| **Day 4** | Widget styling redesign — Tailwind → BEM + CSS Custom Properties | `████████████████████` 100% |
+| **Day 4-5** | Widget styling + Local crypto icons (205 SVGs, zero CDN) | `████████████████████` 100% |
 | **Day 7** | Elementor widgets, demo video, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
 > Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
@@ -402,6 +416,10 @@ composer run test         # PHPUnit tests
 npm install                # Install CSS build dependencies
 npm run css:build          # Build production CSS
 npm run css:dev            # Watch mode for CSS development
+
+wp xbo icons sync           # Download all crypto icons
+wp xbo icons sync --force   # Force re-download all
+wp xbo icons status         # Show icon sync status
 ```
 
 ---
@@ -420,6 +438,8 @@ npm run css:dev            # Watch mode for CSS development
 | [Architecture](docs/architecture/) | Key technical decisions (ADRs) |
 | [Widget Styling Design](docs/plans/2026-02-25-widget-styling-design.md) | CSS design system architecture & tokens |
 | [Widget Styling Plan](docs/plans/2026-02-25-widget-styling-plan.md) | 10-task implementation plan |
+| [Local Icons Design](docs/plans/2026-02-25-local-icons-design.md) | Icon sync architecture & cascade strategy |
+| [Local Icons Plan](docs/plans/2026-02-25-local-icons-plan.md) | 9-task TDD implementation plan |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
 ---
