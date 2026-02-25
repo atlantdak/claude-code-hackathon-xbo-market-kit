@@ -39,10 +39,34 @@ function xbo_market_kit_init(): void {
 add_action( 'plugins_loaded', 'xbo_market_kit_init' );
 
 /**
+ * Enqueue widget styles in the block editor for live preview.
+ */
+function xbo_market_kit_editor_assets(): void {
+	wp_enqueue_style(
+		'xbo-market-kit-fonts',
+		'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap',
+		array(),
+		null
+	);
+
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+	wp_enqueue_style(
+		'xbo-market-kit-editor',
+		XBO_MARKET_KIT_URL . 'assets/css/dist/widgets' . $suffix . '.css',
+		array( 'xbo-market-kit-fonts' ),
+		XBO_MARKET_KIT_VERSION
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'xbo_market_kit_editor_assets' );
+
+/**
  * Plugin activation.
  */
 function xbo_market_kit_activate(): void {
 	\XboMarketKit\Admin\DemoPage::create();
+	if ( ! wp_next_scheduled( 'xbo_market_kit_sync_icons' ) ) {
+		wp_schedule_event( time(), 'daily', 'xbo_market_kit_sync_icons' );
+	}
 }
 register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
 
@@ -51,5 +75,11 @@ register_activation_hook( __FILE__, 'xbo_market_kit_activate' );
  */
 function xbo_market_kit_deactivate(): void {
 	\XboMarketKit\Admin\DemoPage::delete();
+	wp_clear_scheduled_hook( 'xbo_market_kit_sync_icons' );
 }
 register_deactivation_hook( __FILE__, 'xbo_market_kit_deactivate' );
+
+// Register WP-CLI commands.
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	\WP_CLI::add_command( 'xbo icons', \XboMarketKit\Cli\IconsCommand::class );
+}

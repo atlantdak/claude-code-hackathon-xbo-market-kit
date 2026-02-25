@@ -71,6 +71,7 @@ class Plugin {
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 		add_action( 'init', array( $this, 'register_blocks' ) );
 		add_action( 'admin_menu', array( $this, 'register_admin' ) );
+		add_action( 'xbo_market_kit_sync_icons', array( $this, 'cron_sync_icons' ) );
 	}
 
 	/**
@@ -127,6 +128,26 @@ class Plugin {
 	public function register_admin(): void {
 		$settings = new Admin\AdminSettings();
 		$settings->register();
+	}
+
+	/**
+	 * Cron callback: sync missing crypto icons.
+	 *
+	 * @return void
+	 */
+	public function cron_sync_icons(): void {
+		$icons_dir = XBO_MARKET_KIT_DIR . 'assets/images/icons';
+		$icons_url = XBO_MARKET_KIT_URL . 'assets/images/icons';
+		$resolver  = new Icons\IconResolver( $icons_dir, $icons_url );
+		$sync      = new Icons\IconSync( $resolver );
+
+		$response = $this->api_client->get_currencies();
+		if ( ! $response->success ) {
+			return;
+		}
+
+		$symbols = array_column( $response->data, 'code' );
+		$sync->sync_missing( $symbols );
 	}
 
 	/**

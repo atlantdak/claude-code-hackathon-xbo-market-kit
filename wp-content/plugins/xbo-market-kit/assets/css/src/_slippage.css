@@ -1,0 +1,140 @@
+/* XBO Market Kit — Slippage Calculator Widget */
+
+.xbo-mk-slippage {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+
+.xbo-mk-slippage__header {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+
+.xbo-mk-slippage__title {
+  font-family: var(--xbo-mk--font-heading);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+}
+
+.xbo-mk-slippage__form {
+  padding: var(--xbo-mk--space-lg);
+}
+
+.xbo-mk-slippage__fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--xbo-mk--space-md);
+}
+
+@media (max-width: 480px) {
+  .xbo-mk-slippage__fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.xbo-mk-slippage__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.xbo-mk-slippage__label {
+  display: block;
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-muted);
+  margin-bottom: var(--xbo-mk--space-xs);
+}
+
+.xbo-mk-slippage__input {
+  width: 100%;
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-md);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-family: var(--xbo-mk--font-primary);
+  color: var(--xbo-mk--color-text-primary);
+  background: var(--xbo-mk--color-bg);
+  transition: var(--xbo-mk--transition-fast);
+  outline: none;
+}
+
+.xbo-mk-slippage__input:focus {
+  border-color: var(--xbo-mk--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 25, 255, 0.1);
+}
+
+.xbo-mk-slippage__toggle {
+  display: flex;
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-md);
+  overflow: hidden;
+}
+
+.xbo-mk-slippage__toggle-btn {
+  flex: 1;
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  font-family: var(--xbo-mk--font-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--xbo-mk--transition-fast);
+  color: var(--xbo-mk--color-text-secondary);
+}
+
+.xbo-mk-slippage__toggle-btn--buy-active {
+  background: var(--xbo-mk--color-positive);
+  color: #ffffff;
+}
+
+.xbo-mk-slippage__toggle-btn--sell-active {
+  background: var(--xbo-mk--color-negative);
+  color: #ffffff;
+}
+
+.xbo-mk-slippage__results {
+  padding: 0 var(--xbo-mk--space-lg) var(--xbo-mk--space-lg);
+}
+
+.xbo-mk-slippage__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--xbo-mk--space-md);
+}
+
+@media (max-width: 480px) {
+  .xbo-mk-slippage__metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+.xbo-mk-slippage__metric {
+  background: var(--xbo-mk--color-bg-secondary);
+  border-radius: var(--xbo-mk--radius-md);
+  padding: var(--xbo-mk--space-md);
+}
+
+.xbo-mk-slippage__metric-label {
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-muted);
+  margin-bottom: var(--xbo-mk--space-xs);
+}
+
+.xbo-mk-slippage__metric-value {
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--xbo-mk--color-text-heading);
+}
+
+.xbo-mk-slippage__loading {
+  padding: 0 var(--xbo-mk--space-lg) var(--xbo-mk--space-lg);
+  text-align: center;
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-muted);
+}

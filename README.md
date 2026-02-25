@@ -231,7 +231,7 @@ graph LR
 | Agent | Role | Model | Specialty |
 |:------|:-----|:------|:----------|
 | **Backend Dev** | PHP/WordPress | Opus 4.6 | API client, REST endpoints, caching, shortcodes |
-| **Frontend Dev** | CSS/JS/Tailwind | Opus 4.6 | UI components, Gutenberg blocks, Elementor widgets |
+| **Frontend Dev** | CSS/JS/Tailwind | Opus 4.6 | UI components, BEM CSS design system, Gutenberg blocks, Elementor widgets |
 | **Verifier** | Quality Gates | Haiku 4.5 | PHPCS, PHPStan (L6), PHPUnit |
 | **Integration Tester** | Live Testing | Haiku 4.5 | WP-CLI page testing, browser verification |
 | **Reviewer** | Code Review | Haiku 4.5 | Codex CLI review, security audit |
@@ -302,6 +302,7 @@ graph LR
 - **Transient caching** — Per-endpoint TTL prevents rate limiting
 - **One data core** — Shortcodes, Blocks, and Elementor widgets share the same services
 - **Graceful degradation** — API failures show cached data or friendly error states
+- **BEM + CSS Custom Properties** — XBO-inspired design system with PostCSS build pipeline
 
 ### WP REST Endpoints
 
@@ -336,7 +337,7 @@ app/public/                             # Git root
 │   │   ├── Blocks/                     # Gutenberg blocks
 │   │   ├── Elementor/                  # Elementor widgets
 │   │   └── Admin/                      # Settings page
-│   ├── assets/                         # CSS, JS
+│   ├── assets/                         # CSS (BEM + PostCSS), JS (Interactivity API)
 │   └── tests/                          # PHPUnit tests
 └── CLAUDE.md                           # AI agent instructions
 ```
@@ -355,6 +356,7 @@ app/public/                             # Git root
 | ~~Day 4~~ | ~~Shortcodes: orderbook + trades~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 5~~ | ~~Slippage calculator + UX polish~~ — *completed in Day 2* | `████████████████████` 100% |
 | ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
+| **Day 4** | Widget styling redesign — Tailwind → BEM + CSS Custom Properties | `████████████████████` 100% |
 | **Day 7** | Elementor widgets, demo video, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
 > Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
@@ -396,6 +398,10 @@ composer run phpcs        # Code style checks (WordPress standards)
 composer run phpcbf       # Auto-fix code style
 composer run phpstan      # Static analysis (level 6)
 composer run test         # PHPUnit tests
+
+npm install                # Install CSS build dependencies
+npm run css:build          # Build production CSS
+npm run css:dev            # Watch mode for CSS development
 ```
 
 ---
@@ -412,6 +418,8 @@ composer run test         # PHPUnit tests
 | [Work Log](docs/worklog/) | Daily development journal |
 | [Metrics](docs/metrics/) | Task & session analytics (tokens, cost, active time) |
 | [Architecture](docs/architecture/) | Key technical decisions (ADRs) |
+| [Widget Styling Design](docs/plans/2026-02-25-widget-styling-design.md) | CSS design system architecture & tokens |
+| [Widget Styling Plan](docs/plans/2026-02-25-widget-styling-plan.md) | 10-task implementation plan |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
 ---

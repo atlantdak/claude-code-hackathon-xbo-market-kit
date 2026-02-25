@@ -1,0 +1,66 @@
+/* XBO Market Kit — Base Styles */
+
+/* Google Fonts: IBM Plex Sans */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+/* Scoped reset — only affects xbo-mk elements */
+[class^="xbo-mk-"],
+[class*=" xbo-mk-"] {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--xbo-mk--font-primary);
+  line-height: var(--xbo-mk--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Widget container base — single-card widgets only */
+/* Ticker is excluded: it's a flex grid of individual cards, not a single card */
+.xbo-mk-movers,
+.xbo-mk-orderbook,
+.xbo-mk-trades,
+.xbo-mk-slippage {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+  color: var(--xbo-mk--color-text-primary);
+}
+
+/* Widget header base */
+[class$="__header"] {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+
+[class$="__header"] h3,
+[class$="__title"] {
+  font-family: var(--xbo-mk--font-heading);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+  line-height: var(--xbo-mk--line-height-tight);
+}
+
+/* Utility: hidden */
+.xbo-mk-hidden {
+  display: none !important;
+}
+
+/* Tabular/monospace numbers for financial data */
+.xbo-mk-mono {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Positive/Negative text colors */
+.xbo-mk-positive {
+  color: var(--xbo-mk--color-positive) !important;
+}
+
+.xbo-mk-negative {
+  color: var(--xbo-mk--color-negative) !important;
+}

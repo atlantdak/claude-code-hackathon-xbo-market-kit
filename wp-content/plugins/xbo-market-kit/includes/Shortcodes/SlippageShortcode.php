@@ -67,40 +67,46 @@ class SlippageShortcode extends AbstractShortcode {
 			'loading' => false,
 		);
 
-		$html  = '<div class="xbo-mk-slippage bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden" data-wp-init="actions.initSlippage">';
-		$html .= '<div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">';
-		$html .= '<h3 class="font-semibold text-gray-900 dark:text-white text-sm">' . esc_html__( 'Slippage Calculator', 'xbo-market-kit' ) . '</h3>';
+		$html  = '<div class="xbo-mk-slippage" data-wp-init="actions.initSlippage">';
+		$html .= '<div class="xbo-mk-slippage__header">';
+		$html .= '<h3 class="xbo-mk-slippage__title">' . esc_html__( 'Slippage Calculator', 'xbo-market-kit' ) . '</h3>';
 		$html .= '</div>';
 
 		// Form.
-		$html .= '<div class="p-4 space-y-3">';
-		$html .= '<div class="grid grid-cols-3 gap-3">';
+		$html .= '<div class="xbo-mk-slippage__form">';
+		$html .= '<div class="xbo-mk-slippage__fields">';
 
 		// Symbol input.
-		$html .= '<div>';
-		$html .= '<label class="block text-xs text-gray-500 mb-1">' . esc_html__( 'Pair', 'xbo-market-kit' ) . '</label>';
-		$html .= '<input type="text" value="' . esc_attr( $symbol ) . '" class="w-full px-3 py-2 border rounded-lg text-sm dark:bg-gray-700 dark:border-gray-600" data-wp-on--input="actions.slippageSymbolChange" />';
+		$html .= '<div class="xbo-mk-slippage__field">';
+		$html .= '<label class="xbo-mk-slippage__label">' . esc_html__( 'Pair', 'xbo-market-kit' ) . '</label>';
+		$html .= '<input type="text" value="' . esc_attr( $symbol ) . '" class="xbo-mk-slippage__input" data-wp-on--input="actions.slippageSymbolChange" />';
 		$html .= '</div>';
 
 		// Side toggle.
-		$html .= '<div>';
-		$html .= '<label class="block text-xs text-gray-500 mb-1">' . esc_html__( 'Side', 'xbo-market-kit' ) . '</label>';
-		$html .= '<div class="flex rounded-lg border dark:border-gray-600 overflow-hidden">';
-		$html .= '<button class="flex-1 px-3 py-2 text-sm font-medium transition-colors" data-wp-class--bg-green-500="state.slippageIsBuy" data-wp-class--text-white="state.slippageIsBuy" data-wp-on--click="actions.slippageSetBuy">' . esc_html__( 'Buy', 'xbo-market-kit' ) . '</button>';
-		$html .= '<button class="flex-1 px-3 py-2 text-sm font-medium transition-colors" data-wp-class--bg-red-500="state.slippageIsSell" data-wp-class--text-white="state.slippageIsSell" data-wp-on--click="actions.slippageSetSell">' . esc_html__( 'Sell', 'xbo-market-kit' ) . '</button>';
+		$html .= '<div class="xbo-mk-slippage__field">';
+		$html .= '<label class="xbo-mk-slippage__label">' . esc_html__( 'Side', 'xbo-market-kit' ) . '</label>';
+		$html .= '<div class="xbo-mk-slippage__toggle">';
+		$html .= '<button class="xbo-mk-slippage__toggle-btn"'
+			. ' data-wp-class--xbo-mk-slippage__toggle-btn--buy-active="state.slippageIsBuy"'
+			. ' data-wp-on--click="actions.slippageSetBuy">'
+			. esc_html__( 'Buy', 'xbo-market-kit' ) . '</button>';
+		$html .= '<button class="xbo-mk-slippage__toggle-btn"'
+			. ' data-wp-class--xbo-mk-slippage__toggle-btn--sell-active="state.slippageIsSell"'
+			. ' data-wp-on--click="actions.slippageSetSell">'
+			. esc_html__( 'Sell', 'xbo-market-kit' ) . '</button>';
 		$html .= '</div></div>';
 
 		// Amount input.
-		$html .= '<div>';
-		$html .= '<label class="block text-xs text-gray-500 mb-1">' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</label>';
-		$html .= '<input type="number" step="0.001" min="0.001" placeholder="1.0" class="w-full px-3 py-2 border rounded-lg text-sm dark:bg-gray-700 dark:border-gray-600" data-wp-on--input="actions.slippageAmountChange" />';
+		$html .= '<div class="xbo-mk-slippage__field">';
+		$html .= '<label class="xbo-mk-slippage__label">' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</label>';
+		$html .= '<input type="number" step="0.001" min="0.001" placeholder="1.0" class="xbo-mk-slippage__input" data-wp-on--input="actions.slippageAmountChange" />';
 		$html .= '</div>';
 
 		$html .= '</div></div>';
 
 		// Results.
-		$html .= '<div class="px-4 pb-4" data-wp-class--hidden="!state.slippageHasResult">';
-		$html .= '<div class="grid grid-cols-2 gap-3">';
+		$html .= '<div class="xbo-mk-slippage__results" data-wp-class--xbo-mk-hidden="!state.slippageHasResult">';
+		$html .= '<div class="xbo-mk-slippage__metrics">';
 
 		$metrics = array(
 			'avg_price'    => __( 'Avg Price', 'xbo-market-kit' ),
@@ -112,16 +118,16 @@ class SlippageShortcode extends AbstractShortcode {
 		);
 
 		foreach ( $metrics as $key => $label ) {
-			$html .= '<div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">';
-			$html .= '<div class="text-xs text-gray-500">' . esc_html( $label ) . '</div>';
-			$html .= '<div class="text-sm font-mono font-semibold text-gray-900 dark:text-white" data-wp-text="state.slippageResult_' . esc_attr( $key ) . '">--</div>';
+			$html .= '<div class="xbo-mk-slippage__metric">';
+			$html .= '<div class="xbo-mk-slippage__metric-label">' . esc_html( $label ) . '</div>';
+			$html .= '<div class="xbo-mk-slippage__metric-value" data-wp-text="state.slippageResult_' . esc_attr( $key ) . '">--</div>';
 			$html .= '</div>';
 		}
 
 		$html .= '</div></div>';
 
 		// Loading indicator.
-		$html .= '<div class="px-4 pb-4 text-center text-sm text-gray-500" data-wp-class--hidden="!state.slippageLoading">';
+		$html .= '<div class="xbo-mk-slippage__loading" data-wp-class--xbo-mk-hidden="!state.slippageLoading">';
 		$html .= esc_html__( 'Calculating...', 'xbo-market-kit' );
 		$html .= '</div>';
 

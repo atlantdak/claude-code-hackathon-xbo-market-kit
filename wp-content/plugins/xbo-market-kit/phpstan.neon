@@ -15,3 +15,6 @@ parameters:
 		- xbo-market-kit.php
 	ignoreErrors:
 		- identifier: missingType.iterableValue
+		-
+			message: '#on an unknown class WP_CLI#'
+			identifier: class.notFound

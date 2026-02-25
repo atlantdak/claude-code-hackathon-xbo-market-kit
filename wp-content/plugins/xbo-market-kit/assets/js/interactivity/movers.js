@@ -23,6 +23,7 @@ const { state, actions } = store( 'xbo-market-kit', {
 			const ctx = getContext();
 			state._moversMode = ctx.mode || 'gainers';
 			state._moversLimit = ctx.limit || 10;
+			state._moversIconsUrl = ctx.iconsUrl || '';
 
 			actions.fetchMovers();
 			setInterval( actions.fetchMovers, 30000 );
@@ -47,6 +48,7 @@ const { state, actions } = store( 'xbo-market-kit', {
 					state._moversItems = data.map( ( item ) => ( {
 						symbol: item.symbol,
 						firstLetter: item.base ? item.base[ 0 ] : '?',
+						iconUrl: `${ state._moversIconsUrl }/${ encodeURIComponent( ( item.base || '' ).toLowerCase() ) }.svg`,
 						price: `$${ parseFloat( item.last_price ).toLocaleString( 'en-US', { minimumFractionDigits: 2, maximumFractionDigits: 8 } ) }`,
 						change: `${ item.change_pct_24h >= 0 ? '+' : '' }${ parseFloat( item.change_pct_24h ).toFixed( 2 ) }%`,
 						isUp: item.change_pct_24h >= 0,

@@ -68,39 +68,39 @@ class OrderbookShortcode extends AbstractShortcode {
 			'spread'  => '0',
 		);
 
-		$html  = '<div class="xbo-mk-orderbook bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden" data-wp-init="actions.initOrderbook">';
-		$html .= '<div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">';
-		$html .= '<h3 class="font-semibold text-gray-900 dark:text-white text-sm">' . esc_html__( 'Order Book', 'xbo-market-kit' ) . ' — ' . esc_html( str_replace( '_', '/', $symbol ) ) . '</h3>';
+		$html  = '<div class="xbo-mk-orderbook" data-wp-init="actions.initOrderbook">';
+		$html .= '<div class="xbo-mk-orderbook__header">';
+		$html .= '<h3 class="xbo-mk-orderbook__title">' . esc_html__( 'Order Book', 'xbo-market-kit' ) . ' — ' . esc_html( str_replace( '_', '/', $symbol ) ) . '</h3>';
 		$html .= '</div>';
-		$html .= '<div class="grid grid-cols-2 gap-0">';
+		$html .= '<div class="xbo-mk-orderbook__grid">';
 
 		// Bids column.
-		$html .= '<div class="p-2">';
-		$html .= '<div class="text-xs font-medium text-gray-500 mb-1 flex justify-between px-2"><span>' . esc_html__( 'Price', 'xbo-market-kit' ) . '</span><span>' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</span></div>';
+		$html .= '<div class="xbo-mk-orderbook__side">';
+		$html .= '<div class="xbo-mk-orderbook__col-header"><span>' . esc_html__( 'Price', 'xbo-market-kit' ) . '</span><span>' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</span></div>';
 		$html .= '<div><template data-wp-each="state.orderbookBids">';
-		$html .= '<div class="relative flex justify-between px-2 py-0.5 text-xs font-mono">';
-		$html .= '<div class="absolute inset-0 bg-green-500/10 origin-right" data-wp-style--width="context.item.depthPct"></div>';
-		$html .= '<span class="relative text-green-600" data-wp-text="context.item.price"></span>';
-		$html .= '<span class="relative text-gray-600" data-wp-text="context.item.amount"></span>';
+		$html .= '<div class="xbo-mk-orderbook__level">';
+		$html .= '<div class="xbo-mk-orderbook__depth xbo-mk-orderbook__depth--bid" data-wp-style--width="context.item.depthPct"></div>';
+		$html .= '<span class="xbo-mk-orderbook__price xbo-mk-orderbook__price--bid" data-wp-text="context.item.price"></span>';
+		$html .= '<span class="xbo-mk-orderbook__amount" data-wp-text="context.item.amount"></span>';
 		$html .= '</div>';
 		$html .= '</template></div></div>';
 
 		// Asks column.
-		$html .= '<div class="p-2">';
-		$html .= '<div class="text-xs font-medium text-gray-500 mb-1 flex justify-between px-2"><span>' . esc_html__( 'Price', 'xbo-market-kit' ) . '</span><span>' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</span></div>';
+		$html .= '<div class="xbo-mk-orderbook__side">';
+		$html .= '<div class="xbo-mk-orderbook__col-header"><span>' . esc_html__( 'Price', 'xbo-market-kit' ) . '</span><span>' . esc_html__( 'Amount', 'xbo-market-kit' ) . '</span></div>';
 		$html .= '<div><template data-wp-each="state.orderbookAsks">';
-		$html .= '<div class="relative flex justify-between px-2 py-0.5 text-xs font-mono">';
-		$html .= '<div class="absolute inset-0 bg-red-500/10 origin-left" data-wp-style--width="context.item.depthPct"></div>';
-		$html .= '<span class="relative text-red-600" data-wp-text="context.item.price"></span>';
-		$html .= '<span class="relative text-gray-600" data-wp-text="context.item.amount"></span>';
+		$html .= '<div class="xbo-mk-orderbook__level">';
+		$html .= '<div class="xbo-mk-orderbook__depth xbo-mk-orderbook__depth--ask" data-wp-style--width="context.item.depthPct"></div>';
+		$html .= '<span class="xbo-mk-orderbook__price xbo-mk-orderbook__price--ask" data-wp-text="context.item.price"></span>';
+		$html .= '<span class="xbo-mk-orderbook__amount" data-wp-text="context.item.amount"></span>';
 		$html .= '</div>';
 		$html .= '</template></div></div>';
 
 		$html .= '</div>';
 
 		// Spread indicator.
-		$html .= '<div class="px-4 py-2 border-t border-gray-200 dark:border-gray-700 text-center text-xs text-gray-500">';
-		$html .= esc_html__( 'Spread:', 'xbo-market-kit' ) . ' <span class="font-mono" data-wp-text="state.orderbookSpread">--</span>';
+		$html .= '<div class="xbo-mk-orderbook__spread">';
+		$html .= esc_html__( 'Spread:', 'xbo-market-kit' ) . ' <span class="xbo-mk-orderbook__spread-value" data-wp-text="state.orderbookSpread">--</span>';
 		$html .= '</div></div>';
 
 		return $this->render_wrapper( $html, $context );

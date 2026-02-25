@@ -1,0 +1,97 @@
+/* XBO Market Kit — Trades Widget */
+
+.xbo-mk-trades {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+
+.xbo-mk-trades__header {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+
+.xbo-mk-trades__title {
+  font-family: var(--xbo-mk--font-heading);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+}
+
+.xbo-mk-trades__scroll {
+  overflow-x: auto;
+}
+
+.xbo-mk-trades__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--xbo-mk--font-size-xs);
+}
+
+.xbo-mk-trades__thead {
+  background: var(--xbo-mk--color-bg-header);
+}
+
+.xbo-mk-trades__th {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  color: var(--xbo-mk--color-text-muted);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  font-size: var(--xbo-mk--font-size-xs);
+}
+
+.xbo-mk-trades__th--time {
+  text-align: left;
+}
+
+.xbo-mk-trades__th--side {
+  text-align: center;
+}
+
+.xbo-mk-trades__th--price,
+.xbo-mk-trades__th--amount {
+  text-align: right;
+}
+
+.xbo-mk-trades__row {
+  border-bottom: 1px solid var(--xbo-mk--color-border-light);
+}
+
+.xbo-mk-trades__cell {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.xbo-mk-trades__cell--time {
+  color: var(--xbo-mk--color-text-muted);
+}
+
+.xbo-mk-trades__cell--side {
+  text-align: center;
+}
+
+.xbo-mk-trades__cell--price,
+.xbo-mk-trades__cell--amount {
+  text-align: right;
+}
+
+.xbo-mk-trades__badge {
+  display: inline-block;
+  padding: 2px var(--xbo-mk--space-sm);
+  border-radius: var(--xbo-mk--radius-xl);
+  font-size: var(--xbo-mk--font-size-xs);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  line-height: 1.4;
+}
+
+.xbo-mk-trades__badge--buy {
+  background: var(--xbo-mk--color-positive-bg);
+  color: var(--xbo-mk--color-positive);
+}
+
+.xbo-mk-trades__badge--sell {
+  background: var(--xbo-mk--color-negative-bg);
+  color: var(--xbo-mk--color-negative);
+}

@@ -1,0 +1,669 @@
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+/* XBO Market Kit — Widget Styles */
+/* Built with PostCSS: postcss-import + postcss-nesting + cssnano */
+/* XBO Market Kit — Design Tokens */
+/* Inspired by xbo.com visual design language */
+:root {
+  /* ===== Brand Colors ===== */
+  --xbo-mk--color-primary: #6319ff;
+  --xbo-mk--color-primary-dark: #3b0f99;
+  --xbo-mk--color-primary-light: #e5ddf9;
+  --xbo-mk--color-primary-bg: #f4f3f8;
+
+  /* ===== Financial Colors ===== */
+  --xbo-mk--color-positive: #49b47a;
+  --xbo-mk--color-positive-bg: #e3f9f4;
+  --xbo-mk--color-negative: #fd3b5e;
+  --xbo-mk--color-negative-bg: #fdeeee;
+
+  /* ===== Neutral Colors ===== */
+  --xbo-mk--color-bg: #ffffff;
+  --xbo-mk--color-bg-secondary: #f3f3f6;
+  --xbo-mk--color-bg-header: #f9f9f9;
+  --xbo-mk--color-text-heading: #270a66;
+  --xbo-mk--color-text-primary: #140533;
+  --xbo-mk--color-text-secondary: #828282;
+  --xbo-mk--color-text-muted: #98a9c4;
+  --xbo-mk--color-border: #e5ddf9;
+  --xbo-mk--color-border-light: #f0edf7;
+
+  /* ===== Typography ===== */
+  --xbo-mk--font-primary: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --xbo-mk--font-heading: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --xbo-mk--font-size-xs: 0.75rem;    /* 12px */
+  --xbo-mk--font-size-sm: 0.875rem;   /* 14px */
+  --xbo-mk--font-size-base: 1rem;     /* 16px */
+  --xbo-mk--font-size-lg: 1.25rem;    /* 20px */
+  --xbo-mk--font-size-xl: 1.5rem;     /* 24px */
+
+  --xbo-mk--font-weight-normal: 400;
+  --xbo-mk--font-weight-medium: 500;
+  --xbo-mk--font-weight-semibold: 600;
+  --xbo-mk--font-weight-bold: 700;
+
+  --xbo-mk--line-height-tight: 1.2;
+  --xbo-mk--line-height-normal: 1.5;
+
+  /* ===== Spacing ===== */
+  --xbo-mk--space-xs: 4px;
+  --xbo-mk--space-sm: 8px;
+  --xbo-mk--space-md: 12px;
+  --xbo-mk--space-lg: 16px;
+  --xbo-mk--space-xl: 20px;
+  --xbo-mk--space-2xl: 32px;
+
+  /* ===== Border Radius ===== */
+  --xbo-mk--radius-sm: 4px;
+  --xbo-mk--radius-md: 12px;
+  --xbo-mk--radius-lg: 16px;
+  --xbo-mk--radius-xl: 32px;
+
+  /* ===== Shadows ===== */
+  --xbo-mk--shadow-card: 1px 25px 34px rgba(116, 124, 153, 0.1);
+  --xbo-mk--shadow-chart: 1px 10px 24px rgba(29, 42, 68, 0.12);
+  --xbo-mk--shadow-hover: 0 4px 16px rgba(99, 25, 255, 0.12);
+
+  /* ===== Transitions ===== */
+  --xbo-mk--transition-fast: all 0.15s ease-in-out;
+  --xbo-mk--transition-default: all 0.3s ease-in-out;
+  --xbo-mk--transition-slow: all 0.45s ease-in-out;
+}
+/* ===== Dark Mode ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --xbo-mk--color-bg: #121418;
+    --xbo-mk--color-bg-secondary: #1f2127;
+    --xbo-mk--color-bg-header: #24242a;
+    --xbo-mk--color-text-heading: #ffffff;
+    --xbo-mk--color-text-primary: #e0e0e0;
+    --xbo-mk--color-text-secondary: #98a9c4;
+    --xbo-mk--color-text-muted: #6b7280;
+    --xbo-mk--color-border: #2a2a35;
+    --xbo-mk--color-border-light: #1f2127;
+    --xbo-mk--shadow-card: 1px 25px 34px rgba(0, 0, 0, 0.3);
+    --xbo-mk--shadow-hover: 0 4px 16px rgba(99, 25, 255, 0.2);
+  }
+}
+/* Manual dark mode toggle */
+.xbo-mk--dark {
+  --xbo-mk--color-bg: #121418;
+  --xbo-mk--color-bg-secondary: #1f2127;
+  --xbo-mk--color-bg-header: #24242a;
+  --xbo-mk--color-text-heading: #ffffff;
+  --xbo-mk--color-text-primary: #e0e0e0;
+  --xbo-mk--color-text-secondary: #98a9c4;
+  --xbo-mk--color-text-muted: #6b7280;
+  --xbo-mk--color-border: #2a2a35;
+  --xbo-mk--color-border-light: #1f2127;
+  --xbo-mk--shadow-card: 1px 25px 34px rgba(0, 0, 0, 0.3);
+  --xbo-mk--shadow-hover: 0 4px 16px rgba(99, 25, 255, 0.2);
+}
+/* XBO Market Kit — Base Styles */
+/* Google Fonts: IBM Plex Sans */
+/* Scoped reset — only affects xbo-mk elements */
+[class^="xbo-mk-"],
+[class*=" xbo-mk-"] {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--xbo-mk--font-primary);
+  line-height: var(--xbo-mk--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Widget container base — single-card widgets only */
+/* Ticker is excluded: it's a flex grid of individual cards, not a single card */
+.xbo-mk-movers,
+.xbo-mk-orderbook,
+.xbo-mk-trades,
+.xbo-mk-slippage {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+  color: var(--xbo-mk--color-text-primary);
+}
+/* Widget header base */
+[class$="__header"] {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+[class$="__header"] h3,
+[class$="__title"] {
+  font-family: var(--xbo-mk--font-heading);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+  line-height: var(--xbo-mk--line-height-tight);
+}
+/* Utility: hidden */
+.xbo-mk-hidden {
+  display: none !important;
+}
+/* Tabular/monospace numbers for financial data */
+.xbo-mk-mono {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+/* Positive/Negative text colors */
+.xbo-mk-positive {
+  color: var(--xbo-mk--color-positive) !important;
+}
+.xbo-mk-negative {
+  color: var(--xbo-mk--color-negative) !important;
+}
+/* XBO Market Kit — Animations */
+/* Price update flash animations matching xbo.com (2s fade) */
+@keyframes xbo-mk-flash-positive {
+  0% {
+    color: var(--xbo-mk--color-positive);
+    background-color: var(--xbo-mk--color-positive-bg);
+  }
+  100% {
+    color: inherit;
+    background-color: transparent;
+  }
+}
+@keyframes xbo-mk-flash-negative {
+  0% {
+    color: var(--xbo-mk--color-negative);
+    background-color: var(--xbo-mk--color-negative-bg);
+  }
+  100% {
+    color: inherit;
+    background-color: transparent;
+  }
+}
+/* Applied via JS (Interactivity API) when price changes */
+.xbo-mk-price-up {
+  animation: xbo-mk-flash-positive 2s ease-out;
+}
+.xbo-mk-price-down {
+  animation: xbo-mk-flash-negative 2s ease-out;
+}
+/* Depth bar transition (orderbook) */
+.xbo-mk-depth-bar {
+  transition: width var(--xbo-mk--transition-default);
+}
+/* Card hover transition */
+.xbo-mk-hoverable {
+  transition: box-shadow var(--xbo-mk--transition-default);
+}
+.xbo-mk-hoverable:hover {
+  box-shadow: var(--xbo-mk--shadow-hover);
+}
+/* Loading pulse */
+@keyframes xbo-mk-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.xbo-mk-loading {
+  animation: xbo-mk-pulse 1.5s ease-in-out infinite;
+}
+/* XBO Market Kit — Ticker Widget */
+.xbo-mk-ticker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--xbo-mk--space-lg);
+  justify-content: center;
+}
+/* Cards: flexible sizing, wrap when container is narrow, centered overflow row */
+.xbo-mk-ticker__card {
+  flex: 1 1 220px;
+  min-width: 200px;
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  padding: var(--xbo-mk--space-lg);
+  transition: var(--xbo-mk--transition-default);
+}
+/* Column hints — limit max cards per row via max-width */
+.xbo-mk-ticker--cols-1 .xbo-mk-ticker__card { flex-basis: 100%; max-width: 100%; }
+.xbo-mk-ticker--cols-2 .xbo-mk-ticker__card { max-width: calc(50% - var(--xbo-mk--space-lg) / 2); }
+.xbo-mk-ticker--cols-3 .xbo-mk-ticker__card { max-width: calc(33.333% - var(--xbo-mk--space-lg) * 2 / 3); }
+.xbo-mk-ticker--cols-4 .xbo-mk-ticker__card { max-width: calc(25% - var(--xbo-mk--space-lg) * 3 / 4); }
+.xbo-mk-ticker__card:hover {
+  box-shadow: var(--xbo-mk--shadow-hover);
+}
+.xbo-mk-ticker__header {
+  display: flex;
+  align-items: center;
+  gap: var(--xbo-mk--space-md);
+  margin-bottom: var(--xbo-mk--space-md);
+}
+.xbo-mk-ticker__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--xbo-mk--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: var(--xbo-mk--font-weight-bold);
+  font-size: var(--xbo-mk--font-size-sm);
+  flex-shrink: 0;
+}
+.xbo-mk-ticker__pair {
+  min-width: 0;
+}
+.xbo-mk-ticker__symbol {
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  color: var(--xbo-mk--color-text-heading);
+  font-size: var(--xbo-mk--font-size-sm);
+  line-height: var(--xbo-mk--line-height-tight);
+}
+.xbo-mk-ticker__name {
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-secondary);
+}
+.xbo-mk-ticker__price {
+  font-size: var(--xbo-mk--font-size-lg);
+  font-weight: var(--xbo-mk--font-weight-bold);
+  color: var(--xbo-mk--color-text-heading);
+  font-variant-numeric: tabular-nums;
+}
+.xbo-mk-ticker__change {
+  font-size: var(--xbo-mk--font-size-sm);
+  margin-top: var(--xbo-mk--space-xs);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-secondary);
+}
+.xbo-mk-ticker__change--positive {
+  color: var(--xbo-mk--color-positive);
+}
+.xbo-mk-ticker__change--negative {
+  color: var(--xbo-mk--color-negative);
+}
+.xbo-mk-ticker__sparkline {
+  margin-top: var(--xbo-mk--space-sm);
+  width: 100%;
+  height: 32px;
+}
+.xbo-mk-ticker__sparkline polyline {
+  stroke: var(--xbo-mk--color-primary-light);
+}
+/* XBO Market Kit — Movers Widget */
+.xbo-mk-movers {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+.xbo-mk-movers__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+.xbo-mk-movers__tab {
+  flex: 1;
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  font-family: var(--xbo-mk--font-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--xbo-mk--transition-fast);
+  color: var(--xbo-mk--color-text-secondary);
+}
+.xbo-mk-movers__tab--gainers-active {
+  background: var(--xbo-mk--color-positive);
+  color: #ffffff;
+}
+.xbo-mk-movers__tab--losers-active {
+  background: var(--xbo-mk--color-negative);
+  color: #ffffff;
+}
+.xbo-mk-movers__scroll {
+  overflow-x: auto;
+}
+.xbo-mk-movers__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--xbo-mk--font-size-sm);
+}
+.xbo-mk-movers__thead {
+  background: var(--xbo-mk--color-bg-header);
+}
+.xbo-mk-movers__th {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-lg);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-muted);
+  text-align: left;
+  font-size: var(--xbo-mk--font-size-xs);
+}
+.xbo-mk-movers__th--price,
+.xbo-mk-movers__th--change {
+  text-align: right;
+}
+.xbo-mk-movers__row {
+  border-bottom: 1px solid var(--xbo-mk--color-border-light);
+  transition: var(--xbo-mk--transition-fast);
+}
+.xbo-mk-movers__row:hover {
+  background: var(--xbo-mk--color-bg-secondary);
+}
+.xbo-mk-movers__cell {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+}
+.xbo-mk-movers__cell--pair {
+  display: flex;
+  align-items: center;
+  gap: var(--xbo-mk--space-sm);
+}
+.xbo-mk-movers__cell--price,
+.xbo-mk-movers__cell--change {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--xbo-mk--font-weight-medium);
+}
+.xbo-mk-movers__icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--xbo-mk--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: var(--xbo-mk--font-size-xs);
+  font-weight: var(--xbo-mk--font-weight-bold);
+  flex-shrink: 0;
+}
+.xbo-mk-movers__symbol {
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-primary);
+}
+.xbo-mk-movers__change--positive {
+  color: var(--xbo-mk--color-positive);
+}
+.xbo-mk-movers__change--negative {
+  color: var(--xbo-mk--color-negative);
+}
+/* XBO Market Kit — Orderbook Widget */
+.xbo-mk-orderbook {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+.xbo-mk-orderbook__header {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+.xbo-mk-orderbook__title {
+  font-family: var(--xbo-mk--font-heading);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+}
+.xbo-mk-orderbook__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.xbo-mk-orderbook__side {
+  padding: var(--xbo-mk--space-sm);
+}
+.xbo-mk-orderbook__col-header {
+  font-size: var(--xbo-mk--font-size-xs);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-muted);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--xbo-mk--space-sm);
+  margin-bottom: var(--xbo-mk--space-xs);
+}
+.xbo-mk-orderbook__level {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px var(--xbo-mk--space-sm);
+  font-size: var(--xbo-mk--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+.xbo-mk-orderbook__depth {
+  position: absolute;
+  inset: 0;
+  transition: width var(--xbo-mk--transition-default);
+}
+.xbo-mk-orderbook__depth--bid {
+  background: rgba(73, 180, 122, 0.1);
+  transform-origin: right;
+}
+.xbo-mk-orderbook__depth--ask {
+  background: rgba(253, 59, 94, 0.1);
+  transform-origin: left;
+}
+.xbo-mk-orderbook__price {
+  position: relative;
+  z-index: 1;
+}
+.xbo-mk-orderbook__price--bid {
+  color: var(--xbo-mk--color-positive);
+}
+.xbo-mk-orderbook__price--ask {
+  color: var(--xbo-mk--color-negative);
+}
+.xbo-mk-orderbook__amount {
+  position: relative;
+  z-index: 1;
+  color: var(--xbo-mk--color-text-secondary);
+}
+.xbo-mk-orderbook__spread {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-lg);
+  border-top: 1px solid var(--xbo-mk--color-border);
+  text-align: center;
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-muted);
+}
+.xbo-mk-orderbook__spread-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--xbo-mk--font-weight-medium);
+}
+/* XBO Market Kit — Trades Widget */
+.xbo-mk-trades {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+.xbo-mk-trades__header {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+.xbo-mk-trades__title {
+  font-family: var(--xbo-mk--font-heading);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+}
+.xbo-mk-trades__scroll {
+  overflow-x: auto;
+}
+.xbo-mk-trades__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--xbo-mk--font-size-xs);
+}
+.xbo-mk-trades__thead {
+  background: var(--xbo-mk--color-bg-header);
+}
+.xbo-mk-trades__th {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  color: var(--xbo-mk--color-text-muted);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  font-size: var(--xbo-mk--font-size-xs);
+}
+.xbo-mk-trades__th--time {
+  text-align: left;
+}
+.xbo-mk-trades__th--side {
+  text-align: center;
+}
+.xbo-mk-trades__th--price,
+.xbo-mk-trades__th--amount {
+  text-align: right;
+}
+.xbo-mk-trades__row {
+  border-bottom: 1px solid var(--xbo-mk--color-border-light);
+}
+.xbo-mk-trades__cell {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  font-variant-numeric: tabular-nums;
+}
+.xbo-mk-trades__cell--time {
+  color: var(--xbo-mk--color-text-muted);
+}
+.xbo-mk-trades__cell--side {
+  text-align: center;
+}
+.xbo-mk-trades__cell--price,
+.xbo-mk-trades__cell--amount {
+  text-align: right;
+}
+.xbo-mk-trades__badge {
+  display: inline-block;
+  padding: 2px var(--xbo-mk--space-sm);
+  border-radius: var(--xbo-mk--radius-xl);
+  font-size: var(--xbo-mk--font-size-xs);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  line-height: 1.4;
+}
+.xbo-mk-trades__badge--buy {
+  background: var(--xbo-mk--color-positive-bg);
+  color: var(--xbo-mk--color-positive);
+}
+.xbo-mk-trades__badge--sell {
+  background: var(--xbo-mk--color-negative-bg);
+  color: var(--xbo-mk--color-negative);
+}
+/* XBO Market Kit — Slippage Calculator Widget */
+.xbo-mk-slippage {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+.xbo-mk-slippage__header {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+.xbo-mk-slippage__title {
+  font-family: var(--xbo-mk--font-heading);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+}
+.xbo-mk-slippage__form {
+  padding: var(--xbo-mk--space-lg);
+}
+.xbo-mk-slippage__fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--xbo-mk--space-md);
+}
+@media (max-width: 480px) {
+  .xbo-mk-slippage__fields {
+    grid-template-columns: 1fr;
+  }
+}
+.xbo-mk-slippage__field {
+  display: flex;
+  flex-direction: column;
+}
+.xbo-mk-slippage__label {
+  display: block;
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-muted);
+  margin-bottom: var(--xbo-mk--space-xs);
+}
+.xbo-mk-slippage__input {
+  width: 100%;
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-md);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-family: var(--xbo-mk--font-primary);
+  color: var(--xbo-mk--color-text-primary);
+  background: var(--xbo-mk--color-bg);
+  transition: var(--xbo-mk--transition-fast);
+  outline: none;
+}
+.xbo-mk-slippage__input:focus {
+  border-color: var(--xbo-mk--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 25, 255, 0.1);
+}
+.xbo-mk-slippage__toggle {
+  display: flex;
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-md);
+  overflow: hidden;
+}
+.xbo-mk-slippage__toggle-btn {
+  flex: 1;
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  font-family: var(--xbo-mk--font-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--xbo-mk--transition-fast);
+  color: var(--xbo-mk--color-text-secondary);
+}
+.xbo-mk-slippage__toggle-btn--buy-active {
+  background: var(--xbo-mk--color-positive);
+  color: #ffffff;
+}
+.xbo-mk-slippage__toggle-btn--sell-active {
+  background: var(--xbo-mk--color-negative);
+  color: #ffffff;
+}
+.xbo-mk-slippage__results {
+  padding: 0 var(--xbo-mk--space-lg) var(--xbo-mk--space-lg);
+}
+.xbo-mk-slippage__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--xbo-mk--space-md);
+}
+@media (max-width: 480px) {
+  .xbo-mk-slippage__metrics {
+    grid-template-columns: 1fr;
+  }
+}
+.xbo-mk-slippage__metric {
+  background: var(--xbo-mk--color-bg-secondary);
+  border-radius: var(--xbo-mk--radius-md);
+  padding: var(--xbo-mk--space-md);
+}
+.xbo-mk-slippage__metric-label {
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-muted);
+  margin-bottom: var(--xbo-mk--space-xs);
+}
+.xbo-mk-slippage__metric-value {
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--xbo-mk--color-text-heading);
+}
+.xbo-mk-slippage__loading {
+  padding: 0 var(--xbo-mk--space-lg) var(--xbo-mk--space-lg);
+  text-align: center;
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-muted);
+}

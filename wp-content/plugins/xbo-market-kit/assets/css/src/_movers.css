@@ -1,0 +1,127 @@
+/* XBO Market Kit — Movers Widget */
+
+.xbo-mk-movers {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+
+.xbo-mk-movers__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+
+.xbo-mk-movers__tab {
+  flex: 1;
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  font-size: var(--xbo-mk--font-size-sm);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  font-family: var(--xbo-mk--font-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--xbo-mk--transition-fast);
+  color: var(--xbo-mk--color-text-secondary);
+}
+
+.xbo-mk-movers__tab--gainers-active {
+  background: var(--xbo-mk--color-positive);
+  color: #ffffff;
+}
+
+.xbo-mk-movers__tab--losers-active {
+  background: var(--xbo-mk--color-negative);
+  color: #ffffff;
+}
+
+.xbo-mk-movers__scroll {
+  overflow-x: auto;
+}
+
+.xbo-mk-movers__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--xbo-mk--font-size-sm);
+}
+
+.xbo-mk-movers__thead {
+  background: var(--xbo-mk--color-bg-header);
+}
+
+.xbo-mk-movers__th {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-lg);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-muted);
+  text-align: left;
+  font-size: var(--xbo-mk--font-size-xs);
+}
+
+.xbo-mk-movers__th--price,
+.xbo-mk-movers__th--change {
+  text-align: right;
+}
+
+.xbo-mk-movers__row {
+  border-bottom: 1px solid var(--xbo-mk--color-border-light);
+  transition: var(--xbo-mk--transition-fast);
+}
+
+.xbo-mk-movers__row:hover {
+  background: var(--xbo-mk--color-bg-secondary);
+}
+
+.xbo-mk-movers__cell {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+}
+
+.xbo-mk-movers__cell--pair {
+  display: flex;
+  align-items: center;
+  gap: var(--xbo-mk--space-sm);
+}
+
+.xbo-mk-movers__cell--price,
+.xbo-mk-movers__cell--change {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--xbo-mk--font-weight-medium);
+}
+
+.xbo-mk-movers__icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--xbo-mk--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: var(--xbo-mk--font-size-xs);
+  font-weight: var(--xbo-mk--font-weight-bold);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.xbo-mk-movers__icon-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.xbo-mk-movers__symbol {
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-primary);
+}
+
+.xbo-mk-movers__change--positive {
+  color: var(--xbo-mk--color-positive);
+}
+
+.xbo-mk-movers__change--negative {
+  color: var(--xbo-mk--color-negative);
+}
