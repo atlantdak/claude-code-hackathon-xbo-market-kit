@@ -1,1 +1,98 @@
-/* Orderbook — placeholder, will be implemented */
+/* XBO Market Kit — Orderbook Widget */
+
+.xbo-mk-orderbook {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  box-shadow: var(--xbo-mk--shadow-card);
+  overflow: hidden;
+}
+
+.xbo-mk-orderbook__header {
+  padding: var(--xbo-mk--space-md) var(--xbo-mk--space-lg);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+}
+
+.xbo-mk-orderbook__title {
+  font-family: var(--xbo-mk--font-heading);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0;
+}
+
+.xbo-mk-orderbook__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.xbo-mk-orderbook__side {
+  padding: var(--xbo-mk--space-sm);
+}
+
+.xbo-mk-orderbook__col-header {
+  font-size: var(--xbo-mk--font-size-xs);
+  font-weight: var(--xbo-mk--font-weight-medium);
+  color: var(--xbo-mk--color-text-muted);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--xbo-mk--space-sm);
+  margin-bottom: var(--xbo-mk--space-xs);
+}
+
+.xbo-mk-orderbook__level {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px var(--xbo-mk--space-sm);
+  font-size: var(--xbo-mk--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.xbo-mk-orderbook__depth {
+  position: absolute;
+  inset: 0;
+  transition: width var(--xbo-mk--transition-default);
+}
+
+.xbo-mk-orderbook__depth--bid {
+  background: rgba(73, 180, 122, 0.1);
+  transform-origin: right;
+}
+
+.xbo-mk-orderbook__depth--ask {
+  background: rgba(253, 59, 94, 0.1);
+  transform-origin: left;
+}
+
+.xbo-mk-orderbook__price {
+  position: relative;
+  z-index: 1;
+}
+
+.xbo-mk-orderbook__price--bid {
+  color: var(--xbo-mk--color-positive);
+}
+
+.xbo-mk-orderbook__price--ask {
+  color: var(--xbo-mk--color-negative);
+}
+
+.xbo-mk-orderbook__amount {
+  position: relative;
+  z-index: 1;
+  color: var(--xbo-mk--color-text-secondary);
+}
+
+.xbo-mk-orderbook__spread {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-lg);
+  border-top: 1px solid var(--xbo-mk--color-border);
+  text-align: center;
+  font-size: var(--xbo-mk--font-size-xs);
+  color: var(--xbo-mk--color-text-muted);
+}
+
+.xbo-mk-orderbook__spread-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--xbo-mk--font-weight-medium);
+}
