@@ -297,8 +297,10 @@ class SlippageShortcode extends AbstractShortcode {
 				/* translators: %s: selector type (base or quote) */
 				sprintf( __( 'Select %s currency', 'xbo-market-kit' ), $type )
 			) . '">';
-		$html .= '<img class="xbo-mk-slippage__selector-icon"'
+		$icon_state = 'base' === $type ? 'state.slippageBaseIcon' : 'state.slippageQuoteIcon';
+		$html      .= '<img class="xbo-mk-slippage__selector-icon"'
 			. ' src="' . esc_url( $selected_icon ) . '"'
+			. ' data-wp-bind--src="' . $icon_state . '"'
 			. ' alt="" width="20" height="20" />';
 		$html .= '<span class="xbo-mk-slippage__selector-text"'
 			. ' data-wp-text="context.' . $type . '">'
