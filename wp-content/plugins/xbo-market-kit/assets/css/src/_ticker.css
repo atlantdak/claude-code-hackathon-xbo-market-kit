@@ -113,3 +113,22 @@
 .xbo-mk-ticker__sparkline--negative stop {
   stop-color: var(--xbo-mk--color-negative);
 }
+
+/* ===== Responsive: Ticker Cards ===== */
+
+/* Mobile: always 1 column, full width */
+@media (max-width: 768px) {
+  .xbo-mk-ticker__card {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Tablet: max 2 columns for dense layouts */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .xbo-mk-ticker[class*="--cols-3"] .xbo-mk-ticker__card,
+  .xbo-mk-ticker[class*="--cols-4"] .xbo-mk-ticker__card {
+    max-width: calc(50% - var(--xbo-mk--space-lg) / 2);
+  }
+}
