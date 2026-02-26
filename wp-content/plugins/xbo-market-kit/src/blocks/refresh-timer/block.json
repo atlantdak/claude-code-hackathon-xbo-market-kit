@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "xbo-market-kit/refresh-timer",
+	"version": "0.1.0",
+	"title": "XBO Refresh Timer",
+	"category": "xbo-market-kit",
+	"icon": "clock",
+	"description": "Circular countdown timer synced with XBO block refresh intervals.",
+	"textdomain": "xbo-market-kit",
+	"attributes": {
+		"interval": { "type": "number", "default": 0 },
+		"label": { "type": "string", "default": "Next data refresh" },
+		"size": { "type": "string", "default": "medium" },
+		"showSeconds": { "type": "boolean", "default": true },
+		"align": { "type": "string", "default": "" }
+	},
+	"supports": { "html": false, "align": ["wide", "full"] },
+	"editorScript": "file:./index.js"
+}
