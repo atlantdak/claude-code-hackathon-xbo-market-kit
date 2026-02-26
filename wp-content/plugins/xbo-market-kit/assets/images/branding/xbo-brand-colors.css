@@ -1,0 +1,33 @@
+/**
+ * XBO Brand Colors & Gradients Reference
+ *
+ * Source: https://xbo.com (extracted 2026-02-26)
+ *
+ * These CSS custom properties define the official XBO brand palette
+ * for use in plugin templates and demo pages.
+ */
+
+:root {
+  /* Primary brand colors */
+  --xbo-purple:        #6319ff;
+  --xbo-purple-light:  #8b5cf6;
+  --xbo-purple-dark:   #4a0fc9;
+
+  /* Background colors */
+  --xbo-dark-navy:     #140533;
+  --xbo-dark-bg:       #1e0a4a;
+  --xbo-light-bg:      #f4f3f8;
+
+  /* Accent colors */
+  --xbo-green:         #70e1c6;
+  --xbo-white:         #ffffff;
+
+  /* Hero gradient (dark navy to deep purple) */
+  --xbo-hero-gradient: linear-gradient(135deg, #140533 0%, #1e0a4a 60%, #2d0f6e 100%);
+
+  /* Purple glow effect */
+  --xbo-glow-purple: radial-gradient(ellipse at 70% 40%, rgba(99, 25, 255, 0.4) 0%, transparent 60%);
+
+  /* CTA button gradient */
+  --xbo-btn-gradient: linear-gradient(90deg, #6319ff 0%, #8b5cf6 100%);
+}

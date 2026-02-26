@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60" role="img" aria-label="XBO Logo">
+  <defs>
+    <linearGradient id="xbo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6319ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- X -->
+  <text
+    x="10"
+    y="46"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="48"
+    font-weight="700"
+    fill="url(#xbo-gradient)"
+    letter-spacing="-2"
+  >XBO</text>
+</svg>
