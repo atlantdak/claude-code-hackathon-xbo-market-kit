@@ -1,8 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { TextControl, RangeControl } from '@wordpress/components';
+import { RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 import XboBlockEdit from '../shared/XboBlockEdit';
+import PairsSelector from '../shared/PairsSelector';
 
 registerBlockType( metadata.name, {
 	edit: ( { attributes, setAttributes } ) => {
@@ -17,18 +18,11 @@ registerBlockType( metadata.name, {
 				icon="chart-line"
 				inspectorControls={
 					<>
-						<TextControl
-							label={ __( 'Trading Pairs', 'xbo-market-kit' ) }
-							help={ __(
-								'Comma-separated, e.g. BTC/USDT,ETH/USDT',
-								'xbo-market-kit'
-							) }
+						<PairsSelector
 							value={ symbols }
 							onChange={ ( val ) =>
 								setAttributes( { symbols: val } )
 							}
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
 						/>
 						<RangeControl
 							label={ __(
