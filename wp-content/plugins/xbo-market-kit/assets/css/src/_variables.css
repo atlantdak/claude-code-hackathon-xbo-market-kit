@@ -51,6 +51,10 @@
   --xbo-mk--space-xl: 20px;
   --xbo-mk--space-2xl: 32px;
 
+  /* ===== Layout ===== */
+  --xbo-mk--content-max: 1200px;
+  --xbo-mk--content-padding: var(--xbo-mk--space-lg);   /* 16px */
+
   /* ===== Border Radius ===== */
   --xbo-mk--radius-sm: 4px;
   --xbo-mk--radius-md: 12px;
