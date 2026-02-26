@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "xbo-market-kit/orderbook",
+	"version": "0.1.0",
+	"title": "XBO Order Book",
+	"category": "xbo-market-kit",
+	"icon": "book",
+	"description": "Live order book with depth visualization and spread indicator.",
+	"textdomain": "xbo-market-kit",
+	"attributes": {
+		"symbol": { "type": "string", "default": "BTC_USDT" },
+		"depth": { "type": "string", "default": "20" },
+		"refresh": { "type": "string", "default": "5" },
+		"align": { "type": "string", "default": "full" }
+	},
+	"supports": { "html": false, "align": ["wide", "full"] },
+	"editorScript": "file:./index.js"
+}
