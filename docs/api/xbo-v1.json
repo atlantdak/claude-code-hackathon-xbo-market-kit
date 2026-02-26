@@ -255,12 +255,44 @@
           }
         }
       }
+    },
+    "/trading-pairs": {
+      "get": {
+        "description": "Returns all available trading pair symbols as a sorted flat array in SLASH format (e.g. BTC/USDT). Used by block editor controls.",
+        "summary": "",
+        "tags": [
+          "Xbo / Trading Pairs"
+        ],
+        "operationId": "GetXbo/TradingPairs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/xbo-trading-pairs"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   },
   "security": [],
   "tags": [
     {
       "name": "Xbo / Ticker"
+    },
+    {
+      "name": "Xbo / Trading Pairs"
     }
   ],
   "externalDocs": {
@@ -296,6 +328,12 @@
           "volume_24h": {
             "type": "number"
           }
+        }
+      },
+      "xbo-trading-pairs": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
       }
     }

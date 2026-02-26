@@ -218,13 +218,27 @@
       "issue_number": null,
       "status": "completed",
       "sessions": []
+    },
+    {
+      "id": "2026-02-27-block-settings",
+      "description": "Block settings: replace TextControl with searchable PairSelector/PairsSelector dropdowns backed by GET /xbo/v1/trading-pairs REST endpoint, normalize symbol defaults to SLASH format",
+      "plan": "docs/plans/2026-02-26-block-settings-implementation.md",
+      "started": "2026-02-27T10:00:00+02:00",
+      "completed": "2026-02-27T11:30:00+02:00",
+      "duration_minutes": null,
+      "commits": 3,
+      "cost_usd": null,
+      "coverage": "62 tests, 825 assertions (3 new)",
+      "issue_number": 21,
+      "status": "completed",
+      "sessions": []
     }
   ],
   "totals": {
-    "total_tasks": 12,
+    "total_tasks": 13,
     "total_duration_minutes": 926,
     "total_tokens": 344099763,
-    "total_commits": 119,
+    "total_commits": 137,
     "total_cost_usd": 137.97,
     "total_sessions": 30,
     "total_active_minutes": 897.7,

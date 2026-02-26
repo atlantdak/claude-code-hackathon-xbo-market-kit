@@ -12,6 +12,8 @@
 [![License](https://img.shields.io/badge/License-GPL--2.0-blue?style=for-the-badge)](LICENSE)
 [![PHPStan](https://img.shields.io/badge/PHPStan-Level%206-brightgreen?style=for-the-badge)](https://phpstan.org/)
 
+[![Download](https://img.shields.io/badge/Download-Latest%20Release-FF6B35?style=for-the-badge&logo=github&logoColor=white)](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/releases/latest)
+
 [![Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code%20(Opus%204.6)-D97706?style=for-the-badge&logo=anthropic&logoColor=white)](https://claude.ai/)
 [![Hackathon](https://img.shields.io/badge/%F0%9F%8F%86%20Claude%20Code-Hackathon%202026-10B981?style=for-the-badge)](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
 
@@ -43,8 +45,8 @@
 <tr>
 <td align="center" width="130"><h2>~$138</h2><sub>Total Cost</sub></td>
 <td align="center" width="130"><h2>~13h 53m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>11 / 11</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>104</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>13 / 13</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>137</h2><sub>Commits</sub></td>
 <td align="center" width="130"><h2>~344M</h2><sub>Tokens</sub></td>
 <td align="center" width="130"><h2>30</h2><sub>Sessions</sub></td>
 </tr>
@@ -112,6 +114,8 @@ gantt
     Sparkline Ticker              :done, sparkline, 2026-02-26 00:00, 60min
     Slippage UX Redesign          :done, slippage, 2026-02-26 00:00, 60min
     Slippage Layout Fix           :done, slipfix, 2026-02-26 15:00, 30min
+    section Day 6 — Feb 27
+    Block Settings                :done, blocksettings, 2026-02-27 00:00, 55min
 ```
 
 ### Cost Breakdown
@@ -153,6 +157,8 @@ pie title Cost by Day (~$138 total)
 | 9 | **Sparkline Ticker** — constrained random walk SVG generation, ring buffer live updates | ~60m | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 10 | **Slippage UX Redesign** — dropdown selectors, PairCatalog, context-based state | ~60m | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 11 | **Slippage Layout Fix** — 2-col CSS grid, reactive icon binding, field reorder | ~30m | 3 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 12 | **Block Editor UI** — 20 sub-tasks, full Gutenberg editor controls, live preview | ~75m | 33 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 13 | **Block Settings** — Pair selector dropdown, settings modal, IconResolver integration | ~55m | 3 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 
@@ -362,6 +368,7 @@ graph LR
 | `GET /xbo/v1/orderbook?symbol=` | `/orderbook/{symbol}` | 1-30s |
 | `GET /xbo/v1/trades?symbol=` | `/trades` | 5-15s |
 | `GET /xbo/v1/slippage?symbol=&side=&amount=` | `/orderbook/{symbol}` (calculated) | 1-30s |
+| `GET /xbo/v1/trading-pairs` | Trading pair symbol list | 6h |
 
 ### Project Structure
 
@@ -489,7 +496,7 @@ wp xbo icons status         # Show icon sync status
 | [Visual Showcase](docs/SHOWCASE.md) | Screenshots of all blocks (editor + frontend) |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
-> **104 total commits** — task commits (79) + documentation/metrics/readme updates (25).
+> **137 total commits** — task commits (112) + documentation/metrics/readme updates (25).
 
 ---
 
