@@ -98,6 +98,7 @@ class Plugin {
 			new Rest\OrderbookController(),
 			new Rest\TradesController(),
 			new Rest\SlippageController(),
+			new Rest\TradingPairsController(),
 		);
 		foreach ( $controllers as $controller ) {
 			$controller->register_routes();
