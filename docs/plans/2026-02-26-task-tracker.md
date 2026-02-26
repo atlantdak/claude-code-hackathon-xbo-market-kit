@@ -15,19 +15,19 @@
 | T05 | Block editor UI: Orderbook | done | frontend-dev | T02 | 305cb0d | |
 | T06 | Block editor UI: Trades | done | frontend-dev | T02 | 08998ca | |
 | T07 | Block editor UI: Slippage | done | frontend-dev | T02 | 88dadce | |
-| T08 | Full verification (build + PHPCS + PHPStan + PHPUnit) | in-progress | verifier | T03-T07 | | |
-| T09 | Integration test: blocks on test page | pending | integration-tester | T08 | | |
+| T08 | Full verification (build + PHPCS + PHPStan + PHPUnit) | done | verifier | T03-T07 | 5955c63 | all pass |
+| T09 | Integration test: blocks on test page | done | integration-tester | T08 | 2ae6bab | all 5 blocks pass |
 | T10 | Download XBO assets (logo, hero-bg, favicon) | done | frontend-dev | — | 04bb964 | |
 | T11 | Analyze Prime FSE patterns + GetWid for demo | done | frontend-dev | — | — | 60+ patterns, 41 GetWid blocks, page-canvas template |
-| T12 | Home Page: hero + Ticker + Movers + CTA | pending | frontend-dev | T09,T10,T11 | | |
-| T13 | Demo Page: all 5 blocks with descriptions | pending | frontend-dev | T09,T10 | | |
+| T12 | Home Page: hero + Ticker + Movers + CTA | done | frontend-dev | T09,T10,T11 | — | page ID 18, static front |
+| T13 | Demo Page: all 5 blocks with descriptions | done | frontend-dev | T09,T10 | — | page ID 16 |
 | T14 | API Docs Page: MP API Docs shortcode | done | frontend-dev | — | — | page ID 10 |
-| T15 | Screenshot pages (5 clean pages, one block each) | pending | frontend-dev | T09 | | |
-| T16 | Take screenshots (frontend + editor, 1728x1117) | pending | integration-tester | T12,T13,T15 | | |
-| T17 | Create docs/SHOWCASE.md with screenshot gallery | pending | backend-dev | T16 | | |
-| T18 | Update README.md (SHOWCASE link, metrics, badges) | pending | backend-dev | T17 | | |
-| T19 | Worklog + metrics update | pending | backend-dev | T18 | | |
-| T20 | Final code review | pending | reviewer | T19 | | |
+| T15 | Screenshot pages (5 clean pages, one block each) | done | frontend-dev | T09 | — | pages 12-17 |
+| T16 | Take screenshots (frontend + editor, 1728x1117) | done | integration-tester | T12,T13,T15 | 2547db8 | 12 screenshots |
+| T17 | Create docs/SHOWCASE.md with screenshot gallery | done | backend-dev | T16 | 8b3ceee | |
+| T18 | Update README.md (SHOWCASE link, metrics, badges) | done | backend-dev | T17 | a6056ca | |
+| T19 | Worklog + metrics update | done | backend-dev | T18 | 02dc2ff | |
+| T20 | Final code review | done | reviewer | T19 | 2823305 | PASS, 3 minor fixes applied |
 
 ## Backlog
 
