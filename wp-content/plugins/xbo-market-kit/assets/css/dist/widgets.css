@@ -54,6 +54,10 @@
   --xbo-mk--space-xl: 20px;
   --xbo-mk--space-2xl: 32px;
 
+  /* ===== Layout ===== */
+  --xbo-mk--content-max: 1200px;
+  --xbo-mk--content-padding: var(--xbo-mk--space-lg);   /* 16px */
+
   /* ===== Border Radius ===== */
   --xbo-mk--radius-sm: 4px;
   --xbo-mk--radius-md: 12px;
@@ -155,6 +159,27 @@
 }
 .xbo-mk-negative {
   color: var(--xbo-mk--color-negative) !important;
+}
+/* ===== Layout: Inner Container ===== */
+/* Used by all blocks to constrain content width inside alignfull wrappers */
+.xbo-mk-inner {
+  max-width: var(--xbo-mk--content-max, 1200px);
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: var(--xbo-mk--content-padding, 16px);
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .xbo-mk-inner {
+    padding-inline: var(--xbo-mk--space-md, 12px);
+  }
+}
+/* ===== Defensive alignfull ===== */
+/* Ensures full-width even in classic themes without align-wide support */
+[class^="wp-block-xbo-market-kit"].alignfull {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 /* XBO Market Kit — Animations */
 /* Price update flash animations matching xbo.com (2s fade) */
@@ -299,6 +324,22 @@
 }
 .xbo-mk-ticker__sparkline--negative stop {
   stop-color: var(--xbo-mk--color-negative);
+}
+/* ===== Responsive: Ticker Cards ===== */
+/* Mobile: always 1 column, full width */
+@media (max-width: 768px) {
+  .xbo-mk-ticker__card {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+/* Tablet: max 2 columns for dense layouts */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .xbo-mk-ticker[class*="--cols-3"] .xbo-mk-ticker__card,
+  .xbo-mk-ticker[class*="--cols-4"] .xbo-mk-ticker__card {
+    max-width: calc(50% - var(--xbo-mk--space-lg) / 2);
+  }
 }
 /* XBO Market Kit — Movers Widget */
 .xbo-mk-movers {
