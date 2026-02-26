@@ -30,6 +30,8 @@ registerBlockType( metadata.name, {
 							onChange={ ( val ) =>
 								setAttributes( { symbol: val } )
 							}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 						<RangeControl
 							label={ __( 'Depth', 'xbo-market-kit' ) }
@@ -39,6 +41,8 @@ registerBlockType( metadata.name, {
 							}
 							min={ 1 }
 							max={ 250 }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 						<RangeControl
 							label={ __(
@@ -51,6 +55,8 @@ registerBlockType( metadata.name, {
 							}
 							min={ 1 }
 							max={ 60 }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 					</>
 				}

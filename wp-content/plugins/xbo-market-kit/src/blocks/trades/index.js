@@ -30,6 +30,8 @@ registerBlockType( metadata.name, {
 							onChange={ ( val ) =>
 								setAttributes( { symbol: val } )
 							}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 						<RangeControl
 							label={ __(
@@ -42,6 +44,8 @@ registerBlockType( metadata.name, {
 							}
 							min={ 1 }
 							max={ 100 }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 						<RangeControl
 							label={ __(
@@ -54,6 +58,8 @@ registerBlockType( metadata.name, {
 							}
 							min={ 1 }
 							max={ 60 }
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 					</>
 				}

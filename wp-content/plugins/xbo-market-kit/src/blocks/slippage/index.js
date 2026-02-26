@@ -30,6 +30,8 @@ registerBlockType( metadata.name, {
 							onChange={ ( val ) =>
 								setAttributes( { symbol: val } )
 							}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 						<SelectControl
 							label={ __( 'Side', 'xbo-market-kit' ) }
@@ -53,6 +55,8 @@ registerBlockType( metadata.name, {
 							onChange={ ( val ) =>
 								setAttributes( { side: val } )
 							}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 						<TextControl
 							label={ __(
@@ -67,6 +71,8 @@ registerBlockType( metadata.name, {
 							onChange={ ( val ) =>
 								setAttributes( { amount: val } )
 							}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 					</>
 				}
