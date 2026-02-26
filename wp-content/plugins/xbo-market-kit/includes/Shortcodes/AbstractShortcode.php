@@ -137,6 +137,8 @@ abstract class AbstractShortcode {
 	protected function render_wrapper( string $content, array $context = array() ): string {
 		$json = ! empty( $context ) ? wp_json_encode( $context ) : '';
 		$data = $json ? ' data-wp-context=\'' . esc_attr( $json ) . '\'' : '';
-		return '<div data-wp-interactive="xbo-market-kit"' . $data . '>' . $content . '</div>';
+		return '<div data-wp-interactive="xbo-market-kit"' . $data . '>'
+			. '<div class="xbo-mk-inner">' . $content . '</div>'
+			. '</div>';
 	}
 }
