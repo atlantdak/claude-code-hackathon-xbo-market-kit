@@ -1,0 +1,254 @@
+/* XBO Market Kit — Page Layout Styles */
+/* Gradients, glassmorphism, page sections for landing and demo pages */
+
+/* ===== Page Sections ===== */
+.xbo-mk-page-section {
+  padding: var(--xbo-mk--space-2xl) 0;
+}
+
+.xbo-mk-page-section__inner {
+  max-width: var(--xbo-mk--content-max);
+  margin-inline: auto;
+  padding-inline: var(--xbo-mk--content-padding);
+}
+
+/* ===== Hero Section ===== */
+.xbo-mk-page-hero {
+  background: var(--xbo-mk--gradient-hero);
+  color: #ffffff;
+  padding: 80px 0 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.xbo-mk-page-hero h1,
+.xbo-mk-page-hero h2 {
+  color: #ffffff;
+  margin: 0;
+}
+
+.xbo-mk-page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.xbo-mk-page-hero p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+/* ===== Features Grid ===== */
+.xbo-mk-page-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--xbo-mk--space-xl);
+  padding: var(--xbo-mk--space-2xl) 0;
+}
+
+.xbo-mk-page-feature-card {
+  background: var(--xbo-mk--color-bg);
+  border: 1px solid var(--xbo-mk--color-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  padding: var(--xbo-mk--space-xl);
+  text-align: center;
+  transition: var(--xbo-mk--transition-default);
+}
+
+.xbo-mk-page-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--xbo-mk--shadow-hover);
+}
+
+.xbo-mk-page-feature-card__icon {
+  font-size: 2rem;
+  margin-bottom: var(--xbo-mk--space-md);
+  color: var(--xbo-mk--color-primary);
+}
+
+.xbo-mk-page-feature-card h3 {
+  font-size: var(--xbo-mk--font-size-lg);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  color: var(--xbo-mk--color-text-heading);
+  margin: 0 0 var(--xbo-mk--space-sm);
+}
+
+.xbo-mk-page-feature-card p {
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-secondary);
+  margin: 0;
+}
+
+/* ===== Glassmorphism ===== */
+.xbo-mk-glass {
+  background: var(--xbo-mk--glass-bg);
+  border: 1px solid var(--xbo-mk--glass-border);
+  border-radius: var(--xbo-mk--radius-lg);
+  backdrop-filter: blur(var(--xbo-mk--glass-blur));
+  -webkit-backdrop-filter: blur(var(--xbo-mk--glass-blur));
+}
+
+/* ===== Stats Counter ===== */
+.xbo-mk-page-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--xbo-mk--space-2xl);
+  padding: var(--xbo-mk--space-2xl) 0;
+  text-align: center;
+}
+
+.xbo-mk-page-stat {
+  min-width: 120px;
+}
+
+.xbo-mk-page-stat__number {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--xbo-mk--font-weight-bold);
+  color: var(--xbo-mk--color-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.xbo-mk-page-stat__label {
+  font-size: var(--xbo-mk--font-size-sm);
+  color: var(--xbo-mk--color-text-secondary);
+  margin-top: var(--xbo-mk--space-xs);
+}
+
+/* ===== CTA Section ===== */
+.xbo-mk-page-cta {
+  background: var(--xbo-mk--gradient-accent);
+  color: #ffffff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.xbo-mk-page-cta h2 {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin: 0 0 16px;
+}
+
+.xbo-mk-page-cta p {
+  opacity: 0.9;
+  margin: 0 0 32px;
+}
+
+.xbo-mk-page-cta__buttons {
+  display: flex;
+  gap: var(--xbo-mk--space-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.xbo-mk-page-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: var(--xbo-mk--radius-xl);
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  font-size: var(--xbo-mk--font-size-base);
+  text-decoration: none;
+  transition: var(--xbo-mk--transition-default);
+  cursor: pointer;
+  border: none;
+}
+
+.xbo-mk-page-btn--primary {
+  background: #ffffff;
+  color: var(--xbo-mk--color-primary);
+}
+
+.xbo-mk-page-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.xbo-mk-page-btn--outline {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.xbo-mk-page-btn--outline:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Showcase Grid ===== */
+.xbo-mk-page-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--xbo-mk--space-xl);
+}
+
+@media (max-width: 768px) {
+  .xbo-mk-page-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Demo Page Header ===== */
+.xbo-mk-demo-header {
+  background: var(--xbo-mk--gradient-hero);
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.xbo-mk-demo-header h1 {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin: 0 0 8px;
+}
+
+.xbo-mk-demo-header p {
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* ===== Parameter Table ===== */
+.xbo-mk-param-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--xbo-mk--font-size-sm);
+}
+
+.xbo-mk-param-table th,
+.xbo-mk-param-table td {
+  padding: var(--xbo-mk--space-sm) var(--xbo-mk--space-md);
+  border-bottom: 1px solid var(--xbo-mk--color-border);
+  text-align: left;
+}
+
+.xbo-mk-param-table th {
+  font-weight: var(--xbo-mk--font-weight-semibold);
+  color: var(--xbo-mk--color-text-heading);
+  background: var(--xbo-mk--color-bg-header);
+}
+
+.xbo-mk-param-table code {
+  background: var(--xbo-mk--color-bg-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* ===== Section Variants ===== */
+.xbo-mk-page-section--gradient {
+  background: var(--xbo-mk--gradient-section);
+}
+
+.xbo-mk-page-section--dark {
+  background: var(--xbo-mk--gradient-dark);
+  color: #ffffff;
+}
+
+.xbo-mk-page-section--dark h2,
+.xbo-mk-page-section--dark h3 {
+  color: #ffffff;
+}

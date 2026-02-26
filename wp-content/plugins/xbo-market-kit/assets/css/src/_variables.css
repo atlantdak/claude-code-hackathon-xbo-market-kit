@@ -70,6 +70,17 @@
   --xbo-mk--transition-fast: all 0.15s ease-in-out;
   --xbo-mk--transition-default: all 0.3s ease-in-out;
   --xbo-mk--transition-slow: all 0.45s ease-in-out;
+
+  /* ===== Gradients ===== */
+  --xbo-mk--gradient-hero: linear-gradient(135deg, #6319ff 0%, #00d2ff 100%);
+  --xbo-mk--gradient-section: linear-gradient(180deg, #f4f3f8 0%, #ffffff 100%);
+  --xbo-mk--gradient-dark: linear-gradient(135deg, #0D1117 0%, #1a1040 50%, #0D1117 100%);
+  --xbo-mk--gradient-accent: linear-gradient(135deg, #6319ff 0%, #fd3b5e 100%);
+
+  /* ===== Glassmorphism ===== */
+  --xbo-mk--glass-bg: rgba(255, 255, 255, 0.08);
+  --xbo-mk--glass-border: rgba(255, 255, 255, 0.15);
+  --xbo-mk--glass-blur: 20px;
 }
 
 /* ===== Dark Mode ===== */
