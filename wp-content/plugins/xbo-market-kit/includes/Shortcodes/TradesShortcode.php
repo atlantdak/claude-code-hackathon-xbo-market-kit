@@ -66,7 +66,7 @@ class TradesShortcode extends AbstractShortcode {
 			'trades'  => array(),
 		);
 
-		$html  = '<div class="xbo-mk-trades" data-wp-init="actions.initTrades">';
+		$html  = '<div class="xbo-mk-trades" data-xbo-refresh="' . esc_attr( (string) $refresh ) . '" data-wp-init="actions.initTrades">';
 		$html .= '<div class="xbo-mk-trades__header">';
 		$html .= '<h3 class="xbo-mk-trades__title">' . esc_html__( 'Recent Trades', 'xbo-market-kit' ) . ' — ' . esc_html( $symbol ) . '</h3>';
 		$html .= '</div>';

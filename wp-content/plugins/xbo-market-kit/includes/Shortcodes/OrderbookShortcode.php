@@ -68,7 +68,7 @@ class OrderbookShortcode extends AbstractShortcode {
 			'spread'  => '0',
 		);
 
-		$html  = '<div class="xbo-mk-orderbook" data-wp-init="actions.initOrderbook">';
+		$html  = '<div class="xbo-mk-orderbook" data-xbo-refresh="' . esc_attr( (string) $refresh ) . '" data-wp-init="actions.initOrderbook">';
 		$html .= '<div class="xbo-mk-orderbook__header">';
 		$html .= '<h3 class="xbo-mk-orderbook__title">' . esc_html__( 'Order Book', 'xbo-market-kit' ) . ' — ' . esc_html( str_replace( '_', '/', $symbol ) ) . '</h3>';
 		$html .= '</div>';

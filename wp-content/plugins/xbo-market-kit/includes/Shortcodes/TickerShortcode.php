@@ -160,6 +160,7 @@ class TickerShortcode extends AbstractShortcode {
 		$context['widgetId']      = $widget_id;
 
 		$html = '<div class="xbo-mk-ticker xbo-mk-ticker--cols-' . esc_attr( (string) $columns ) . '"'
+			. ' data-xbo-refresh="' . esc_attr( (string) $refresh ) . '"'
 			. ' data-wp-init="actions.initTicker">'
 			. $cards . '</div>';
 
