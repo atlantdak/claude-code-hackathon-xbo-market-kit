@@ -16,10 +16,15 @@
 		"limit": {
 			"type": "string",
 			"default": "10"
+		},
+		"align": {
+			"type": "string",
+			"default": "full"
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": ["wide", "full"]
 	},
 	"render": "file:./render.php"
 }

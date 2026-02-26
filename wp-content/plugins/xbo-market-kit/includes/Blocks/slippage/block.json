@@ -20,10 +20,15 @@
 		"amount": {
 			"type": "string",
 			"default": ""
+		},
+		"align": {
+			"type": "string",
+			"default": "full"
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": ["wide", "full"]
 	},
 	"render": "file:./render.php"
 }
