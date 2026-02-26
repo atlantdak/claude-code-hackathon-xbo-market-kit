@@ -23,6 +23,7 @@
 
 [Dashboard](#ai-development-dashboard) &bull;
 [Features](#features) &bull;
+[Showcase](docs/SHOWCASE.md) &bull;
 [AI Agents](#ai-powered-development) &bull;
 [Architecture](#architecture) &bull;
 [API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) &bull;
@@ -186,40 +187,40 @@ Active time = continuous Claude Code processing with no gap > 5 min between API 
 <td><strong>Live Ticker</strong></td>
 <td>Real-time prices for selected trading pairs with 24h change + sparklines</td>
 <td align="center">✅</td>
-<td align="center">🔄</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Top Movers</strong></td>
 <td>Biggest gainers and losers by 24h % change with tab switching</td>
 <td align="center">✅</td>
-<td align="center">🔄</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Mini Orderbook</strong></td>
 <td>Live bid/ask depth table with depth bars and spread indicator</td>
 <td align="center">✅</td>
-<td align="center">🔄</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Recent Trades</strong></td>
 <td>Trade feed with color-coded side, price, volume, timestamp</td>
 <td align="center">✅</td>
-<td align="center">🔄</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 <tr>
 <td><strong>Slippage Calculator</strong></td>
 <td>Avg execution price, slippage %, spread, total cost from orderbook depth</td>
 <td align="center">✅</td>
-<td align="center">🔄</td>
+<td align="center">✅</td>
 <td align="center">⬜</td>
 </tr>
 </table>
 
-> **Legend:** ✅ Done &nbsp; 🔄 Server render only (no editor UI) &nbsp; ⬜ Planned
+> **Legend:** ✅ Done &nbsp; ⬜ Planned
 >
 > All crypto icons served locally (205 SVGs). Daily sync via WP-Cron.
 
@@ -232,6 +233,16 @@ Active time = continuous Claude Code processing with no gap > 5 min between API 
 [xbo_trades symbol="BTC/USDT" limit="20" refresh="10"]
 [xbo_slippage symbol="BTC_USDT" side="buy" amount="10000"]
 ```
+
+### Gutenberg Block Editor
+
+All 5 blocks include full editor UI with:
+- **InspectorControls** — sidebar settings panel for configuring block attributes
+- **ServerSideRender** — live preview of the block using PHP render
+
+![Ticker Block Editor](docs/screenshots/editor-ticker.png)
+
+> [See all editor and frontend screenshots →](docs/SHOWCASE.md)
 
 ---
 
@@ -440,7 +451,9 @@ composer run phpcbf       # Auto-fix code style
 composer run phpstan      # Static analysis (level 6)
 composer run test         # PHPUnit tests
 
-npm install                # Install CSS build dependencies
+npm install                # Install all JS/CSS dependencies
+npm run build              # Build Gutenberg block editor scripts
+npm run start              # Watch mode for block editor development
 npm run css:build          # Build production CSS
 npm run css:dev            # Watch mode for CSS development
 
@@ -473,6 +486,7 @@ wp xbo icons status         # Show icon sync status
 | [Slippage UX Plan](docs/plans/2026-02-25-slippage-ux-implementation.md) | Slippage UX implementation plan |
 | [Slippage Layout Fix Plan](docs/plans/2026-02-26-slippage-redesign-plan.md) | CSS grid layout fix and icon binding plan |
 | [REST API Docs](https://atlantdak.github.io/claude-code-hackathon-xbo-market-kit/api/) | Interactive Swagger UI for all plugin endpoints |
+| [Visual Showcase](docs/SHOWCASE.md) | Screenshots of all blocks (editor + frontend) |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
 > **104 total commits** — task commits (79) + documentation/metrics/readme updates (25).
@@ -483,9 +497,12 @@ wp xbo icons status         # Show icon sync status
 
 | Page | Content | Status |
 |:-----|:--------|:------:|
-| **XBO Market Kit Demo** | All 5 widgets: ticker, movers, orderbook, trades, slippage | ✅ Auto-created on activation |
-| **Landing Showcase** | Hero + live ticker + top movers + CTA | ⬜ Planned |
-| **Trading Insights** | Orderbook + recent trades + slippage calculator | ⬜ Planned |
+| **Home** | Hero section + Live Ticker + Top Movers + CTA | ✅ |
+| **Live Demo** | All 5 widgets with descriptions | ✅ |
+| **API Documentation** | Interactive Swagger UI (MP API Docs) | ✅ |
+| **Individual Widget Pages** | 5 clean pages, one block each (for screenshots) | ✅ |
+
+> **[See full visual showcase with screenshots →](docs/SHOWCASE.md)**
 
 ---
 
