@@ -25,6 +25,7 @@ class BlockRegistrar {
 		'orderbook',
 		'trades',
 		'slippage',
+		'refresh-timer',
 	);
 
 	/**
