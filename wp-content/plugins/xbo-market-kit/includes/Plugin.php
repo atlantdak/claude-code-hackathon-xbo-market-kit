@@ -82,6 +82,7 @@ class Plugin {
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 		add_action( 'init', array( $this, 'register_blocks' ) );
+		add_action( 'init', array( $this, 'register_patterns' ) );
 		add_action( 'admin_menu', array( $this, 'register_admin' ) );
 		add_action( 'xbo_market_kit_sync_icons', array( $this, 'cron_sync_icons' ) );
 	}
@@ -130,6 +131,16 @@ class Plugin {
 	 */
 	public function register_blocks(): void {
 		$registrar = new Blocks\BlockRegistrar();
+		$registrar->register();
+	}
+
+	/**
+	 * Register block patterns.
+	 *
+	 * @return void
+	 */
+	public function register_patterns(): void {
+		$registrar = new Patterns\PatternRegistrar();
 		$registrar->register();
 	}
 
