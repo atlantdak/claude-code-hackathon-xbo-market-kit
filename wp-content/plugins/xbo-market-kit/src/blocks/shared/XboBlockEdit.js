@@ -11,7 +11,6 @@ import { __ } from '@wordpress/i18n';
 export default function XboBlockEdit( {
 	blockName,
 	attributes,
-	setAttributes,
 	inspectorControls,
 	title,
 	icon,
