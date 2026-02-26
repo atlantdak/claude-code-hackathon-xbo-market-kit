@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "xbo-market-kit/slippage",
+	"version": "0.1.0",
+	"title": "XBO Slippage Calculator",
+	"category": "xbo-market-kit",
+	"icon": "calculator",
+	"description": "Interactive slippage calculator with order book analysis.",
+	"textdomain": "xbo-market-kit",
+	"attributes": {
+		"symbol": { "type": "string", "default": "BTC_USDT" },
+		"side": { "type": "string", "default": "buy" },
+		"amount": { "type": "string", "default": "" },
+		"align": { "type": "string", "default": "full" }
+	},
+	"supports": { "html": false, "align": ["wide", "full"] },
+	"editorScript": "file:./index.js"
+}
