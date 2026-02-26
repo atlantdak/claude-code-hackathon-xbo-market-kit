@@ -17,6 +17,9 @@ const { state, actions } = store( 'xbo-market-kit', {
 		get moversItems() {
 			return state._moversItems || [];
 		},
+		get moversHydrated() {
+			return ( state._moversItems || [] ).length > 0;
+		},
 	},
 	actions: {
 		initMovers() {
@@ -24,6 +27,11 @@ const { state, actions } = store( 'xbo-market-kit', {
 			state._moversMode = ctx.mode || 'gainers';
 			state._moversLimit = ctx.limit || 10;
 			state._moversIconsUrl = ctx.iconsUrl || '';
+
+			// Seed state from server-preloaded context items.
+			if ( ctx.items && ctx.items.length > 0 ) {
+				state._moversItems = ctx.items;
+			}
 
 			actions.fetchMovers();
 			setInterval( actions.fetchMovers, 30000 );
