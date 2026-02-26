@@ -3,6 +3,8 @@ includes:
 
 parameters:
 	level: 6
+	parallel:
+		maximumNumberOfProcesses: 2
 	paths:
 		- xbo-market-kit.php
 		- includes/

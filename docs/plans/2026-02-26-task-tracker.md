@@ -8,20 +8,20 @@
 
 | ID | Task | Status | Agent | Deps | Commit | Notes |
 |----|------|--------|-------|------|--------|-------|
-| T01 | Setup @wordpress/scripts build pipeline | pending | backend-dev | — | | |
-| T02 | Create base edit.js template + shared helper | pending | frontend-dev | T01 | | |
-| T03 | Block editor UI: Ticker | pending | frontend-dev | T02 | | |
-| T04 | Block editor UI: Movers | pending | frontend-dev | T02 | | |
-| T05 | Block editor UI: Orderbook | pending | frontend-dev | T02 | | |
-| T06 | Block editor UI: Trades | pending | frontend-dev | T02 | | |
-| T07 | Block editor UI: Slippage | pending | frontend-dev | T02 | | |
-| T08 | Full verification (build + PHPCS + PHPStan + PHPUnit) | pending | verifier | T03-T07 | | |
+| T01 | Setup @wordpress/scripts build pipeline | done | backend-dev | — | 07ddd48 | |
+| T02 | Create base edit.js template + shared helper | done | frontend-dev | T01 | 1a3ff0d | |
+| T03 | Block editor UI: Ticker | done | frontend-dev | T02 | 1a3ff0d | verified in T02 |
+| T04 | Block editor UI: Movers | done | frontend-dev | T02 | 55874fd | |
+| T05 | Block editor UI: Orderbook | done | frontend-dev | T02 | 305cb0d | |
+| T06 | Block editor UI: Trades | done | frontend-dev | T02 | 08998ca | |
+| T07 | Block editor UI: Slippage | done | frontend-dev | T02 | 88dadce | |
+| T08 | Full verification (build + PHPCS + PHPStan + PHPUnit) | in-progress | verifier | T03-T07 | | |
 | T09 | Integration test: blocks on test page | pending | integration-tester | T08 | | |
-| T10 | Download XBO assets (logo, hero-bg, favicon) | pending | frontend-dev | — | | |
-| T11 | Analyze Prime FSE patterns + GetWid for demo | pending | frontend-dev | — | | |
+| T10 | Download XBO assets (logo, hero-bg, favicon) | done | frontend-dev | — | 04bb964 | |
+| T11 | Analyze Prime FSE patterns + GetWid for demo | done | frontend-dev | — | — | 60+ patterns, 41 GetWid blocks, page-canvas template |
 | T12 | Home Page: hero + Ticker + Movers + CTA | pending | frontend-dev | T09,T10,T11 | | |
 | T13 | Demo Page: all 5 blocks with descriptions | pending | frontend-dev | T09,T10 | | |
-| T14 | API Docs Page: MP API Docs shortcode | pending | frontend-dev | — | | |
+| T14 | API Docs Page: MP API Docs shortcode | done | frontend-dev | — | — | page ID 10 |
 | T15 | Screenshot pages (5 clean pages, one block each) | pending | frontend-dev | T09 | | |
 | T16 | Take screenshots (frontend + editor, 1728x1117) | pending | integration-tester | T12,T13,T15 | | |
 | T17 | Create docs/SHOWCASE.md with screenshot gallery | pending | backend-dev | T16 | | |
