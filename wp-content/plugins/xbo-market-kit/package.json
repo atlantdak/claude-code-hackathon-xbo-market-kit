@@ -2,14 +2,25 @@
   "name": "xbo-market-kit",
   "private": true,
   "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=src/blocks --output-path=build/blocks",
+    "start": "wp-scripts start --webpack-src-dir=src/blocks --output-path=build/blocks",
     "css:dev": "postcss assets/css/src/widgets.css -o assets/css/dist/widgets.css --watch",
     "css:build": "NODE_ENV=production postcss assets/css/src/widgets.css -o assets/css/dist/widgets.min.css"
   },
   "devDependencies": {
+    "@wordpress/scripts": "^31.5.0",
+    "cssnano": "^7.0",
     "postcss": "^8.5",
     "postcss-cli": "^11.0",
     "postcss-import": "^16.1",
-    "postcss-nesting": "^13.0",
-    "cssnano": "^7.0"
+    "postcss-nesting": "^13.0"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^15.13.1",
+    "@wordpress/blocks": "^15.13.0",
+    "@wordpress/components": "^32.2.0",
+    "@wordpress/element": "^6.40.0",
+    "@wordpress/i18n": "^6.13.0",
+    "@wordpress/server-side-render": "^6.16.0"
   }
 }

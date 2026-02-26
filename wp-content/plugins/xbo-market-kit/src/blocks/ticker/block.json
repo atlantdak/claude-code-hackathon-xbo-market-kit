@@ -30,6 +30,6 @@
 		"html": false,
 		"align": ["wide", "full"]
 	},
-	"editorScript": "file:../../../build/blocks/ticker/index.js",
+	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

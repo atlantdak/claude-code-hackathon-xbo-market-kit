@@ -65,6 +65,9 @@
 wp-content/plugins/xbo-market-kit/vendor/
 wp-content/plugins/xbo-market-kit/node_modules/
 
+# Ignore build output inside plugin
+wp-content/plugins/xbo-market-kit/build/
+
 # Ignore test/build caches inside plugin
 wp-content/plugins/xbo-market-kit/.phpunit.result.cache
 
