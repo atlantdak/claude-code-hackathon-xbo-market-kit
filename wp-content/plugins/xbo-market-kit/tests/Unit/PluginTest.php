@@ -35,7 +35,7 @@ class PluginTest extends TestCase {
 
 	public function test_init_registers_hooks(): void {
 		Functions\expect( 'get_option' )->andReturn( array() );
-		Functions\expect( 'add_action' )->times( 5 );
+		Functions\expect( 'add_action' )->times( 6 );
 		Plugin::instance()->init();
 	}
 }

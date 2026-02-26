@@ -300,11 +300,11 @@ class SlippageShortcode extends AbstractShortcode {
 			. ' src="' . esc_url( $selected_icon ) . '"'
 			. ' data-wp-bind--src="' . $icon_state . '"'
 			. ' alt="" width="20" height="20" />';
-		$html .= '<span class="xbo-mk-slippage__selector-text"'
+		$html      .= '<span class="xbo-mk-slippage__selector-text"'
 			. ' data-wp-text="context.' . $type . '">'
 			. esc_html( $selected ) . '</span>';
-		$html .= '<span class="xbo-mk-slippage__selector-chevron" aria-hidden="true">&#9662;</span>';
-		$html .= '</button>';
+		$html      .= '<span class="xbo-mk-slippage__selector-chevron" aria-hidden="true">&#9662;</span>';
+		$html      .= '</button>';
 
 		// Dropdown panel.
 		$html .= '<div class="xbo-mk-slippage__selector-dropdown">';
