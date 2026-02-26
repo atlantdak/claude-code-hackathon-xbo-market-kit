@@ -30,5 +30,6 @@
 		"html": false,
 		"align": ["wide", "full"]
 	},
+	"editorScript": "file:../../../build/blocks/trades/index.js",
 	"render": "file:./render.php"
 }
