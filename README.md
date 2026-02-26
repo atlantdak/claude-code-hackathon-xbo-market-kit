@@ -43,34 +43,37 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>~$138</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>~13h 53m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>13 / 13</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>137</h2><sub>Commits</sub></td>
-<td align="center" width="130"><h2>~344M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>30</h2><sub>Sessions</sub></td>
+<td align="center" width="130"><h2>~$182</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>~18h 18m</h2><sub>Active Time</sub></td>
+<td align="center" width="130"><h2>15 / 15</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>139</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>~443M</h2><sub>Tokens</sub></td>
+<td align="center" width="130"><h2>47</h2><sub>Sessions</sub></td>
 </tr>
 </table>
 
-> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 + Sonnet 4.6 + Haiku 4.5). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
+> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 $165 + Sonnet 4.6 $9 + Haiku 4.5 $4 + Sonnet 4.5 $1). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
 
 </div>
 
 ### Time Allocation
 
 ```mermaid
-pie title Active Dev Time by Task (~833 min total)
-    "Project Setup (62m)" : 62
-    "AI Workflow v1 (66m)" : 66
-    "Workflow Improvements v2 (90m)" : 90
-    "Metrics Fix (18m)" : 18
-    "Plugin MVP (178m)" : 178
+pie title Active Dev Time by Task (~1083 min total)
+    "Project Setup (48m)" : 48
+    "AI Workflow v1 (51m)" : 51
+    "Workflow v2 (70m)" : 70
+    "Metrics Fix (14m)" : 14
+    "Plugin MVP (561m)" : 561
     "Widget Styling (34m)" : 34
     "Local Icons (53m)" : 53
-    "API Documentation (20m)" : 20
+    "API Documentation (70m)" : 70
     "Sparkline Ticker (60m)" : 60
-    "Slippage UX Redesign (60m)" : 60
-    "Slippage Layout Fix (30m)" : 30
+    "Slippage UX (60m)" : 60
+    "Layout Fix (30m)" : 30
+    "Block Editor UI (65m)" : 65
+    "Block Settings (55m)" : 55
+    "XBO Theme (15m)" : 15
 ```
 
 ### Commits per Task
@@ -78,9 +81,9 @@ pie title Active Dev Time by Task (~833 min total)
 ```mermaid
 xychart-beta
     title "Commits by Task"
-    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "MVP", "Styling", "Icons", "API Docs", "Sparkline", "Slippage UX", "Layout Fix"]
+    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "MVP", "Styling", "Icons", "API Docs", "Sparkline", "Slip UX", "Lay Fix", "Blk UI", "Blk Set", "Theme"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2, 13, 9, 12, 5, 8, 8, 3]
+    bar [1, 6, 12, 2, 13, 9, 12, 5, 8, 8, 3, 15, 3, 1]
 ```
 
 ### Timeline
@@ -116,29 +119,31 @@ gantt
     Slippage Layout Fix           :done, slipfix, 2026-02-26 15:00, 30min
     section Day 6 — Feb 27
     Block Settings                :done, blocksettings, 2026-02-27 00:00, 55min
+    XBO Theme Colors             :done, xbotheme, 2026-02-27 00:00, 15min
 ```
 
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Day (~$138 total)
+pie title Cost by Day ($182 total)
     "Day 1 Feb 22 ($28)" : 28
     "Day 2 Feb 23 ($40)" : 40
-    "Day 4-5 Feb 25 ($52)" : 52
-    "Day 5 Feb 26 ($18)" : 18
+    "Day 4 Feb 25 ($52)" : 52
+    "Day 5 Feb 26 ($51)" : 51
+    "Day 6 Feb 27 ($11)" : 11
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6 + Sonnet 4.6 + Haiku 4.5. 30 sessions across 4 days.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6 + Sonnet 4.6 + Sonnet 4.5 + Haiku 4.5. 47 sessions across 5 days.
 
 ### Task Details
 
 | # | Task | Duration | Commits | Cost | Status |
 |:-:|:-----|:--------:|:-------:|:----:|:------:|
-| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 62m | 1 | $7.28 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 66m | 6 | $7.74 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 90m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 18m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| **5** | **Plugin MVP** — full implementation (5 phases, 11 sub-tasks) | **178m** | **13** | **$38.64** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 1 | **Project Setup** — repo, scaffold, docs, CLAUDE.md, README | 48m | 1 | $7.28 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 2 | **AI Workflow v1** — 5 agents, 4 skills, hooks, metrics, MCP | 51m | 6 | $7.74 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 3 | **Workflow v2** — executable skills, TDD, security, commands, ADR | 70m | 12 | $10.62 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 4 | **Metrics Fix** — ccusage integration + visual dashboard | 14m | 2 | $2.12 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| **5** | **Plugin MVP** — full implementation (5 phases, 11 sub-tasks) | **561m** | **13** | **$38.64** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.1 | &nbsp;&nbsp;↳ Plugin bootstrap, autoloader, activation hook | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.2 | &nbsp;&nbsp;↳ ApiClient with error handling, timeouts, filterable base URL | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.3 | &nbsp;&nbsp;↳ CacheManager with per-endpoint TTL via transients | | | *Phase 1* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
@@ -150,15 +155,17 @@ pie title Cost by Day (~$138 total)
 | 5.9 | &nbsp;&nbsp;↳ 5 Gutenberg blocks (server-rendered via render.php) | | | *Phase 4* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.10 | &nbsp;&nbsp;↳ Admin settings page + demo page on activation | | | *Phase 4* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 5.11 | &nbsp;&nbsp;↳ Code quality (PHPCS/PHPStan/PHPUnit) + data-wp-each bugfix | | | *Phase 5* | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | ~$10 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | ~$14 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | ~20m | 5 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | $11.23 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | $17.51 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | 70m | 5 | $23.13 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 8.1 | &nbsp;&nbsp;↳ Update production URL in OAS3 spec when deploying | | | | ![pending](https://img.shields.io/badge/-pending-F59E0B?style=flat-square) |
-| 9 | **Sparkline Ticker** — constrained random walk SVG generation, ring buffer live updates | ~60m | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 10 | **Slippage UX Redesign** — dropdown selectors, PairCatalog, context-based state | ~60m | 8 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 11 | **Slippage Layout Fix** — 2-col CSS grid, reactive icon binding, field reorder | ~30m | 3 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 12 | **Block Editor UI** — 20 sub-tasks, full Gutenberg editor controls, live preview | ~75m | 33 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 13 | **Block Settings** — Pair selector dropdown, settings modal, IconResolver integration | ~55m | 3 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 9 | **Sparkline Ticker** — constrained random walk SVG generation, ring buffer live updates | 60m | 8 | $14.30 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 10 | **Slippage UX Redesign** — dropdown selectors, PairCatalog, context-based state | 60m | 8 | $14.30 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 11 | **Slippage Layout Fix** — 2-col CSS grid, reactive icon binding, field reorder | 30m | 3 | $7.15 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 12 | **Block Editor UI** — 20 sub-tasks, full Gutenberg editor controls, live preview | 65m | 15 | $15.49 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 13 | **Block Settings** — PairSelector/PairsSelector dropdowns, trading-pairs REST endpoint | 55m | 3 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 14 | **XBO Theme Colors** — Style variation for prime-fse with XBO brand palette | ~15m | 1 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 15 | **Movers Preload** — Server-side data fetch, static SSR rows, zero-flash hydration ([#25](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/25)) | ~15m | — | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 
@@ -169,9 +176,10 @@ pie title Cost by Day (~$138 total)
 |:----|:------|:----------:|:-----------:|:-----------:|:--------:|
 | Feb 22 | Tasks 1–4 | 24h 50m | 3h 56m | 20h 54m | 4 |
 | Feb 23 | Task 5 (Plugin MVP) | 8h 43m | 3h 5m | 5h 38m | 9 |
-| Feb 25 | Tasks 6–8 | 10h 38m | 4h 9m | 6h 29m | 10 |
-| Feb 26 | Tasks 9–11 | ~2h 30m | ~2h 30m | — | 7 |
-| **Total** | **All 11 tasks** | **~46h 30m** | **~13h 53m** | **~33h** | **30** |
+| Feb 25 | Tasks 6–10 | 36h 1m | 7h 16m | 28h 45m | 17 |
+| Feb 26 | Tasks 11–12 | 11h 3m | 3h 32m | 7h 31m | 17 |
+| Feb 27 | Tasks 13–15 | ~1h 10m | ~1h 10m | — | — |
+| **Total** | **All 15 tasks** | **~81h 47m** | **~18h 3m** | **~63h** | **47** |
 
 Active time = continuous Claude Code processing with no gap > 5 min between API calls. Source: `docs/metrics/sessions.json`.
 
@@ -416,6 +424,7 @@ app/public/                             # Git root
 | ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
 | **Day 4-5** | Widget styling + Local crypto icons (205 SVGs, zero CDN) + API Docs | `████████████████████` 100% |
 | **Day 5** | Sparkline Ticker + Slippage UX Redesign + Layout Fix (2-col grid, icon binding) | `████████████████████` 100% |
+| **Day 6** | XBO Theme Color Scheme — style variation with brand palette from xbo.com | `████████████████████` 100% |
 | **Day 7** | Elementor widgets, demo video, README polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
 > Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
@@ -496,7 +505,7 @@ wp xbo icons status         # Show icon sync status
 | [Visual Showcase](docs/SHOWCASE.md) | Screenshots of all blocks (editor + frontend) |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
-> **137 total commits** — task commits (112) + documentation/metrics/readme updates (25).
+> **139 total commits** — task commits (112) + documentation/metrics/readme updates (25).
 
 ---
 
