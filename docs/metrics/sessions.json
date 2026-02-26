@@ -879,19 +879,27 @@
       "wall_min": 676.2,
       "messages": 1284,
       "tokens": 88999377
+    },
+    "2026-02-27": {
+      "sessions": 3,
+      "cost_usd": 18.19,
+      "active_min": 85.0,
+      "wall_min": 120.0,
+      "messages": 350,
+      "tokens": 29343105
     }
   },
   "totals": {
-    "total_sessions": 47,
-    "total_cost_usd": 182.27,
-    "total_active_min": 1082.7,
-    "total_wall_min": 4849.7,
-    "total_input_tokens": 116162,
-    "total_output_tokens": 321640,
-    "total_cache_read_tokens": 426823957,
-    "total_cache_create_tokens": 15896788,
-    "total_all_tokens": 443158547,
-    "total_messages": 5284,
+    "total_sessions": 50,
+    "total_cost_usd": 200.46,
+    "total_active_min": 1167.7,
+    "total_wall_min": 4969.7,
+    "total_input_tokens": 143288,
+    "total_output_tokens": 330818,
+    "total_cache_read_tokens": 455042546,
+    "total_cache_create_tokens": 16985000,
+    "total_all_tokens": 472501652,
+    "total_messages": 5634,
     "models": [
       "claude-haiku-4-5-20251001",
       "claude-opus-4-6",
