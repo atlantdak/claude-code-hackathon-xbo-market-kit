@@ -65,6 +65,9 @@
 wp-content/plugins/xbo-market-kit/vendor/
 wp-content/plugins/xbo-market-kit/node_modules/
 
+# Ignore test/build caches inside plugin
+wp-content/plugins/xbo-market-kit/.phpunit.result.cache
+
 # ---------- Always ignore ----------
 .DS_Store
 Thumbs.db
