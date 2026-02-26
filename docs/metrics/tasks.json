@@ -204,16 +204,30 @@
       "issue_number": 20,
       "status": "completed",
       "sessions": []
+    },
+    {
+      "id": "2026-02-26-block-editor-ui",
+      "description": "Gutenberg block editor UI (InspectorControls + ServerSideRender) for all 5 blocks, demo pages, screenshots, SHOWCASE.md",
+      "plan": "docs/plans/2026-02-22-implementation-plan.md",
+      "started": "2026-02-26T16:00:00+02:00",
+      "completed": "2026-02-26T17:05:00+02:00",
+      "duration_minutes": 65,
+      "commits": 15,
+      "cost_usd": null,
+      "coverage": "59 tests, 822 assertions",
+      "issue_number": null,
+      "status": "completed",
+      "sessions": []
     }
   ],
   "totals": {
-    "total_tasks": 11,
-    "total_duration_minutes": 861,
+    "total_tasks": 12,
+    "total_duration_minutes": 926,
     "total_tokens": 344099763,
-    "total_commits": 104,
+    "total_commits": 119,
     "total_cost_usd": 137.97,
     "total_sessions": 30,
-    "total_active_minutes": 832.7,
+    "total_active_minutes": 897.7,
     "total_messages": 3839
   }
 }
