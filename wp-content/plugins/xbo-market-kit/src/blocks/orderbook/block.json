@@ -9,7 +9,7 @@
 	"description": "Live order book with depth visualization and spread indicator.",
 	"textdomain": "xbo-market-kit",
 	"attributes": {
-		"symbol": { "type": "string", "default": "BTC_USDT" },
+		"symbol": { "type": "string", "default": "BTC/USDT" },
 		"depth": { "type": "string", "default": "20" },
 		"refresh": { "type": "string", "default": "5" },
 		"align": { "type": "string", "default": "full" }
