@@ -752,6 +752,7 @@ class PageManager {
 		$content .= '<tbody>' . "\n";
 		$content .= '<tr><td><code>mode</code></td><td>string</td><td>gainers</td><td>Display mode: "gainers" or "losers"</td></tr>' . "\n";
 		$content .= '<tr><td><code>limit</code></td><td>number</td><td>10</td><td>Number of pairs to display</td></tr>' . "\n";
+		$content .= '<tr><td><code>refresh</code></td><td>number</td><td>15</td><td>Auto-refresh interval in seconds</td></tr>' . "\n";
 		$content .= '</tbody>' . "\n";
 		$content .= '</table>' . "\n";
 		$content .= '<!-- /wp:html -->' . "\n\n";
@@ -807,7 +808,7 @@ class PageManager {
 		$content .= '<tbody>' . "\n";
 		$content .= '<tr><td><code>symbol</code></td><td>string</td><td>BTC_USDT</td><td>Trading pair in UNDERSCORE format</td></tr>' . "\n";
 		$content .= '<tr><td><code>depth</code></td><td>number</td><td>20</td><td>Number of price levels to display (max 250)</td></tr>' . "\n";
-		$content .= '<tr><td><code>refresh</code></td><td>number</td><td>5</td><td>Auto-refresh interval in seconds</td></tr>' . "\n";
+		$content .= '<tr><td><code>refresh</code></td><td>number</td><td>15</td><td>Auto-refresh interval in seconds</td></tr>' . "\n";
 		$content .= '</tbody>' . "\n";
 		$content .= '</table>' . "\n";
 		$content .= '<!-- /wp:html -->' . "\n\n";
@@ -863,7 +864,7 @@ class PageManager {
 		$content .= '<tbody>' . "\n";
 		$content .= '<tr><td><code>symbol</code></td><td>string</td><td>BTC/USDT</td><td>Trading pair in SLASH format</td></tr>' . "\n";
 		$content .= '<tr><td><code>limit</code></td><td>number</td><td>20</td><td>Number of trades to display</td></tr>' . "\n";
-		$content .= '<tr><td><code>refresh</code></td><td>number</td><td>10</td><td>Auto-refresh interval in seconds</td></tr>' . "\n";
+		$content .= '<tr><td><code>refresh</code></td><td>number</td><td>15</td><td>Auto-refresh interval in seconds</td></tr>' . "\n";
 		$content .= '</tbody>' . "\n";
 		$content .= '</table>' . "\n";
 		$content .= '<!-- /wp:html -->' . "\n\n";
