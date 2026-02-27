@@ -55,8 +55,15 @@
 !.claude/plugins/xbo-ai-flow/
 !.claude/plugins/xbo-ai-flow/**
 
-# ---------- Plugin: xbo-market-kit ----------
+# ---------- Theme: prime-fse (customised patterns only) ----------
 !wp-content/
+!wp-content/themes/
+!wp-content/themes/prime-fse/
+!wp-content/themes/prime-fse/patterns/
+!wp-content/themes/prime-fse/patterns/getwid/
+!wp-content/themes/prime-fse/patterns/getwid/header.php
+
+# ---------- Plugin: xbo-market-kit ----------
 !wp-content/plugins/
 !wp-content/plugins/xbo-market-kit/
 !wp-content/plugins/xbo-market-kit/**
