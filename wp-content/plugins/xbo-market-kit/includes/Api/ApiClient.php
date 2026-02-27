@@ -55,7 +55,11 @@ class ApiClient {
 	 * @return ApiResponse API response with trading pair stats data.
 	 */
 	public function get_stats(): ApiResponse {
-		return $this->cached_request( 'xbo_mk_stats', '/trading-pairs/stats', 30 );
+		return $this->cached_request(
+			'xbo_mk_stats',
+			'/trading-pairs/stats',
+			xbo_market_kit_get_refresh_interval()
+		);
 	}
 
 	/**
@@ -70,7 +74,7 @@ class ApiClient {
 		$depth  = min( max( $depth, 1 ), 250 );
 		$key    = sprintf( 'xbo_mk_ob_%s_%d', $symbol, $depth );
 		$url    = sprintf( '/orderbook/%s?depth=%d', $symbol, $depth );
-		return $this->cached_request( $key, $url, 5 );
+		return $this->cached_request( $key, $url, xbo_market_kit_get_refresh_interval() );
 	}
 
 	/**
@@ -83,7 +87,7 @@ class ApiClient {
 		$symbol = $this->to_slash_format( $symbol );
 		$key    = sprintf( 'xbo_mk_trades_%s', sanitize_key( $symbol ) );
 		$url    = sprintf( '/trades?symbol=%s', rawurlencode( $symbol ) );
-		return $this->cached_request( $key, $url, 10 );
+		return $this->cached_request( $key, $url, xbo_market_kit_get_refresh_interval() );
 	}
 
 	/**

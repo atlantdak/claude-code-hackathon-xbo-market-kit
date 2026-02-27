@@ -40,9 +40,16 @@ class ApiClientTest extends TestCase {
 	public function test_get_stats_fetches_from_api_on_cache_miss(): void {
 		$data = array( array( 'symbol' => 'BTC/USDT' ) );
 		$this->cache->shouldReceive( 'get' )->with( 'xbo_mk_stats' )->andReturn( null );
-		$this->cache->shouldReceive( 'set' )->with( 'xbo_mk_stats', $data, 30 )->once();
+		$this->cache->shouldReceive( 'set' )->withArgs( function ( $key, $value, $ttl ) use ( $data ) {
+			return $key === 'xbo_mk_stats' && $value === $data && $ttl > 0;
+		} )->once();
 
-		Functions\expect( 'apply_filters' )->andReturn( 'https://api.xbo.com' );
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/refresh_interval', XBO_MARKET_KIT_REFRESH_INTERVAL )
+			->andReturn( 15 );
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/api_base_url', 'https://api.xbo.com' )
+			->andReturn( 'https://api.xbo.com' );
 		Functions\expect( 'wp_remote_get' )->andReturn( array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $data ) ) );
 		Functions\expect( 'is_wp_error' )->andReturn( false );
 		Functions\expect( 'wp_remote_retrieve_response_code' )->andReturn( 200 );
@@ -93,5 +100,97 @@ class ApiClientTest extends TestCase {
 
 		$response = $this->client->get_trades( 'BTC_USDT' );
 		$this->assertTrue( $response->success );
+	}
+
+	public function test_get_stats_uses_refresh_interval(): void {
+		$data = array( array( 'symbol' => 'BTC/USDT' ) );
+		$this->cache->shouldReceive( 'get' )->with( 'xbo_mk_stats' )->andReturn( null );
+		$this->cache->shouldReceive( 'set' )->with( 'xbo_mk_stats', $data, 15 )->once();
+
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/refresh_interval', XBO_MARKET_KIT_REFRESH_INTERVAL )
+			->andReturn( 15 );
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/api_base_url', 'https://api.xbo.com' )
+			->andReturn( 'https://api.xbo.com' );
+		Functions\expect( 'wp_remote_get' )->andReturn( array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $data ) ) );
+		Functions\expect( 'is_wp_error' )->andReturn( false );
+		Functions\expect( 'wp_remote_retrieve_response_code' )->andReturn( 200 );
+		Functions\expect( 'wp_remote_retrieve_body' )->andReturn( json_encode( $data ) );
+
+		$this->client->get_stats();
+	}
+
+	public function test_get_orderbook_uses_refresh_interval(): void {
+		$data = array( 'bids' => array(), 'asks' => array() );
+		$this->cache->shouldReceive( 'get' )->andReturn( null );
+		$this->cache->shouldReceive( 'set' )->withArgs( function ( $key, $value, $ttl ) {
+			return $ttl === 15;
+		} )->once();
+
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/refresh_interval', XBO_MARKET_KIT_REFRESH_INTERVAL )
+			->andReturn( 15 );
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/api_base_url', 'https://api.xbo.com' )
+			->andReturn( 'https://api.xbo.com' );
+		Functions\expect( 'wp_remote_get' )->andReturn( array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $data ) ) );
+		Functions\expect( 'is_wp_error' )->andReturn( false );
+		Functions\expect( 'wp_remote_retrieve_response_code' )->andReturn( 200 );
+		Functions\expect( 'wp_remote_retrieve_body' )->andReturn( json_encode( $data ) );
+
+		$this->client->get_orderbook( 'BTC/USDT', 20 );
+	}
+
+	public function test_get_trades_uses_refresh_interval(): void {
+		$data = array( array( 'price' => '65000' ) );
+		$this->cache->shouldReceive( 'get' )->andReturn( null );
+		$this->cache->shouldReceive( 'set' )->withArgs( function ( $key, $value, $ttl ) {
+			return $ttl === 15;
+		} )->once();
+
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/refresh_interval', XBO_MARKET_KIT_REFRESH_INTERVAL )
+			->andReturn( 15 );
+		Functions\expect( 'apply_filters' )
+			->with( 'xbo_market_kit/api_base_url', 'https://api.xbo.com' )
+			->andReturn( 'https://api.xbo.com' );
+		Functions\expect( 'sanitize_key' )->andReturnUsing( function ( $key ) {
+			return strtolower( preg_replace( '/[^a-zA-Z0-9_\-]/', '', $key ) );
+		} );
+		Functions\expect( 'wp_remote_get' )->andReturn( array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $data ) ) );
+		Functions\expect( 'is_wp_error' )->andReturn( false );
+		Functions\expect( 'wp_remote_retrieve_response_code' )->andReturn( 200 );
+		Functions\expect( 'wp_remote_retrieve_body' )->andReturn( json_encode( $data ) );
+
+		$this->client->get_trades( 'BTC/USDT' );
+	}
+
+	public function test_get_currencies_uses_long_cache(): void {
+		$data = array( array( 'symbol' => 'BTC' ) );
+		$this->cache->shouldReceive( 'get' )->with( 'xbo_mk_currencies' )->andReturn( null );
+		$this->cache->shouldReceive( 'set' )->with( 'xbo_mk_currencies', $data, 21600 )->once();
+
+		Functions\expect( 'apply_filters' )->andReturn( 'https://api.xbo.com' );
+		Functions\expect( 'wp_remote_get' )->andReturn( array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $data ) ) );
+		Functions\expect( 'is_wp_error' )->andReturn( false );
+		Functions\expect( 'wp_remote_retrieve_response_code' )->andReturn( 200 );
+		Functions\expect( 'wp_remote_retrieve_body' )->andReturn( json_encode( $data ) );
+
+		$this->client->get_currencies();
+	}
+
+	public function test_get_trading_pairs_uses_long_cache(): void {
+		$data = array( array( 'symbol' => 'BTC/USDT' ) );
+		$this->cache->shouldReceive( 'get' )->andReturn( null );
+		$this->cache->shouldReceive( 'set' )->with( 'xbo_mk_pairs', $data, 21600 )->once();
+
+		Functions\expect( 'apply_filters' )->andReturn( 'https://api.xbo.com' );
+		Functions\expect( 'wp_remote_get' )->andReturn( array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $data ) ) );
+		Functions\expect( 'is_wp_error' )->andReturn( false );
+		Functions\expect( 'wp_remote_retrieve_response_code' )->andReturn( 200 );
+		Functions\expect( 'wp_remote_retrieve_body' )->andReturn( json_encode( $data ) );
+
+		$this->client->get_trading_pairs();
 	}
 }
