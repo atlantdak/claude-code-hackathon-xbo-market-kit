@@ -79,30 +79,30 @@ const { state, actions } = store( 'xbo-market-kit', {
 			return r?.avg_price?.toLocaleString( 'en-US', {
 				minimumFractionDigits: 2,
 				maximumFractionDigits: 8,
-			} ) || '--';
+			} ) ?? '\u2014';
 		},
 		get slippageResult_slippage_pct() {
 			const r = getContext().result;
-			return r ? `${ r.slippage_pct }%` : '--';
+			return r ? `${ r.slippage_pct }%` : '\u2014';
 		},
 		get slippageResult_spread() {
 			const r = getContext().result;
-			return r?.spread?.toFixed( 8 ) || '--';
+			return r?.spread?.toFixed( 8 ) ?? '\u2014';
 		},
 		get slippageResult_spread_pct() {
 			const r = getContext().result;
-			return r ? `${ r.spread_pct }%` : '--';
+			return r ? `${ r.spread_pct }%` : '\u2014';
 		},
 		get slippageResult_depth_used() {
 			const r = getContext().result;
-			return r?.depth_used?.toFixed( 8 ) || '--';
+			return r?.depth_used?.toFixed( 8 ) ?? '\u2014';
 		},
 		get slippageResult_total_cost() {
 			const r = getContext().result;
 			return r?.total_cost?.toLocaleString( 'en-US', {
 				minimumFractionDigits: 2,
 				maximumFractionDigits: 8,
-			} ) || '--';
+			} ) ?? '\u2014';
 		},
 
 		// --- Selector icon URLs (for trigger buttons, updated dynamically) ---

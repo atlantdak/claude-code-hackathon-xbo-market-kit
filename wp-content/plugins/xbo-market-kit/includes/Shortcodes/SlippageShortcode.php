@@ -223,8 +223,7 @@ class SlippageShortcode extends AbstractShortcode {
 			. ' data-wp-text="state.slippagePartialFillText"></div>';
 
 		// Results.
-		$html .= '<div class="xbo-mk-slippage__results"'
-			. ' data-wp-class--xbo-mk-hidden="!state.slippageHasResult">';
+		$html .= '<div class="xbo-mk-slippage__results">';
 		$html .= '<div class="xbo-mk-slippage__metrics">';
 
 		$metrics = array(
@@ -241,7 +240,7 @@ class SlippageShortcode extends AbstractShortcode {
 			$html .= '<div class="xbo-mk-slippage__metric-label">'
 				. esc_html( $label ) . '</div>';
 			$html .= '<div class="xbo-mk-slippage__metric-value"'
-				. ' data-wp-text="state.slippageResult_' . esc_attr( $key ) . '">--</div>';
+				. ' data-wp-text="state.slippageResult_' . esc_attr( $key ) . '">' . "\xE2\x80\x94" . '</div>';
 			$html .= '</div>';
 		}
 
