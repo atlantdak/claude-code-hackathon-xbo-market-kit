@@ -210,7 +210,6 @@ do_rsync() {
         -avz
         --delete
         --exclude="node_modules/"
-        --exclude="build/"
         --exclude=".phpunit.result.cache"
         --exclude=".DS_Store"
         --exclude="*.log"
