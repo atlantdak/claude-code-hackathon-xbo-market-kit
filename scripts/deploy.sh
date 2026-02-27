@@ -61,6 +61,28 @@ DEPLOY_PLUGINS=(
 
 XBO_EXTRA_EXCLUDES="tests/,phpstan.neon,phpcs.xml,phpunit.xml"
 
+# Plugins that must be active on production after DB import
+PRODUCTION_PLUGINS=(
+    "xbo-market-kit"
+    "getwid"
+    "getwid-megamenu"
+    "breadcrumb-navxt"
+    "svg-support"
+    "one-click-demo-import"
+    "litespeed-cache"
+)
+
+# Dev-only plugins (exist locally but NOT deployed to server)
+DEV_ONLY_PLUGINS=(
+    "mcp-adapter"
+    "mp-api-docs"
+)
+
+# Server-only plugins (exist on server but NOT locally — must stay active after DB import)
+SERVER_ONLY_PLUGINS=(
+    "litespeed-cache"
+)
+
 # ---------------------------------------------------------------------------
 # Color helpers
 # ---------------------------------------------------------------------------
@@ -380,15 +402,17 @@ cmd_db() {
     if [[ "${DRY_RUN}" == "true" ]]; then
         warn "DB deploy requires --confirm flag. This is what would happen:"
         echo ""
-        echo "  1. Enable maintenance mode on server"
-        echo "  2. Backup production DB on server"
-        echo "  3. Export local DB (excluding litespeed tables)"
-        echo "  4. Upload dump to server"
-        echo "  5. Import dump on server"
-        echo "  6. Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
-        echo "  7. Ensure HTTPS URLs"
-        echo "  8. Disable maintenance mode"
-        echo "  9. Flush cache + smoke check"
+        echo "  1.  Enable maintenance mode on server"
+        echo "  2.  Backup production DB on server"
+        echo "  3.  Export local DB (excluding litespeed tables)"
+        echo "  4.  Upload dump to server"
+        echo "  5.  Import dump on server"
+        echo "  6.  Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
+        echo "  7.  Ensure HTTPS URLs"
+        echo "  8.  Activate production plugins"
+        echo "  9.  Activate theme prime-fse"
+        echo "  10. Disable maintenance mode"
+        echo "  11. Flush cache + smoke check"
         echo ""
         warn "Run with --confirm to execute."
         return 0
@@ -415,17 +439,17 @@ cmd_db() {
     local remote_import="/tmp/xbo_local_dump_${timestamp}.sql"
 
     # Step 1: Maintenance mode ON
-    info "Step 1/9: Enabling maintenance mode..."
+    info "Step 1/11: Enabling maintenance mode..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root maintenance-mode activate" || true
     success "Maintenance mode enabled"
 
     # Step 2: Backup production DB
-    info "Step 2/9: Backing up production DB..."
+    info "Step 2/11: Backing up production DB..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root db export ${remote_backup}"
     success "Production DB backed up to: ${remote_backup}"
 
     # Step 3: Discover litespeed tables to exclude from local export
-    info "Step 3/9: Exporting local DB..."
+    info "Step 3/11: Exporting local DB..."
     local exclude_args=""
     local ls_tables
     ls_tables=$(wp --path="${PROJECT_ROOT}" db tables 'wp_litespeed*' --format=csv 2>/dev/null || echo "")
@@ -443,32 +467,41 @@ cmd_db() {
     success "Local DB exported to: ${local_dump}"
 
     # Step 4: Upload dump to server
-    info "Step 4/9: Uploading dump to server..."
+    info "Step 4/11: Uploading dump to server..."
     scp "${local_dump}" "${REMOTE_HOST}:${remote_import}"
     success "Dump uploaded"
 
     # Step 5: Import on server
-    info "Step 5/9: Importing dump on server..."
+    info "Step 5/11: Importing dump on server..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root db import ${remote_import}"
     success "DB imported"
 
     # Step 6: Search-replace URLs
-    info "Step 6/9: Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
+    info "Step 6/11: Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
     remote_exec "wp --path=${REMOTE_PATH} --allow-root search-replace '${LOCAL_URL}' '${REMOTE_URL}' --skip-columns=guid --all-tables"
     success "Search-replace complete"
 
     # Step 7: Ensure HTTPS
-    info "Step 7/9: Ensuring HTTPS URLs..."
+    info "Step 7/11: Ensuring HTTPS URLs..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root search-replace 'http://kishkin.dev' 'https://kishkin.dev' --skip-columns=guid --all-tables" || true
     success "HTTPS enforced"
 
-    # Step 8: Maintenance mode OFF
-    info "Step 8/9: Disabling maintenance mode..."
+    # Step 8: Activate production plugins and theme
+    info "Step 8/11: Activating production plugins..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root plugin activate ${PRODUCTION_PLUGINS[*]}" || true
+    success "Plugins activated"
+
+    info "Step 9/11: Activating theme prime-fse..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root theme activate prime-fse" || true
+    success "Theme activated"
+
+    # Step 10: Maintenance mode OFF
+    info "Step 10/11: Disabling maintenance mode..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root maintenance-mode deactivate" || true
     success "Maintenance mode disabled"
 
-    # Step 9: Flush cache + smoke check
-    info "Step 9/9: Post-deploy checks..."
+    # Step 11: Flush cache + smoke check
+    info "Step 11/11: Post-deploy checks..."
     flush_cache
     smoke_check
 
