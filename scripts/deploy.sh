@@ -470,10 +470,11 @@ cmd_db() {
     scp "${local_dump}" "${REMOTE_HOST}:${remote_import}"
     success "Dump uploaded"
 
-    # Step 5: Import on server
-    info "Step 5/11: Importing dump on server..."
+    # Step 5: Reset and import on server
+    info "Step 5/11: Resetting and importing DB on server..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root db reset --yes"
     remote_exec "wp --path=${REMOTE_PATH} --allow-root db import ${remote_import}"
-    success "DB imported"
+    success "DB reset and imported"
 
     # Step 6: Search-replace URLs
     info "Step 6/11: Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
