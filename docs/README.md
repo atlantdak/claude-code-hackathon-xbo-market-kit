@@ -2,6 +2,8 @@
 
 Welcome to the XBO Market Kit project documentation.
 
+**Live Demo:** [https://kishkin.dev](https://kishkin.dev) | **GitHub:** [atlantdak/claude-code-hackathon-xbo-market-kit](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
+
 ## Navigation
 
 | Section | Purpose |

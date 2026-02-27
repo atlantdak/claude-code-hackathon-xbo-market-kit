@@ -3,7 +3,7 @@
  * Plugin Name: XBO Market Kit
  * Plugin URI:  https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit
  * Description: Live cryptocurrency market data widgets for WordPress. Shortcodes, Gutenberg blocks, and Elementor widgets powered by the XBO Public API.
- * Version:     0.1.0
+ * Version:     1.0.0
  * Author:      atlantdak
  * Author URI:  https://github.com/atlantdak
  * License:     GPL-2.0-or-later
@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'XBO_MARKET_KIT_VERSION', '0.1.0' );
+define( 'XBO_MARKET_KIT_VERSION', '1.0.0' );
 define( 'XBO_MARKET_KIT_FILE', __FILE__ );
 define( 'XBO_MARKET_KIT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'XBO_MARKET_KIT_URL', plugin_dir_url( __FILE__ ) );

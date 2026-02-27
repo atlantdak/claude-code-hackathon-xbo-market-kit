@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', '/tmp/wordpress/' );
 }
 if ( ! defined( 'XBO_MARKET_KIT_VERSION' ) ) {
-	define( 'XBO_MARKET_KIT_VERSION', '0.1.0' );
+	define( 'XBO_MARKET_KIT_VERSION', '1.0.0' );
 }
 if ( ! defined( 'XBO_MARKET_KIT_FILE' ) ) {
 	define( 'XBO_MARKET_KIT_FILE', dirname( __DIR__ ) . '/xbo-market-kit.php' );
