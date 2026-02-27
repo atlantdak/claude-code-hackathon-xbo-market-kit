@@ -23,6 +23,16 @@
 
 ---
 
+### Video Presentation
+
+<a href="https://youtu.be/p0POr8uRkno">
+  <img src="docs/screenshots/video-preview.jpg" alt="XBO Market Kit — Video Presentation" width="600">
+  <br>
+  <img src="https://img.shields.io/badge/%E2%96%B6%20Watch%20on-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch on YouTube">
+</a>
+
+---
+
 [Dashboard](#ai-development-dashboard) &bull;
 [Features](#features) &bull;
 [Showcase](docs/SHOWCASE.md) &bull;
