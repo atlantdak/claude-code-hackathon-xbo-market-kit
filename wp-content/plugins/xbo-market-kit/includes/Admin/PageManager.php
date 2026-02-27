@@ -527,6 +527,9 @@ class PageManager {
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:group -->' . "\n\n";
 
+		// Refresh Timer.
+		$content .= '<!-- wp:xbo-market-kit/refresh-timer /-->' . "\n\n";
+
 		// Ticker.
 		$content .= '<!-- wp:group {"className":"xbo-mk-page-section"} -->' . "\n";
 		$content .= '<div class="wp-block-group xbo-mk-page-section">';
@@ -674,6 +677,9 @@ class PageManager {
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:group -->' . "\n\n";
 
+		// Refresh Timer.
+		$content .= '<!-- wp:xbo-market-kit/refresh-timer /-->' . "\n\n";
+
 		// Live block.
 		$content .= '<!-- wp:shortcode -->' . "\n";
 		$content .= '[xbo_ticker symbols="BTC/USDT,ETH/USDT,SOL/USDT,XRP/USDT" columns="4" refresh="15"]' . "\n";
@@ -727,6 +733,9 @@ class PageManager {
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:group -->' . "\n\n";
 
+		// Refresh Timer.
+		$content .= '<!-- wp:xbo-market-kit/refresh-timer /-->' . "\n\n";
+
 		// Live block.
 		$content .= '<!-- wp:shortcode -->' . "\n";
 		$content .= '[xbo_movers mode="gainers" limit="10"]' . "\n";
@@ -778,6 +787,9 @@ class PageManager {
 		$content .= '<!-- /wp:paragraph -->';
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:group -->' . "\n\n";
+
+		// Refresh Timer.
+		$content .= '<!-- wp:xbo-market-kit/refresh-timer /-->' . "\n\n";
 
 		// Live block.
 		$content .= '<!-- wp:shortcode -->' . "\n";
@@ -831,6 +843,9 @@ class PageManager {
 		$content .= '<!-- /wp:paragraph -->';
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:group -->' . "\n\n";
+
+		// Refresh Timer.
+		$content .= '<!-- wp:xbo-market-kit/refresh-timer /-->' . "\n\n";
 
 		// Live block.
 		$content .= '<!-- wp:shortcode -->' . "\n";
