@@ -43,23 +43,23 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="130"><h2>~$200</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>~19h 28m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>16 / 16</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>139</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>~$238</h2><sub>Total Cost</sub></td>
+<td align="center" width="130"><h2>~22h 33m</h2><sub>Active Time</sub></td>
+<td align="center" width="130"><h2>18 / 18</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>160</h2><sub>Commits</sub></td>
 <td align="center" width="130"><h2>~473M</h2><sub>Tokens</sub></td>
-<td align="center" width="130"><h2>50</h2><sub>Sessions</sub></td>
+<td align="center" width="130"><h2>51</h2><sub>Sessions</sub></td>
 </tr>
 </table>
 
-> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 $182 + Sonnet 4.6 $9 + Haiku 4.5 $5 + Sonnet 4.5 $1). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
+> *Cost from [ccusage](https://github.com/ryoppippi/ccusage) billing data (Opus 4.6 $218 + Sonnet 4.6 $9 + Haiku 4.5 $5 + Sonnet 4.5 $1 + other $5). Active time excludes idle gaps > 5 min. Tracked by [xbo-ai-flow](/.claude/plugins/xbo-ai-flow/) plugin.*
 
 </div>
 
 ### Time Allocation
 
 ```mermaid
-pie title Active Dev Time by Task (~1168 min total)
+pie title Active Dev Time by Task (~1353 min total)
     "Project Setup (48m)" : 48
     "AI Workflow v1 (51m)" : 51
     "Workflow v2 (70m)" : 70
@@ -76,6 +76,8 @@ pie title Active Dev Time by Task (~1168 min total)
     "XBO Theme (15m)" : 15
     "Movers Preload (15m)" : 15
     "Content Cleanup (20m)" : 20
+    "Pages + Timer (250m)" : 250
+    "Timer Fix (5m)" : 5
 ```
 
 ### Commits per Task
@@ -83,9 +85,9 @@ pie title Active Dev Time by Task (~1168 min total)
 ```mermaid
 xychart-beta
     title "Commits by Task"
-    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "MVP", "Styling", "Icons", "API Docs", "Sparkline", "Slip UX", "Lay Fix", "Blk UI", "Blk Set", "Theme", "Preload", "Content"]
+    x-axis ["Setup", "AI Wf v1", "Wf v2", "Metrics", "MVP", "Styling", "Icons", "API Docs", "Sparkline", "Slip UX", "Lay Fix", "Blk UI", "Blk Set", "Theme", "Preload", "Content", "Pages", "Timer"]
     y-axis "Commits" 0 --> 15
-    bar [1, 6, 12, 2, 13, 9, 12, 5, 8, 8, 3, 15, 3, 1, 0, 0]
+    bar [1, 6, 12, 2, 13, 9, 12, 5, 8, 8, 3, 15, 3, 1, 0, 0, 10, 1]
 ```
 
 ### Timeline
@@ -124,20 +126,22 @@ gantt
     XBO Theme Colors             :done, xbotheme, 2026-02-27 00:00, 15min
     Movers Preload               :done, preload, 2026-02-27 00:00, 15min
     Website Content Cleanup      :done, content, 2026-02-27 00:00, 20min
+    Pages Redesign + Timer Block :done, pages, 2026-02-27 17:00, 250min
+    Timer Display Fix            :done, timerfix, 2026-02-27 21:30, 5min
 ```
 
 ### Cost Breakdown
 
 ```mermaid
-pie title Cost by Day ($200 total)
+pie title Cost by Day ($238 total)
     "Day 1 Feb 22 ($28)" : 28
     "Day 2 Feb 23 ($40)" : 40
     "Day 4 Feb 25 ($52)" : 52
     "Day 5 Feb 26 ($51)" : 51
-    "Day 6 Feb 27 ($18)" : 18
+    "Day 6 Feb 27 ($56)" : 56
 ```
 
-> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6 + Sonnet 4.6 + Sonnet 4.5 + Haiku 4.5. 50 sessions across 6 days.
+> **Pricing source:** [ccusage](https://github.com/ryoppippi/ccusage) billing API — per-project, per-model breakdown. Opus 4.6 + Sonnet 4.6 + Sonnet 4.5 + Haiku 4.5. 51 sessions across 6 days.
 
 ### Task Details
 
@@ -171,6 +175,8 @@ pie title Cost by Day ($200 total)
 | 14 | **XBO Theme Colors** — Style variation for prime-fse with XBO brand palette | ~15m | 1 | $2.73 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 15 | **Movers Preload** — Server-side data fetch, static SSR rows, zero-flash hydration ([#25](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/25)) | ~15m | — | $2.73 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 16 | **Website Content Cleanup** — Replace Lorem Ipsum, update contacts, site settings ([#26](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/26)) | ~20m | — | $2.73 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| **17** | **Pages Redesign + Timer Block** — 9 pages with gradient + glassmorphism, Refresh Timer block with auto-sync, 6 block patterns, 15 unit tests | **250m** | **10** | **$35.00** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 18 | **Timer Display Fix** — CSS Grid overlay for digit vertical centering in circle ([#27](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/27)) | ~5m | 1 | $3.00 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 
@@ -183,8 +189,8 @@ pie title Cost by Day ($200 total)
 | Feb 23 | Task 5 (Plugin MVP) | 8h 43m | 3h 5m | 5h 38m | 9 |
 | Feb 25 | Tasks 6–10 | 36h 1m | 7h 16m | 28h 45m | 17 |
 | Feb 26 | Tasks 11–12 | 11h 3m | 3h 32m | 7h 31m | 17 |
-| Feb 27 | Tasks 13–16 | ~2h 0m | ~1h 25m | ~35m | 3 |
-| **Total** | **All 16 tasks** | **~82h 50m** | **~19h 28m** | **~63h** | **50** |
+| Feb 27 | Tasks 13–18 | ~7h 0m | ~5h 40m | ~1h 20m | 4 |
+| **Total** | **All 18 tasks** | **~87h 50m** | **~22h 33m** | **~65h** | **51** |
 
 Active time = continuous Claude Code processing with no gap > 5 min between API calls. Source: `docs/metrics/sessions.json`.
 
@@ -429,7 +435,7 @@ app/public/                             # Git root
 | ~~Day 6~~ | ~~Gutenberg blocks for all widgets~~ — *completed in Day 2* | `████████████████████` 100% |
 | **Day 4-5** | Widget styling + Local crypto icons (205 SVGs, zero CDN) + API Docs | `████████████████████` 100% |
 | **Day 5** | Sparkline Ticker + Slippage UX Redesign + Layout Fix (2-col grid, icon binding) | `████████████████████` 100% |
-| **Day 6** | XBO Theme + Movers Preload + Website Content Cleanup | `████████████████████` 100% |
+| **Day 6** | XBO Theme + Movers Preload + Content Cleanup + Pages Redesign + Timer Block | `████████████████████` 100% |
 | **Day 7** | Elementor widgets, demo video, final polish | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
 > Days 3–6 were originally planned as separate days but all work was completed in Day 2 by Claude Code agents.
@@ -510,7 +516,7 @@ wp xbo icons status         # Show icon sync status
 | [Visual Showcase](docs/SHOWCASE.md) | Screenshots of all blocks (editor + frontend) |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
-> **139 total commits** — task commits (112) + documentation/metrics/readme updates (27).
+> **160 total commits** — task commits (130) + documentation/metrics/readme updates (30).
 
 ---
 

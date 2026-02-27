@@ -292,16 +292,30 @@
       "issue_number": null,
       "status": "completed",
       "sessions": ["e5680e1e"]
+    },
+    {
+      "id": "2026-02-27-timer-display-centering",
+      "description": "Fix timer digit vertical centering inside SVG circle: replace absolute positioning hack (translate -50% -70%) with CSS Grid overlay (grid-row/column 1 + align-self center)",
+      "plan": null,
+      "started": "2026-02-27T21:30:00+02:00",
+      "completed": "2026-02-27T21:35:00+02:00",
+      "duration_minutes": 5,
+      "commits": 1,
+      "cost_usd": 3.0,
+      "coverage": null,
+      "issue_number": 27,
+      "status": "completed",
+      "sessions": []
     }
   ],
   "totals": {
-    "total_tasks": 17,
-    "total_duration_minutes": 1486,
+    "total_tasks": 18,
+    "total_duration_minutes": 1491,
     "total_tokens": 472501652,
-    "total_commits": 149,
-    "total_cost_usd": 235.46,
-    "total_sessions": 48,
-    "total_active_minutes": 1347.7,
+    "total_commits": 150,
+    "total_cost_usd": 238.46,
+    "total_sessions": 51,
+    "total_active_minutes": 1352.7,
     "total_messages": 5284
   }
 }
