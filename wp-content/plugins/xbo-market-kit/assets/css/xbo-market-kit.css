@@ -667,7 +667,6 @@
   transition: var(--xbo-mk--transition-fast);
   outline: none;
   height: 40px;
-  box-sizing: border-box;
 }
 .xbo-mk-slippage__input:focus {
   border-color: var(--xbo-mk--color-primary);
@@ -768,7 +767,6 @@
   transition: var(--xbo-mk--transition-fast);
   outline: none;
   height: 40px;
-  box-sizing: border-box;
 }
 .xbo-mk-slippage__selector-trigger:hover {
   border-color: var(--xbo-mk--color-primary);
