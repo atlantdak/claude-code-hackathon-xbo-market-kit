@@ -177,6 +177,7 @@ pie title Cost by Day ($238 total)
 | 16 | **Website Content Cleanup** — Replace Lorem Ipsum, update contacts, site settings ([#26](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/26)) | ~20m | — | $2.73 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | **17** | **Pages Redesign + Timer Block** — 9 pages with gradient + glassmorphism, Refresh Timer block with auto-sync, 6 block patterns, 15 unit tests | **250m** | **10** | **$35.00** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 18 | **Timer Display Fix** — CSS Grid overlay for digit vertical centering in circle ([#27](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/27)) | ~5m | 1 | $3.00 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 19 | **Slippage Defaults** — default amount=1, always-visible results with em dash placeholders, field height alignment | ~30m | 5 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 

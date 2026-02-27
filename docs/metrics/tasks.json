@@ -306,10 +306,24 @@
       "issue_number": 27,
       "status": "completed",
       "sessions": []
+    },
+    {
+      "id": "2026-02-27-slippage-defaults",
+      "description": "Slippage calculator: default amount=1, always-visible results table with em dash placeholders, auto-calculate on load, field height alignment, code review fixes",
+      "plan": "docs/plans/2026-02-27-slippage-defaults-plan.md",
+      "started": "2026-02-27T22:00:00+02:00",
+      "completed": "2026-02-27T22:30:00+02:00",
+      "duration_minutes": 30,
+      "commits": 5,
+      "cost_usd": null,
+      "coverage": null,
+      "issue_number": null,
+      "status": "completed",
+      "sessions": []
     }
   ],
   "totals": {
-    "total_tasks": 18,
+    "total_tasks": 19,
     "total_duration_minutes": 1491,
     "total_tokens": 472501652,
     "total_commits": 150,
