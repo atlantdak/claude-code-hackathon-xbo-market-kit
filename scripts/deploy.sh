@@ -254,7 +254,28 @@ cmd_plugins() { die "Not implemented yet"; }
 cmd_theme()   { die "Not implemented yet"; }
 cmd_assets()  { die "Not implemented yet"; }
 cmd_db()      { die "Not implemented yet"; }
-cmd_status()  { die "Not implemented yet"; }
+cmd_status() {
+    info "Checking remote server: ${REMOTE_HOST}"
+    echo ""
+
+    info "WordPress version:"
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root core version"
+    echo ""
+
+    info "Site URL:"
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root option get siteurl"
+    echo ""
+
+    info "Active plugins:"
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root plugin list --status=active --format=table"
+    echo ""
+
+    info "Themes:"
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root theme list --format=table"
+    echo ""
+
+    success "Status check complete"
+}
 
 # ---------------------------------------------------------------------------
 # main()
