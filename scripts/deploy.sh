@@ -48,6 +48,20 @@ COMMAND=""
 COMMAND_ARG=""
 
 # ---------------------------------------------------------------------------
+# Plugin lists
+# ---------------------------------------------------------------------------
+DEPLOY_PLUGINS=(
+    "xbo-market-kit"
+    "getwid"
+    "getwid-megamenu"
+    "breadcrumb-navxt"
+    "svg-support"
+    "one-click-demo-import"
+)
+
+XBO_EXTRA_EXCLUDES="tests/,phpstan.neon,phpcs.xml,phpunit.xml"
+
+# ---------------------------------------------------------------------------
 # Color helpers
 # ---------------------------------------------------------------------------
 _color() { printf "\033[%sm%s\033[0m\n" "$1" "$2"; }
@@ -250,7 +264,58 @@ smoke_check() {
 # Command placeholders
 # ---------------------------------------------------------------------------
 cmd_full()    { die "Not implemented yet"; }
-cmd_plugins() { die "Not implemented yet"; }
+cmd_plugins() {
+    local plugins_to_deploy=()
+
+    if [[ -n "${COMMAND_ARG}" ]]; then
+        local plugin_dir="${PROJECT_ROOT}/wp-content/plugins/${COMMAND_ARG}"
+        if [[ ! -d "${plugin_dir}" ]]; then
+            die "Plugin directory not found: ${plugin_dir}"
+        fi
+        plugins_to_deploy=("${COMMAND_ARG}")
+    else
+        plugins_to_deploy=("${DEPLOY_PLUGINS[@]}")
+    fi
+
+    # Run composer install --no-dev for xbo-market-kit before deploy
+    for plugin in "${plugins_to_deploy[@]}"; do
+        if [[ "${plugin}" == "xbo-market-kit" ]]; then
+            info "Running composer install --no-dev for xbo-market-kit..."
+            (cd "${PROJECT_ROOT}/wp-content/plugins/xbo-market-kit" && composer install --no-dev --no-interaction --prefer-dist --quiet)
+            success "Composer dependencies ready (production only)"
+        fi
+    done
+
+    for plugin in "${plugins_to_deploy[@]}"; do
+        local src="${PROJECT_ROOT}/wp-content/plugins/${plugin}/"
+        local dest="${REMOTE_HOST}:${REMOTE_PATH}/wp-content/plugins/${plugin}/"
+        local excludes=""
+
+        if [[ "${plugin}" == "xbo-market-kit" ]]; then
+            excludes="${XBO_EXTRA_EXCLUDES}"
+        fi
+
+        info "Deploying plugin: ${plugin}"
+        do_rsync "${src}" "${dest}" "${excludes}"
+        echo ""
+    done
+
+    # Restore dev dependencies locally after deploy
+    for plugin in "${plugins_to_deploy[@]}"; do
+        if [[ "${plugin}" == "xbo-market-kit" ]]; then
+            info "Restoring dev dependencies locally..."
+            (cd "${PROJECT_ROOT}/wp-content/plugins/xbo-market-kit" && composer install --no-interaction --quiet)
+        fi
+    done
+
+    flush_cache
+
+    if [[ "${DRY_RUN}" == "false" ]]; then
+        smoke_check
+    fi
+
+    success "Plugin deploy complete"
+}
 cmd_theme()   { die "Not implemented yet"; }
 cmd_assets()  { die "Not implemented yet"; }
 cmd_db()      { die "Not implemented yet"; }
