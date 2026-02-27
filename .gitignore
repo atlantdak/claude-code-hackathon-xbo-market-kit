@@ -48,6 +48,8 @@
 # ---------- Scripts ----------
 !scripts/
 !scripts/**
+# Ignore local deploy config (contains server credentials)
+scripts/deploy.conf
 
 # ---------- Claude Code Plugin: xbo-ai-flow ----------
 !.claude/
