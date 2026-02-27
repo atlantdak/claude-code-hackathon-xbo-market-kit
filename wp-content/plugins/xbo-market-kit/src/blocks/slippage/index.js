@@ -55,7 +55,7 @@ registerBlockType( metadata.name, {
 								'xbo-market-kit'
 							) }
 							help={ __(
-								'Leave empty to let user input amount on frontend',
+								'Default amount for slippage calculation (default: 1)',
 								'xbo-market-kit'
 							) }
 							value={ amount }
