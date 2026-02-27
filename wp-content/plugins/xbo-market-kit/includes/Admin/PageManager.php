@@ -396,7 +396,7 @@ class PageManager {
 		$content .= '<h2 class="wp-block-heading">Plugin Features</h2>' . "\n";
 		$content .= '<!-- /wp:heading -->' . "\n\n";
 		$content .= '<!-- wp:html -->' . "\n";
-		$content .= '<div class="xbo-mk-page-features-grid">' . "\n";
+		$content .= '<div class="xbo-mk-page-features">' . "\n";
 		$content .= '<div class="xbo-mk-page-feature-card">' . "\n";
 		$content .= '<h3>Live Ticker</h3>' . "\n";
 		$content .= '<p>Real-time prices with 24h change and sparkline charts</p>' . "\n";
@@ -456,20 +456,20 @@ class PageManager {
 		$content .= '<!-- wp:group {"className":"xbo-mk-page-stats"} -->' . "\n";
 		$content .= '<div class="wp-block-group xbo-mk-page-stats">';
 		$content .= '<!-- wp:html -->' . "\n";
-		$content .= '<div class="xbo-mk-page-stats-grid">' . "\n";
-		$content .= '<div class="xbo-mk-page-stat-item"><span class="xbo-mk-page-stat-number">5</span><span class="xbo-mk-page-stat-label">Widgets</span></div>' . "\n";
-		$content .= '<div class="xbo-mk-page-stat-item"><span class="xbo-mk-page-stat-number">280+</span><span class="xbo-mk-page-stat-label">Trading Pairs</span></div>' . "\n";
-		$content .= '<div class="xbo-mk-page-stat-item"><span class="xbo-mk-page-stat-number">205</span><span class="xbo-mk-page-stat-label">Crypto Icons</span></div>' . "\n";
-		$content .= '<div class="xbo-mk-page-stat-item"><span class="xbo-mk-page-stat-number">6</span><span class="xbo-mk-page-stat-label">API Endpoints</span></div>' . "\n";
-		$content .= '<div class="xbo-mk-page-stat-item"><span class="xbo-mk-page-stat-number">100%</span><span class="xbo-mk-page-stat-label">AI-Built</span></div>' . "\n";
+		$content .= '<div class="xbo-mk-page-stats">' . "\n";
+		$content .= '<div class="xbo-mk-page-stat"><span class="xbo-mk-page-stat__number">5</span><span class="xbo-mk-page-stat__label">Widgets</span></div>' . "\n";
+		$content .= '<div class="xbo-mk-page-stat"><span class="xbo-mk-page-stat__number">280+</span><span class="xbo-mk-page-stat__label">Trading Pairs</span></div>' . "\n";
+		$content .= '<div class="xbo-mk-page-stat"><span class="xbo-mk-page-stat__number">205</span><span class="xbo-mk-page-stat__label">Crypto Icons</span></div>' . "\n";
+		$content .= '<div class="xbo-mk-page-stat"><span class="xbo-mk-page-stat__number">6</span><span class="xbo-mk-page-stat__label">API Endpoints</span></div>' . "\n";
+		$content .= '<div class="xbo-mk-page-stat"><span class="xbo-mk-page-stat__number">100%</span><span class="xbo-mk-page-stat__label">AI-Built</span></div>' . "\n";
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:html -->';
 		$content .= '</div>' . "\n";
 		$content .= '<!-- /wp:group -->' . "\n\n";
 
 		// Slippage Section.
-		$content .= '<!-- wp:group {"className":"xbo-mk-page-section--glass"} -->' . "\n";
-		$content .= '<div class="wp-block-group xbo-mk-page-section--glass">';
+		$content .= '<!-- wp:group {"className":"xbo-mk-glass"} -->' . "\n";
+		$content .= '<div class="wp-block-group xbo-mk-glass">';
 		$content .= '<!-- wp:heading -->' . "\n";
 		$content .= '<h2 class="wp-block-heading">Advanced Slippage Calculator</h2>' . "\n";
 		$content .= '<!-- /wp:heading -->' . "\n\n";
@@ -516,8 +516,8 @@ class PageManager {
 		$content = '';
 
 		// Mini hero.
-		$content .= '<!-- wp:group {"className":"xbo-mk-page-hero xbo-mk-page-hero--mini"} -->' . "\n";
-		$content .= '<div class="wp-block-group xbo-mk-page-hero xbo-mk-page-hero--mini">';
+		$content .= '<!-- wp:group {"className":"xbo-mk-demo-header"} -->' . "\n";
+		$content .= '<div class="wp-block-group xbo-mk-demo-header">';
 		$content .= '<!-- wp:heading {"level":1} -->' . "\n";
 		$content .= '<h1 class="wp-block-heading">Showcase</h1>' . "\n";
 		$content .= '<!-- /wp:heading -->' . "\n\n";
@@ -614,8 +614,8 @@ class PageManager {
 		$content = '';
 
 		// Mini hero.
-		$content .= '<!-- wp:group {"className":"xbo-mk-page-hero xbo-mk-page-hero--mini"} -->' . "\n";
-		$content .= '<div class="wp-block-group xbo-mk-page-hero xbo-mk-page-hero--mini">';
+		$content .= '<!-- wp:group {"className":"xbo-mk-demo-header"} -->' . "\n";
+		$content .= '<div class="wp-block-group xbo-mk-demo-header">';
 		$content .= '<!-- wp:heading {"level":1} -->' . "\n";
 		$content .= '<h1 class="wp-block-heading">Block Demos</h1>' . "\n";
 		$content .= '<!-- /wp:heading -->' . "\n\n";
@@ -627,24 +627,24 @@ class PageManager {
 
 		// Demo cards grid.
 		$content .= '<!-- wp:html -->' . "\n";
-		$content .= '<div class="xbo-mk-page-features-grid">' . "\n";
-		$content .= '<a href="/xbo-demos/xbo-demo-ticker/" class="xbo-mk-page-feature-card xbo-mk-page-feature-card--link">' . "\n";
+		$content .= '<div class="xbo-mk-page-features">' . "\n";
+		$content .= '<a href="/xbo-demos/xbo-demo-ticker/" class="xbo-mk-page-feature-card">' . "\n";
 		$content .= '<h3>Live Ticker</h3>' . "\n";
 		$content .= '<p>Real-time prices with 24h change and sparkline charts</p>' . "\n";
 		$content .= '</a>' . "\n";
-		$content .= '<a href="/xbo-demos/xbo-demo-movers/" class="xbo-mk-page-feature-card xbo-mk-page-feature-card--link">' . "\n";
+		$content .= '<a href="/xbo-demos/xbo-demo-movers/" class="xbo-mk-page-feature-card">' . "\n";
 		$content .= '<h3>Top Movers</h3>' . "\n";
 		$content .= '<p>Biggest gainers and losers by 24h percentage</p>' . "\n";
 		$content .= '</a>' . "\n";
-		$content .= '<a href="/xbo-demos/xbo-demo-orderbook/" class="xbo-mk-page-feature-card xbo-mk-page-feature-card--link">' . "\n";
+		$content .= '<a href="/xbo-demos/xbo-demo-orderbook/" class="xbo-mk-page-feature-card">' . "\n";
 		$content .= '<h3>Order Book</h3>' . "\n";
 		$content .= '<p>Live bid/ask depth with spread indicator</p>' . "\n";
 		$content .= '</a>' . "\n";
-		$content .= '<a href="/xbo-demos/xbo-demo-trades/" class="xbo-mk-page-feature-card xbo-mk-page-feature-card--link">' . "\n";
+		$content .= '<a href="/xbo-demos/xbo-demo-trades/" class="xbo-mk-page-feature-card">' . "\n";
 		$content .= '<h3>Recent Trades</h3>' . "\n";
 		$content .= '<p>Trade feed with color-coded buy/sell</p>' . "\n";
 		$content .= '</a>' . "\n";
-		$content .= '<a href="/xbo-demos/xbo-demo-slippage/" class="xbo-mk-page-feature-card xbo-mk-page-feature-card--link">' . "\n";
+		$content .= '<a href="/xbo-demos/xbo-demo-slippage/" class="xbo-mk-page-feature-card">' . "\n";
 		$content .= '<h3>Slippage Calculator</h3>' . "\n";
 		$content .= '<p>Avg execution price from order book analysis</p>' . "\n";
 		$content .= '</a>' . "\n";
@@ -927,8 +927,8 @@ class PageManager {
 		$content = '';
 
 		// Mini hero.
-		$content .= '<!-- wp:group {"className":"xbo-mk-page-hero xbo-mk-page-hero--mini"} -->' . "\n";
-		$content .= '<div class="wp-block-group xbo-mk-page-hero xbo-mk-page-hero--mini">';
+		$content .= '<!-- wp:group {"className":"xbo-mk-demo-header"} -->' . "\n";
+		$content .= '<div class="wp-block-group xbo-mk-demo-header">';
 		$content .= '<!-- wp:heading {"level":1} -->' . "\n";
 		$content .= '<h1 class="wp-block-heading">API Documentation</h1>' . "\n";
 		$content .= '<!-- /wp:heading -->' . "\n\n";

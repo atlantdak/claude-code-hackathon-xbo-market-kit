@@ -51,7 +51,7 @@ store( 'xbo-market-kit', {
 				}
 			};
 
-			setInterval( tick, 1000 );
+			ctx._timerId = setInterval( tick, 1000 );
 		},
 	},
 } );

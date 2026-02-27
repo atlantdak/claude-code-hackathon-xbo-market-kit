@@ -14,6 +14,8 @@ namespace XboMarketKit\Admin;
  *
  * Creates a draft WordPress page showcasing all plugin shortcodes
  * and removes it on deactivation.
+ *
+ * @deprecated Use PageManager instead.
  */
 class DemoPage {
 

@@ -79,7 +79,7 @@ class PatternRegistrar {
 <!-- /wp:heading -->
 
 <!-- wp:html -->
-<div class="xbo-mk-page-features-grid">
+<div class="xbo-mk-page-features">
 <div class="xbo-mk-page-feature-card">
 <span class="dashicons dashicons-chart-line"></span>
 <h3>Live Ticker</h3>
@@ -178,25 +178,25 @@ class PatternRegistrar {
 	private function register_stats_counter_pattern(): void {
 		$content = '<!-- wp:html -->
 <div class="xbo-mk-page-stats">
-<div class="xbo-mk-page-stats-item">
-<span class="xbo-mk-page-stats-number">5</span>
-<span class="xbo-mk-page-stats-label">Widgets</span>
+<div class="xbo-mk-page-stat">
+<span class="xbo-mk-page-stat__number">5</span>
+<span class="xbo-mk-page-stat__label">Widgets</span>
 </div>
-<div class="xbo-mk-page-stats-item">
-<span class="xbo-mk-page-stats-number">280+</span>
-<span class="xbo-mk-page-stats-label">Pairs</span>
+<div class="xbo-mk-page-stat">
+<span class="xbo-mk-page-stat__number">280+</span>
+<span class="xbo-mk-page-stat__label">Pairs</span>
 </div>
-<div class="xbo-mk-page-stats-item">
-<span class="xbo-mk-page-stats-number">205</span>
-<span class="xbo-mk-page-stats-label">Icons</span>
+<div class="xbo-mk-page-stat">
+<span class="xbo-mk-page-stat__number">205</span>
+<span class="xbo-mk-page-stat__label">Icons</span>
 </div>
-<div class="xbo-mk-page-stats-item">
-<span class="xbo-mk-page-stats-number">6</span>
-<span class="xbo-mk-page-stats-label">Endpoints</span>
+<div class="xbo-mk-page-stat">
+<span class="xbo-mk-page-stat__number">6</span>
+<span class="xbo-mk-page-stat__label">Endpoints</span>
 </div>
-<div class="xbo-mk-page-stats-item">
-<span class="xbo-mk-page-stats-number">100%</span>
-<span class="xbo-mk-page-stats-label">AI-Built</span>
+<div class="xbo-mk-page-stat">
+<span class="xbo-mk-page-stat__number">100%</span>
+<span class="xbo-mk-page-stat__label">AI-Built</span>
 </div>
 </div>
 <!-- /wp:html -->';
