@@ -25,6 +25,32 @@ define( 'XBO_MARKET_KIT_FILE', __FILE__ );
 define( 'XBO_MARKET_KIT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'XBO_MARKET_KIT_URL', plugin_dir_url( __FILE__ ) );
 
+/**
+ * Default refresh interval for live data widgets (seconds).
+ * Applied to cache TTL and frontend auto-refresh timers.
+ *
+ * @since 1.0.0
+ */
+if ( ! defined( 'XBO_MARKET_KIT_REFRESH_INTERVAL' ) ) {
+	define( 'XBO_MARKET_KIT_REFRESH_INTERVAL', 15 );
+}
+
+/**
+ * Get the refresh interval with filter support.
+ *
+ * Allows advanced users to override the default refresh interval
+ * via the 'xbo_market_kit/refresh_interval' filter.
+ *
+ * @since 1.0.0
+ * @return int Refresh interval in seconds.
+ */
+function xbo_market_kit_get_refresh_interval(): int {
+	return (int) apply_filters(
+		'xbo_market_kit/refresh_interval',
+		XBO_MARKET_KIT_REFRESH_INTERVAL
+	);
+}
+
 // Autoload via Composer.
 if ( file_exists( XBO_MARKET_KIT_DIR . 'vendor/autoload.php' ) ) {
 	require_once XBO_MARKET_KIT_DIR . 'vendor/autoload.php';
