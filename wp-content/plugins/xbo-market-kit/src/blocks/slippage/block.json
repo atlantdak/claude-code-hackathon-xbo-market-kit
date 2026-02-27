@@ -11,7 +11,7 @@
 	"attributes": {
 		"symbol": { "type": "string", "default": "BTC/USDT" },
 		"side": { "type": "string", "default": "buy" },
-		"amount": { "type": "string", "default": "" },
+		"amount": { "type": "string", "default": "1" },
 		"align": { "type": "string", "default": "full" }
 	},
 	"supports": { "html": false, "align": ["wide", "full"] },

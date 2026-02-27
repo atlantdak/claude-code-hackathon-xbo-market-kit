@@ -11,7 +11,7 @@ $shortcode = new \XboMarketKit\Shortcodes\SlippageShortcode();
 $atts      = array(
 	'symbol' => $attributes['symbol'] ?? 'BTC_USDT',
 	'side'   => $attributes['side'] ?? 'buy',
-	'amount' => $attributes['amount'] ?? '',
+	'amount' => ! empty( $attributes['amount'] ) ? $attributes['amount'] : '1',
 );
 
 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() returns pre-escaped output.

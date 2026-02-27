@@ -19,7 +19,7 @@
 		},
 		"amount": {
 			"type": "string",
-			"default": ""
+			"default": "1"
 		},
 		"align": {
 			"type": "string",
