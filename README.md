@@ -527,6 +527,71 @@ wp xbo icons status         # Show icon sync status
 
 ---
 
+## Site Structure
+
+### Pages
+
+**Homepage**
+- Hero section with XBO branding and royal purple accents
+- Refresh timer showing last data update
+- Live crypto widgets (Ticker with sparklines, Top Movers with gainers/losers tabs)
+- Three-column feature cards highlighting plugin capabilities
+- Market data sections (Orderbook + Recent Trades side-by-side)
+- Slippage calculator demonstration
+- Call-to-action sections
+
+**Widget Demos** (5 enhanced pages)
+- **Ticker Demo** — Real-time price display with 24h change % and sparkline charts
+- **Top Movers Demo** — Biggest gainers and losers by 24h percentage change
+- **Order Book Demo** — Live bid/ask depth table with visual depth bars
+- **Recent Trades Demo** — Trade feed with color-coded buy/sell indicators
+- **Slippage Calculator Demo** — Execution price analysis with slippage percentage
+
+Each demo page includes:
+- Refresh timer at the top
+- Hero section with XBO color palette
+- Live widget demonstration
+- Configuration options table
+- Layout variations and use cases
+- Related resources and CTA
+
+**Documentation Pages**
+- **Widgets Overview** — Comparison of all 5 widgets with use cases and "View Demo" buttons
+- **Getting Started** — 4-step installation guide with Gutenberg Block and Shortcode methods
+- **Integration Guide** — Theme integration, custom styling, REST API usage, and shortcode reference
+- **Real-world Layouts** — 4 layout examples (News Blog, Education, Portfolio, Dashboard)
+- **API Documentation** — REST API endpoint reference with interactive explorer
+- **FAQ** — 15 questions across 4 categories (Installation, Configuration, Troubleshooting, API)
+- **Changelog** — Version 0.1.0 release notes, compatibility matrix, browser support
+
+### Design System
+
+**Colors** (XBO.com Brand Palette)
+- **Primary CTA:** `#6319ff` — Royal Purple (color-1)
+- **Text/Dark:** `#140533` — Deep Indigo (color-4)
+- **Accent:** `#6341e4` — Secondary Purple (color-2)
+- **Section Background:** `#f4f3f8` — Soft Gray (color-6)
+- **Muted:** `#14053333` — Semi-transparent Indigo (color-7)
+- **Base:** `#ffffff` — White (color-9)
+
+**Container Widths**
+- **Content:** 960px — Optimized for data-dense crypto widgets and tables
+- **Wide:** 1200px — Full-width hero sections and feature showcases
+
+**Typography & Spacing**
+- Defined via `theme.json` in prime-fse theme
+- Consistent spacing scale using CSS custom properties
+- WordPress core blocks + Getwid advanced layout blocks
+
+**Tech Stack**
+- **Theme:** Prime FSE 1.1.2 (Full Site Editing)
+- **Layout Blocks:** WordPress Gutenberg + Getwid 2.1.3 + Getwid MegaMenu 1.0.7
+- **Widget Blocks:** XBO Market Kit custom blocks (server-rendered)
+- **Styling:** BEM CSS methodology with PostCSS build pipeline
+- **Interactive UI:** WordPress Interactivity API with data-wp-* directives
+
+---
+
 ## License
 
 GPL-2.0-or-later
