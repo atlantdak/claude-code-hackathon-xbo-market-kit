@@ -46,7 +46,7 @@ if ( ! defined( 'XBO_MARKET_KIT_REFRESH_INTERVAL' ) ) {
  */
 function xbo_market_kit_get_refresh_interval(): int {
 	return (int) apply_filters(
-		'xbo_market_kit/refresh_interval',
+		'xbo_market_kit/refresh_interval', // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores -- Project uses slash convention for hooks.
 		XBO_MARKET_KIT_REFRESH_INTERVAL
 	);
 }

@@ -19,6 +19,24 @@ if ( ! defined( 'XBO_MARKET_KIT_DIR' ) ) {
 if ( ! defined( 'XBO_MARKET_KIT_URL' ) ) {
 	define( 'XBO_MARKET_KIT_URL', 'http://example.com/wp-content/plugins/xbo-market-kit/' );
 }
+if ( ! defined( 'XBO_MARKET_KIT_REFRESH_INTERVAL' ) ) {
+	define( 'XBO_MARKET_KIT_REFRESH_INTERVAL', 15 );
+}
+
+// Helper function for testing.
+if ( ! function_exists( 'xbo_market_kit_get_refresh_interval' ) ) {
+	/**
+	 * Get the refresh interval with filter support.
+	 *
+	 * @return int Refresh interval in seconds.
+	 */
+	function xbo_market_kit_get_refresh_interval(): int {
+		return (int) apply_filters(
+			'xbo_market_kit/refresh_interval', // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores -- Project uses slash convention for hooks.
+			XBO_MARKET_KIT_REFRESH_INTERVAL
+		);
+	}
+}
 
 // Minimal WP class stubs for unit testing.
 if ( ! class_exists( 'WP_REST_Controller' ) ) {
