@@ -3,7 +3,7 @@
 ## Project Overview
 
 WordPress plugin developed for the **Claude Code Hackathon 2026**.
-Repository: https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit
+**Version:** 1.0.0 | **Live Demo:** [kishkin.dev](https://kishkin.dev) | **GitHub:** [atlantdak/claude-code-hackathon-xbo-market-kit](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
 
 **Author:** Dmytro Kishkin (<atlantdak@gmail.com>)
 
@@ -15,14 +15,15 @@ Use this authorship info for all plugin headers, composer.json, license files, a
 - **Plugin code:** `wp-content/plugins/xbo-market-kit/`
 - **Documentation:** `docs/`
 - **Product spec:** `docs/plans/2026-02-22-xbo-market-kit-spec.md`
-- **Setup scripts:** `scripts/`
+- **Setup scripts:** `scripts/` (setup.sh, deploy.sh, deploy.conf)
+- **Deployment:** `scripts/deploy.sh` — rsync + WP-CLI to production
 
 ## Tech Stack
 
 - WordPress 6.9.1
 - PHP 8.1+ (currently 8.2)
 - Composer for dependency management (inside plugin dir)
-- No npm/node required for MVP
+- Node.js + npm for block builds (`@wordpress/scripts`) and CSS processing (PostCSS)
 
 ## Plugin Naming Conventions
 
@@ -47,6 +48,19 @@ All commands run from `wp-content/plugins/xbo-market-kit/`:
 ```bash
 # Install dependencies
 composer install
+npm install
+
+# Build Gutenberg blocks (JSX → build/)
+npm run build
+
+# Watch mode for block development
+npm run start
+
+# Build minified CSS
+npm run css:build
+
+# Watch CSS changes
+npm run css:dev
 
 # Code style check (WordPress Coding Standards)
 composer run phpcs
@@ -60,6 +74,15 @@ composer run phpstan
 # Unit tests
 composer run test
 ```
+
+### Deployment
+
+```bash
+# Deploy to production (kishkin.dev)
+scripts/deploy.sh
+```
+
+Requires `scripts/deploy.conf` (not in git). See `scripts/deploy.conf.example`.
 
 ## XBO Public API Reference
 
@@ -90,16 +113,33 @@ Base URL: `https://api.xbo.com`
 xbo-market-kit/
 ├── xbo-market-kit.php    # Main plugin bootstrap
 ├── includes/             # PHP classes (PSR-4 autoloaded under XboMarketKit\)
+│   ├── Admin/            # Settings page, PageManager, DemoPage
 │   ├── Api/              # XBO API client and response handling
+│   ├── Blocks/           # Gutenberg block registration + block.json/render.php per block
+│   │   ├── BlockRegistrar.php
+│   │   ├── ticker/       # Each block: block.json + render.php
+│   │   ├── movers/
+│   │   ├── orderbook/
+│   │   ├── trades/
+│   │   ├── slippage/
+│   │   └── refresh-timer/
 │   ├── Cache/            # Caching layer (transients)
+│   ├── Cli/              # WP-CLI commands (icon sync)
+│   ├── Icons/            # Icon resolver and sync (205 crypto SVG icons)
+│   ├── Patterns/         # Block pattern registration
 │   ├── Rest/             # WP REST API route controllers
 │   ├── Shortcodes/       # Shortcode handlers
-│   ├── Blocks/           # Gutenberg block registration
-│   ├── Elementor/        # Elementor widget registration
-│   └── Admin/            # Settings page
-├── assets/               # Static assets (CSS, JS, images)
+│   ├── Sparkline/        # SVG sparkline chart generator
+│   └── Plugin.php        # Plugin orchestrator
+├── src/blocks/           # Block editor JS source (JSX)
+├── build/blocks/         # Compiled block editor JS (wp-scripts output)
+├── assets/               # Static assets
+│   ├── css/              # Stylesheets (src/ and dist/)
+│   ├── js/               # Frontend JS
+│   └── images/           # Icons (205 SVG crypto icons)
 ├── tests/                # PHPUnit tests
 ├── composer.json
+├── package.json          # npm: @wordpress/scripts, PostCSS
 ├── phpstan.neon
 ├── phpcs.xml
 └── phpunit.xml
@@ -128,7 +168,7 @@ Project-level MCP servers configured in `.mcp.json`:
 | `chrome-devtools` | Chrome DevTools Protocol — used by integration-tester for browser testing |
 
 Global plugins (always available):
-- **Context7** — up-to-date documentation for WordPress, Gutenberg, Tailwind, Elementor
+- **Context7** — up-to-date documentation for WordPress, Gutenberg, and libraries
 - **GitHub** — PR/issue management
 - **Playwright** — browser automation alternative
 
@@ -145,5 +185,8 @@ The project uses the `xbo-ai-flow` Claude Code plugin (`.claude/plugins/xbo-ai-f
 
 - WordPress core files are NOT in git — use `scripts/setup.sh` to install
 - Never edit WP core files
-- Plugin must be self-contained (all deps via Composer)
+- Plugin must be self-contained (all deps via Composer + npm)
 - Read the product spec before implementing any feature
+- BEM + CSS Custom Properties for all widget styling (no Tailwind)
+- 205 local SVG crypto icons — zero CDN dependency for icons
+- All API calls server-side only (no CORS on api.xbo.com)

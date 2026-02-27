@@ -376,16 +376,30 @@
       "issue_number": 30,
       "status": "completed",
       "sessions": ["0d64495a"]
+    },
+    {
+      "id": "2026-02-27-documentation-finalization",
+      "description": "Finalize all documentation for v1.0.0: retake 24 production screenshots from kishkin.dev, rewrite SHOWCASE.md, update all README files (docs, plans, worklog, architecture), update CLAUDE.md with current tech stack and file structure, fix broken links in root README.md, update Demo Pages section with production URLs",
+      "plan": null,
+      "started": "2026-02-27T20:00:00+02:00",
+      "completed": "2026-02-27T21:30:00+02:00",
+      "duration_minutes": 90,
+      "commits": 2,
+      "cost_usd": 20.0,
+      "coverage": null,
+      "issue_number": null,
+      "status": "completed",
+      "sessions": ["e127be7f"]
     }
   ],
   "totals": {
-    "total_tasks": 23,
-    "total_duration_minutes": 2011,
-    "total_tokens": 500000000,
-    "total_commits": 183,
-    "total_cost_usd": 283.46,
-    "total_sessions": 53,
-    "total_active_minutes": 1522.7,
-    "total_messages": 5500
+    "total_tasks": 24,
+    "total_duration_minutes": 2101,
+    "total_tokens": 530000000,
+    "total_commits": 212,
+    "total_cost_usd": 303.46,
+    "total_sessions": 55,
+    "total_active_minutes": 1612.7,
+    "total_messages": 5700
   }
 }
