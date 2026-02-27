@@ -1,0 +1,9 @@
+# Deployment configuration template.
+# Copy to deploy.conf and fill in your values.
+# deploy.conf is gitignored — never commit credentials.
+
+REMOTE_HOST="root@YOUR_SERVER_IP"
+REMOTE_PATH="/var/www/html"
+REMOTE_OWNER="www-data:www-data"
+LOCAL_URL="http://your-local-site.local"
+REMOTE_URL="https://your-domain.com"
