@@ -186,7 +186,6 @@ pie title Cost by Day ($303 total)
 | 6 | **Widget Styling** — Tailwind → BEM + CSS Custom Properties, PostCSS pipeline | 34m | 9 | $11.23 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 7 | **Local Icons** — IconResolver, IconSync, WP-CLI, 205 SVGs, zero CDN dependency | 53m | 12 | $17.51 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 8 | **API Documentation** — OAS3 generation, Swagger UI, GitHub Pages | 70m | 5 | $23.13 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
-| 8.1 | &nbsp;&nbsp;↳ Update production URL in OAS3 spec when deploying | | | | ![pending](https://img.shields.io/badge/-pending-F59E0B?style=flat-square) |
 | 9 | **Sparkline Ticker** — constrained random walk SVG generation, ring buffer live updates | 60m | 8 | $14.30 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 10 | **Slippage UX Redesign** — dropdown selectors, PairCatalog, context-based state | 60m | 8 | $14.30 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 11 | **Slippage Layout Fix** — 2-col CSS grid, reactive icon binding, field reorder | 30m | 3 | $7.15 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
