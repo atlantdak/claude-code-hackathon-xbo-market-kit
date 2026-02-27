@@ -8,11 +8,11 @@ set -euo pipefail
 #   ./scripts/deploy.sh <command> [command_arg] [flags]
 #
 # Commands:
-#   full              Full deployment (files + database)
-#   plugins           Deploy plugins only
-#   theme             Deploy active theme only
-#   assets            Deploy static assets only
-#   db                Database operations (export / import / push / pull)
+#   full              Deploy plugins + theme (no database)
+#   plugins [name]    Deploy all plugins or a specific one
+#   theme             Deploy theme prime-fse
+#   assets            Deploy xbo-market-kit/assets/ only
+#   db                Database sync (requires double confirmation)
 #   status            Show remote server status
 #
 # Flags:
@@ -28,7 +28,7 @@ set -euo pipefail
 #   ./scripts/deploy.sh full                  # dry-run full deploy
 #   ./scripts/deploy.sh full --confirm        # real full deploy
 #   ./scripts/deploy.sh plugins --confirm --no-cache-flush
-#   ./scripts/deploy.sh db push --confirm
+#   ./scripts/deploy.sh db --confirm
 #   ./scripts/deploy.sh status
 ###############################################################################
 
@@ -79,11 +79,11 @@ usage() {
 Usage: deploy.sh <command> [command_arg] [flags]
 
 Commands:
-  full              Full deployment (files + database)
-  plugins           Deploy plugins only
-  theme             Deploy active theme only
-  assets            Deploy static assets only
-  db <arg>          Database operations (export | import | push | pull)
+  full              Deploy plugins + theme (no database)
+  plugins [name]    Deploy all plugins or a specific one
+  theme             Deploy theme prime-fse
+  assets            Deploy xbo-market-kit/assets/ only
+  db                Database sync (requires double confirmation)
   status            Show remote server status
 
 Flags:
@@ -95,7 +95,7 @@ Examples:
   deploy.sh full                          # dry-run full deploy
   deploy.sh full --confirm                # real full deploy
   deploy.sh plugins --confirm --no-cache-flush
-  deploy.sh db push --confirm
+  deploy.sh db --confirm
   deploy.sh status
 HELP
     exit 0
@@ -261,7 +261,7 @@ smoke_check() {
 }
 
 # ---------------------------------------------------------------------------
-# Command placeholders
+# Commands
 # ---------------------------------------------------------------------------
 cmd_full() {
     info "=== FULL DEPLOY (plugins + theme) ==="
