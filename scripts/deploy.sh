@@ -375,7 +375,114 @@ cmd_assets() {
 
     success "Assets deploy complete"
 }
-cmd_db()      { die "Not implemented yet"; }
+cmd_db() {
+    # In dry-run mode, just show what would happen
+    if [[ "${DRY_RUN}" == "true" ]]; then
+        warn "DB deploy requires --confirm flag. This is what would happen:"
+        echo ""
+        echo "  1. Enable maintenance mode on server"
+        echo "  2. Backup production DB on server"
+        echo "  3. Export local DB (excluding litespeed tables)"
+        echo "  4. Upload dump to server"
+        echo "  5. Import dump on server"
+        echo "  6. Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
+        echo "  7. Ensure HTTPS URLs"
+        echo "  8. Disable maintenance mode"
+        echo "  9. Flush cache + smoke check"
+        echo ""
+        warn "Run with --confirm to execute."
+        return 0
+    fi
+
+    # Double confirmation for DB operations
+    echo ""
+    warn "╔══════════════════════════════════════════════════════════╗"
+    warn "║  DATABASE DEPLOY — THIS WILL OVERWRITE PRODUCTION DB!  ║"
+    warn "╠══════════════════════════════════════════════════════════╣"
+    warn "║  Target: ${REMOTE_URL}"
+    warn "║  Server: ${REMOTE_HOST}:${REMOTE_PATH}"
+    warn "╚══════════════════════════════════════════════════════════╝"
+    echo ""
+    read -rp "Type 'deploy-db' to confirm: " confirmation
+    if [[ "${confirmation}" != "deploy-db" ]]; then
+        die "Aborted. You typed: '${confirmation}'"
+    fi
+
+    local timestamp
+    timestamp=$(date +%Y%m%d_%H%M%S)
+    local local_dump="/tmp/xbo_local_dump_${timestamp}.sql"
+    local remote_backup="/tmp/xbo_prod_backup_${timestamp}.sql"
+    local remote_import="/tmp/xbo_local_dump_${timestamp}.sql"
+
+    # Step 1: Maintenance mode ON
+    info "Step 1/9: Enabling maintenance mode..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root maintenance-mode activate" || true
+    success "Maintenance mode enabled"
+
+    # Step 2: Backup production DB
+    info "Step 2/9: Backing up production DB..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root db export ${remote_backup}"
+    success "Production DB backed up to: ${remote_backup}"
+
+    # Step 3: Discover litespeed tables to exclude from local export
+    info "Step 3/9: Exporting local DB..."
+    local exclude_args=""
+    local ls_tables
+    ls_tables=$(wp --path="${PROJECT_ROOT}" db tables 'wp_litespeed*' --format=csv 2>/dev/null || echo "")
+    if [[ -n "${ls_tables}" ]]; then
+        IFS=',' read -ra tables <<< "${ls_tables}"
+        for table in "${tables[@]}"; do
+            exclude_args="${exclude_args} --exclude_tables=${table}"
+        done
+        info "Excluding litespeed tables: ${ls_tables}"
+    fi
+
+    # Export local DB
+    # shellcheck disable=SC2086
+    wp --path="${PROJECT_ROOT}" db export "${local_dump}" ${exclude_args}
+    success "Local DB exported to: ${local_dump}"
+
+    # Step 4: Upload dump to server
+    info "Step 4/9: Uploading dump to server..."
+    scp "${local_dump}" "${REMOTE_HOST}:${remote_import}"
+    success "Dump uploaded"
+
+    # Step 5: Import on server
+    info "Step 5/9: Importing dump on server..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root db import ${remote_import}"
+    success "DB imported"
+
+    # Step 6: Search-replace URLs
+    info "Step 6/9: Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root search-replace '${LOCAL_URL}' '${REMOTE_URL}' --skip-columns=guid --all-tables"
+    success "Search-replace complete"
+
+    # Step 7: Ensure HTTPS
+    info "Step 7/9: Ensuring HTTPS URLs..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root search-replace 'http://kishkin.dev' 'https://kishkin.dev' --skip-columns=guid --all-tables" || true
+    success "HTTPS enforced"
+
+    # Step 8: Maintenance mode OFF
+    info "Step 8/9: Disabling maintenance mode..."
+    remote_exec "wp --path=${REMOTE_PATH} --allow-root maintenance-mode deactivate" || true
+    success "Maintenance mode disabled"
+
+    # Step 9: Flush cache + smoke check
+    info "Step 9/9: Post-deploy checks..."
+    flush_cache
+    smoke_check
+
+    # Cleanup
+    rm -f "${local_dump}"
+    info "Local dump cleaned up"
+
+    # Cleanup remote import file
+    remote_exec "rm -f ${remote_import}" || true
+
+    echo ""
+    success "=== DATABASE DEPLOY COMPLETE ==="
+    info "Production backup saved on server: ${remote_backup}"
+}
 cmd_status() {
     info "Checking remote server: ${REMOTE_HOST}"
     echo ""
