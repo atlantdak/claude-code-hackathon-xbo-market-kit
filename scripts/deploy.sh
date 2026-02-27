@@ -263,7 +263,28 @@ smoke_check() {
 # ---------------------------------------------------------------------------
 # Command placeholders
 # ---------------------------------------------------------------------------
-cmd_full()    { die "Not implemented yet"; }
+cmd_full() {
+    info "=== FULL DEPLOY (plugins + theme) ==="
+    info "Note: database is NOT included. Use 'deploy.sh db' separately."
+    echo ""
+
+    # Temporarily disable cache flush and smoke check for sub-commands
+    local saved_cache_flush="${CACHE_FLUSH}"
+    CACHE_FLUSH=false
+
+    cmd_plugins
+    cmd_theme
+
+    # Restore and run once at the end
+    CACHE_FLUSH="${saved_cache_flush}"
+    flush_cache
+
+    if [[ "${DRY_RUN}" == "false" ]]; then
+        smoke_check
+    fi
+
+    success "=== FULL DEPLOY COMPLETE ==="
+}
 cmd_plugins() {
     local plugins_to_deploy=()
 
