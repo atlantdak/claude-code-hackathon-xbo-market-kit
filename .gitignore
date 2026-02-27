@@ -59,6 +59,7 @@
 !wp-content/
 !wp-content/themes/
 !wp-content/themes/prime-fse/
+!wp-content/themes/prime-fse/style.css
 !wp-content/themes/prime-fse/patterns/
 !wp-content/themes/prime-fse/patterns/getwid/
 !wp-content/themes/prime-fse/patterns/getwid/header.php
