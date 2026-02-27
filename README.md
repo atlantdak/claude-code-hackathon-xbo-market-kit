@@ -249,14 +249,16 @@ Active time = continuous Claude Code processing with no gap > 5 min between API 
 > **Legend:** ✅ Done &nbsp; ⬜ Planned
 >
 > All crypto icons served locally (205 SVGs). Daily sync via WP-Cron.
+>
+> **Synchronized Refresh:** All live widgets use centralized 15-second refresh interval, synchronized between backend cache TTL and frontend timers.
 
 ### Shortcode Examples
 
 ```
 [xbo_ticker symbols="BTC/USDT,ETH/USDT" refresh="15"]
-[xbo_movers mode="gainers" limit="8"]
-[xbo_orderbook symbol="BTC_USDT" depth="20" refresh="5"]
-[xbo_trades symbol="BTC/USDT" limit="20" refresh="10"]
+[xbo_movers mode="gainers" limit="8" refresh="15"]
+[xbo_orderbook symbol="BTC_USDT" depth="20" refresh="15"]
+[xbo_trades symbol="BTC/USDT" limit="20" refresh="15"]
 [xbo_slippage symbol="BTC_USDT" side="buy" amount="10000"]
 ```
 
@@ -419,6 +421,29 @@ app/public/                             # Git root
 │   └── tests/                          # PHPUnit tests
 └── CLAUDE.md                           # AI agent instructions
 ```
+
+---
+
+## Hooks and Filters
+
+### Refresh Interval Filter
+
+Override the default 15-second refresh interval for all live widgets:
+
+```php
+add_filter( 'xbo_market_kit/refresh_interval', function( $interval ) {
+    return 30; // Change to 30 seconds
+} );
+```
+
+**Note:** This filter affects:
+- Backend cache TTL (WordPress transients)
+- Frontend auto-refresh timers (JavaScript)
+- All live widgets: ticker, orderbook, trades, movers
+
+**Constant:** `XBO_MARKET_KIT_REFRESH_INTERVAL` (default: 15)
+
+**Helper function:** `xbo_market_kit_get_refresh_interval()`
 
 ---
 
