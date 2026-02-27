@@ -34,7 +34,7 @@ class TradesShortcode extends AbstractShortcode {
 		return array(
 			'symbol'  => 'BTC/USDT',
 			'limit'   => '20',
-			'refresh' => '10',
+			'refresh' => '15',
 		);
 	}
 

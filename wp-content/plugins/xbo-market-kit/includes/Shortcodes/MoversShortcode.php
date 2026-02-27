@@ -36,8 +36,9 @@ class MoversShortcode extends AbstractShortcode {
 	 */
 	protected function get_defaults(): array {
 		return array(
-			'mode'  => 'gainers',
-			'limit' => '10',
+			'mode'    => 'gainers',
+			'limit'   => '10',
+			'refresh' => '15',
 		);
 	}
 

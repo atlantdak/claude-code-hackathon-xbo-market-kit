@@ -34,7 +34,7 @@ class OrderbookShortcode extends AbstractShortcode {
 		return array(
 			'symbol'  => 'BTC_USDT',
 			'depth'   => '20',
-			'refresh' => '5',
+			'refresh' => '15',
 		);
 	}
 
