@@ -44,9 +44,9 @@
 <table>
 <tr>
 <td align="center" width="130"><h2>~$238</h2><sub>Total Cost</sub></td>
-<td align="center" width="130"><h2>~22h 33m</h2><sub>Active Time</sub></td>
-<td align="center" width="130"><h2>18 / 18</h2><sub>Tasks Done</sub></td>
-<td align="center" width="130"><h2>160</h2><sub>Commits</sub></td>
+<td align="center" width="130"><h2>~23h 18m</h2><sub>Active Time</sub></td>
+<td align="center" width="130"><h2>22 / 22</h2><sub>Tasks Done</sub></td>
+<td align="center" width="130"><h2>170</h2><sub>Commits</sub></td>
 <td align="center" width="130"><h2>~473M</h2><sub>Tokens</sub></td>
 <td align="center" width="130"><h2>51</h2><sub>Sessions</sub></td>
 </tr>
@@ -59,7 +59,7 @@
 ### Time Allocation
 
 ```mermaid
-pie title Active Dev Time by Task (~1353 min total)
+pie title Active Dev Time by Task (~1841 min total)
     "Project Setup (48m)" : 48
     "AI Workflow v1 (51m)" : 51
     "Workflow v2 (70m)" : 70
@@ -78,6 +78,10 @@ pie title Active Dev Time by Task (~1353 min total)
     "Content Cleanup (20m)" : 20
     "Pages + Timer (250m)" : 250
     "Timer Fix (5m)" : 5
+    "Slippage Defaults (30m)" : 30
+    "Mega Menu (95m)" : 95
+    "Cache-Timer Sync (210m)" : 210
+    "Homepage Redesign (45m)" : 45
 ```
 
 ### Commits per Task
@@ -178,6 +182,9 @@ pie title Cost by Day ($238 total)
 | **17** | **Pages Redesign + Timer Block** — 9 pages with gradient + glassmorphism, Refresh Timer block with auto-sync, 6 block patterns, 15 unit tests | **250m** | **10** | **$35.00** | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 18 | **Timer Display Fix** — CSS Grid overlay for digit vertical centering in circle ([#27](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/27)) | ~5m | 1 | $3.00 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 | 19 | **Slippage Defaults** — default amount=1, always-visible results with em dash placeholders, field height alignment | ~30m | 5 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 20 | **Mega Menu** — XBO-branded navigation with 5 top-level items, Getwid icon-box dropdowns, CSS hover effects ([#28](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/28)) | ~95m | 6 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 21 | **Cache-Timer Sync** — Centralized 15s refresh constant, unified CacheManager, removed cache_mode | ~210m | 10 | $25.00 | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
+| 22 | **Homepage Redesign** — 10-section showcase landing page, Statistics/Quick Start/Docs sections, Codex-reviewed ([#29](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit/issues/29)) | ~45m | 4 | — | ![done](https://img.shields.io/badge/-done-22C55E?style=flat-square) |
 
 > **Duration = active session time** (idle gaps > 5 min excluded). Wall clock span was significantly longer — see details below.
 
@@ -542,7 +549,7 @@ wp xbo icons status         # Show icon sync status
 | [Visual Showcase](docs/SHOWCASE.md) | Screenshots of all blocks (editor + frontend) |
 | [CLAUDE.md](CLAUDE.md) | Instructions for Claude Code agents |
 
-> **160 total commits** — task commits (130) + documentation/metrics/readme updates (30).
+> **170 total commits** — task commits (140) + documentation/metrics/readme updates (30).
 
 ---
 
@@ -563,14 +570,17 @@ wp xbo icons status         # Show icon sync status
 
 ### Pages
 
-**Homepage**
-- Hero section with XBO branding and royal purple accents
-- Refresh timer showing last data update
-- Live crypto widgets (Ticker with sparklines, Top Movers with gainers/losers tabs)
-- Three-column feature cards highlighting plugin capabilities
-- Market data sections (Orderbook + Recent Trades side-by-side)
-- Slippage calculator demonstration
-- Call-to-action sections
+**Homepage** (10-section Showcase Landing)
+1. Hero with XBO branding and royal purple accents
+2. Refresh Timer (15s) + Ticker (6 pairs, 3 columns)
+3. Features Grid (3 cards: Blocks, API Data, Integration Methods)
+4. Statistics (5 Blocks, 280+ Pairs, 15s Refresh, 100% Free)
+5. Quick Start (3 steps: Install, Add Block, Publish)
+6. Top Movers showcase with demo link
+7. Order Book + Recent Trades (2 columns with demo links)
+8. Slippage Calculator showcase with demo link
+9. Documentation & Resources (6 cards linking to docs)
+10. CTA "Ready to Add Live Crypto Data?"
 
 **Widget Demos** (5 enhanced pages)
 - **Ticker Demo** — Real-time price display with 24h change % and sparkline charts
