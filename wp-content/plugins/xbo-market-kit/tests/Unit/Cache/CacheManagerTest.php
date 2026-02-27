@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace XboMarketKit\Tests\Unit\Cache;
 
-use XboMarketKit\Cache\CacheManager;
-use PHPUnit\Framework\TestCase;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use PHPUnit\Framework\TestCase;
+use XboMarketKit\Cache\CacheManager;
 
 class CacheManagerTest extends TestCase {
+	use MockeryPHPUnitIntegration;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -32,6 +34,8 @@ class CacheManagerTest extends TestCase {
 			->andReturn( true );
 
 		$cache->set( $key, $data, $ttl );
+
+		$this->assertTrue( true );
 	}
 
 	public function test_set_enforces_minimum_ttl_of_one(): void {
@@ -43,6 +47,8 @@ class CacheManagerTest extends TestCase {
 			->andReturn( true );
 
 		$cache->set( 'key', 'data', 0 );
+
+		$this->assertTrue( true );
 	}
 
 	public function test_get_returns_cached_value(): void {
@@ -78,5 +84,27 @@ class CacheManagerTest extends TestCase {
 			->andReturn( true );
 
 		$cache->delete( 'test_key' );
+
+		$this->assertTrue( true );
+	}
+
+	public function test_flush_all_returns_deleted_count(): void {
+		global $wpdb;
+
+		$cache = new CacheManager();
+
+		// Mock wpdb.
+		$wpdb          = \Mockery::mock( 'wpdb' );
+		$wpdb->options = 'wp_options';
+		$wpdb->shouldReceive( 'prepare' )
+			->once()
+			->andReturn( 'DELETE SQL' );
+		$wpdb->shouldReceive( 'query' )
+			->once()
+			->andReturn( 5 );
+
+		$result = $cache->flush_all();
+
+		$this->assertSame( 5, $result );
 	}
 }

@@ -81,23 +81,6 @@ class AdminSettings {
 				'default'   => 'BTC/USDT,ETH/USDT',
 			)
 		);
-
-		add_settings_field(
-			'cache_mode',
-			__( 'Cache Mode', 'xbo-market-kit' ),
-			array( $this, 'render_select_field' ),
-			self::PAGE_SLUG,
-			'xbo_market_kit_general',
-			array(
-				'label_for' => 'cache_mode',
-				'options'   => array(
-					'fast'   => __( 'Fast (shorter TTL)', 'xbo-market-kit' ),
-					'normal' => __( 'Normal', 'xbo-market-kit' ),
-					'slow'   => __( 'Slow (longer TTL)', 'xbo-market-kit' ),
-				),
-				'default'   => 'normal',
-			)
-		);
 	}
 
 	/**
@@ -110,8 +93,6 @@ class AdminSettings {
 		$output = array();
 
 		$output['default_symbols'] = sanitize_text_field( $input['default_symbols'] ?? 'BTC/USDT,ETH/USDT' );
-		$output['cache_mode']      = in_array( $input['cache_mode'] ?? '', array( 'fast', 'normal', 'slow' ), true )
-			? $input['cache_mode'] : 'normal';
 		return $output;
 	}
 
