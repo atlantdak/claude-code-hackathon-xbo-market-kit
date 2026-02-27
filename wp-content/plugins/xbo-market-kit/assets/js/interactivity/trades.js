@@ -17,7 +17,7 @@ const { state, actions } = store( 'xbo-market-kit', {
 			const ctx = getContext();
 			state._tradesSymbol = ctx.symbol || 'BTC/USDT';
 			state._tradesLimit = ctx.limit || 20;
-			const refresh = ( ctx.refresh || 10 ) * 1000;
+			const refresh = ( parseInt( ctx.refresh, 10 ) || 15 ) * 1000;
 
 			actions.fetchTrades();
 			setInterval( actions.fetchTrades, refresh );

@@ -34,7 +34,8 @@ const { state, actions } = store( 'xbo-market-kit', {
 			}
 
 			actions.fetchMovers();
-			setInterval( actions.fetchMovers, 30000 );
+			const refresh = ( parseInt( ctx.refresh, 10 ) || 15 ) * 1000;
+			setInterval( actions.fetchMovers, refresh );
 		},
 		setMoversGainers() {
 			state._moversMode = 'gainers';

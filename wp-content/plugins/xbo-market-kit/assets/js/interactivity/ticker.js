@@ -67,7 +67,7 @@ const { state, actions } = store( 'xbo-market-kit', {
 		initTicker() {
 			const ctx = getContext();
 			const symbols = ctx.symbols || 'BTC/USDT,ETH/USDT';
-			const refresh = ( ctx.refresh || 15 ) * 1000;
+			const refresh = ( parseInt( ctx.refresh, 10 ) || 15 ) * 1000;
 			const sparklineData = ctx.sparklineData || {};
 
 			// Initialize ring buffers from server-rendered data.

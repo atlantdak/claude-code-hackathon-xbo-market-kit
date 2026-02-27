@@ -23,7 +23,7 @@ const { state, actions } = store( 'xbo-market-kit', {
 			const ctx = getContext();
 			state._obSymbol = ctx.symbol || 'BTC_USDT';
 			state._obDepth = ctx.depth || 20;
-			const refresh = ( ctx.refresh || 5 ) * 1000;
+			const refresh = ( parseInt( ctx.refresh, 10 ) || 15 ) * 1000;
 
 			actions.fetchOrderbook();
 			setInterval( actions.fetchOrderbook, refresh );
