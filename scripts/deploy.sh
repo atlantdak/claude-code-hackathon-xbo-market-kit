@@ -316,8 +316,44 @@ cmd_plugins() {
 
     success "Plugin deploy complete"
 }
-cmd_theme()   { die "Not implemented yet"; }
-cmd_assets()  { die "Not implemented yet"; }
+cmd_theme() {
+    local src="${PROJECT_ROOT}/wp-content/themes/prime-fse/"
+    local dest="${REMOTE_HOST}:${REMOTE_PATH}/wp-content/themes/prime-fse/"
+
+    if [[ ! -d "${src}" ]]; then
+        die "Theme not found: ${src}"
+    fi
+
+    info "Deploying theme: prime-fse"
+    do_rsync "${src}" "${dest}"
+
+    flush_cache
+
+    if [[ "${DRY_RUN}" == "false" ]]; then
+        smoke_check
+    fi
+
+    success "Theme deploy complete"
+}
+cmd_assets() {
+    local src="${PROJECT_ROOT}/wp-content/plugins/xbo-market-kit/assets/"
+    local dest="${REMOTE_HOST}:${REMOTE_PATH}/wp-content/plugins/xbo-market-kit/assets/"
+
+    if [[ ! -d "${src}" ]]; then
+        die "Assets directory not found: ${src}"
+    fi
+
+    info "Deploying assets: xbo-market-kit/assets/"
+    do_rsync "${src}" "${dest}"
+
+    flush_cache
+
+    if [[ "${DRY_RUN}" == "false" ]]; then
+        smoke_check
+    fi
+
+    success "Assets deploy complete"
+}
 cmd_db()      { die "Not implemented yet"; }
 cmd_status() {
     info "Checking remote server: ${REMOTE_HOST}"
