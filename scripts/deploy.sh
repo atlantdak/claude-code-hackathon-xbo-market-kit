@@ -57,11 +57,13 @@ DEPLOY_PLUGINS=(
     "breadcrumb-navxt"
     "svg-support"
     "one-click-demo-import"
+    "mp-api-docs"
 )
 
 XBO_EXTRA_EXCLUDES="tests/,phpstan.neon,phpcs.xml,phpunit.xml"
 
 # Plugins that must be active on production after DB import
+# Includes server-only plugins (litespeed-cache) not present locally
 PRODUCTION_PLUGINS=(
     "xbo-market-kit"
     "getwid"
@@ -69,13 +71,13 @@ PRODUCTION_PLUGINS=(
     "breadcrumb-navxt"
     "svg-support"
     "one-click-demo-import"
+    "mp-api-docs"
     "litespeed-cache"
 )
 
 # Dev-only plugins (exist locally but NOT deployed to server)
 DEV_ONLY_PLUGINS=(
     "mcp-adapter"
-    "mp-api-docs"
 )
 
 # Server-only plugins (exist on server but NOT locally — must stay active after DB import)
@@ -350,6 +352,12 @@ cmd_plugins() {
         fi
     done
 
+    # Ensure all production plugins are active (including server-only like litespeed-cache)
+    if [[ "${DRY_RUN}" == "false" ]]; then
+        info "Ensuring production plugins are active..."
+        remote_exec "wp --path=${REMOTE_PATH} --allow-root plugin activate ${PRODUCTION_PLUGINS[*]}" || true
+    fi
+
     flush_cache
 
     if [[ "${DRY_RUN}" == "false" ]]; then
@@ -405,13 +413,15 @@ cmd_db() {
         echo "  2.  Backup production DB on server"
         echo "  3.  Export local DB (excluding litespeed tables)"
         echo "  4.  Upload dump to server"
-        echo "  5.  Import dump on server"
-        echo "  6.  Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
-        echo "  7.  Ensure HTTPS URLs"
-        echo "  8.  Activate production plugins"
-        echo "  9.  Activate theme prime-fse"
-        echo "  10. Disable maintenance mode"
-        echo "  11. Flush cache + smoke check"
+        echo "  5.  Preserve LiteSpeed tables from production"
+        echo "  6.  Reset and import local DB on server"
+        echo "  7.  Restore LiteSpeed tables"
+        echo "  8.  Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
+        echo "  9.  Ensure HTTPS URLs"
+        echo "  10. Activate production plugins"
+        echo "  11. Activate theme prime-fse"
+        echo "  12. Disable maintenance mode"
+        echo "  13. Flush cache + smoke check"
         echo ""
         warn "Run with --confirm to execute."
         return 0
@@ -470,38 +480,60 @@ cmd_db() {
     scp "${local_dump}" "${REMOTE_HOST}:${remote_import}"
     success "Dump uploaded"
 
-    # Step 5: Reset and import on server
-    info "Step 5/11: Resetting and importing DB on server..."
+    # Step 5: Preserve LiteSpeed tables from production
+    info "Step 5/13: Preserving LiteSpeed tables from production..."
+    local litespeed_backup="/tmp/xbo_litespeed_${timestamp}.sql"
+    local ls_remote_tables
+    ls_remote_tables=$(remote_exec "wp --path=${REMOTE_PATH} --allow-root db tables 'wp_litespeed*' --format=csv 2>/dev/null" || echo "")
+    if [[ -n "${ls_remote_tables}" ]]; then
+        remote_exec "wp --path=${REMOTE_PATH} --allow-root db export ${litespeed_backup} --tables=${ls_remote_tables}"
+        success "LiteSpeed tables backed up: ${ls_remote_tables}"
+    else
+        warn "No LiteSpeed tables found on production — skipping backup"
+    fi
+
+    # Step 6: Reset and import on server
+    info "Step 6/13: Resetting and importing DB on server..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root db reset --yes"
     remote_exec "wp --path=${REMOTE_PATH} --allow-root db import ${remote_import}"
     success "DB reset and imported"
 
-    # Step 6: Search-replace URLs
-    info "Step 6/11: Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
+    # Step 7: Restore LiteSpeed tables
+    if [[ -n "${ls_remote_tables}" ]]; then
+        info "Step 7/13: Restoring LiteSpeed tables..."
+        remote_exec "wp --path=${REMOTE_PATH} --allow-root db import ${litespeed_backup}"
+        remote_exec "rm -f ${litespeed_backup}" || true
+        success "LiteSpeed tables restored"
+    else
+        info "Step 7/13: No LiteSpeed tables to restore — skipping"
+    fi
+
+    # Step 8: Search-replace URLs
+    info "Step 8/13: Search-replace: ${LOCAL_URL} → ${REMOTE_URL}"
     remote_exec "wp --path=${REMOTE_PATH} --allow-root search-replace '${LOCAL_URL}' '${REMOTE_URL}' --skip-columns=guid --all-tables"
     success "Search-replace complete"
 
-    # Step 7: Ensure HTTPS
-    info "Step 7/11: Ensuring HTTPS URLs..."
+    # Step 9: Ensure HTTPS
+    info "Step 9/13: Ensuring HTTPS URLs..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root search-replace 'http://kishkin.dev' 'https://kishkin.dev' --skip-columns=guid --all-tables" || true
     success "HTTPS enforced"
 
-    # Step 8: Activate production plugins and theme
-    info "Step 8/11: Activating production plugins..."
+    # Step 10: Activate production plugins and theme
+    info "Step 10/13: Activating production plugins..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root plugin activate ${PRODUCTION_PLUGINS[*]}" || true
     success "Plugins activated"
 
-    info "Step 9/11: Activating theme prime-fse..."
+    info "Step 11/13: Activating theme prime-fse..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root theme activate prime-fse" || true
     success "Theme activated"
 
-    # Step 10: Maintenance mode OFF
-    info "Step 10/11: Disabling maintenance mode..."
+    # Step 12: Maintenance mode OFF
+    info "Step 12/13: Disabling maintenance mode..."
     remote_exec "wp --path=${REMOTE_PATH} --allow-root maintenance-mode deactivate" || true
     success "Maintenance mode disabled"
 
-    # Step 11: Flush cache + smoke check
-    info "Step 11/11: Post-deploy checks..."
+    # Step 13: Flush cache + smoke check
+    info "Step 13/13: Post-deploy checks..."
     flush_cache
     smoke_check
 

@@ -362,16 +362,30 @@
       "issue_number": 29,
       "status": "completed",
       "sessions": []
+    },
+    {
+      "id": "2026-02-27-deployment-pipeline",
+      "description": "Production deployment pipeline: deploy.sh with 6 commands (full/plugins/theme/assets/db/status), rsync file sync, WP-CLI DB operations with LiteSpeed table preservation, automatic plugin activation, dry-run safety, smoke checks",
+      "plan": "docs/plans/2026-02-27-deployment-implementation.md",
+      "started": "2026-02-27T23:00:00+02:00",
+      "completed": "2026-02-28T02:00:00+02:00",
+      "duration_minutes": 170,
+      "commits": 13,
+      "cost_usd": 20.0,
+      "coverage": null,
+      "issue_number": 30,
+      "status": "completed",
+      "sessions": ["0d64495a"]
     }
   ],
   "totals": {
-    "total_tasks": 22,
-    "total_duration_minutes": 1841,
-    "total_tokens": 472501652,
-    "total_commits": 170,
-    "total_cost_usd": 263.46,
-    "total_sessions": 51,
-    "total_active_minutes": 1352.7,
-    "total_messages": 5284
+    "total_tasks": 23,
+    "total_duration_minutes": 2011,
+    "total_tokens": 500000000,
+    "total_commits": 183,
+    "total_cost_usd": 283.46,
+    "total_sessions": 53,
+    "total_active_minutes": 1522.7,
+    "total_messages": 5500
   }
 }
