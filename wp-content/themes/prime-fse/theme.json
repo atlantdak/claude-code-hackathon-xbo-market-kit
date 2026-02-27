@@ -56,6 +56,11 @@
 					"slug": "color-7"
 				},
 				{
+					"color": "#898299",
+					"name": "Muted Text",
+					"slug": "color-8"
+				},
+				{
 					"color": "#ffffff",
 					"name": "White",
 					"slug": "color-9"

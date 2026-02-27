@@ -25,8 +25,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/widgets-overview/">Widgets Overview</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Compare all 5 widgets and use cases</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Compare all 5 widgets and use cases</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -35,8 +35,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-demo-movers/">Top Movers</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Biggest gainers and losers</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Biggest gainers and losers</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -45,8 +45,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-demo-trades/">Recent Trades</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Latest executed trades</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Latest executed trades</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box --></div>
 <!-- /wp:column -->
@@ -57,8 +57,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-demo-ticker/">Ticker</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Real-time crypto price ticker</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Real-time crypto price ticker</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -67,8 +67,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-demo-orderbook/">Order Book</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Live order book depth</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Live order book depth</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -77,8 +77,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-demo-slippage/">Slippage Calculator</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Estimate trading slippage</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Estimate trading slippage</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box --></div>
 <!-- /wp:column --></div>
@@ -90,8 +90,8 @@
 <div class="wp-block-getwid-advanced-heading"><h3 class="wp-block-getwid-advanced-heading__content has-text-color has-color-1-color">Explore All Widgets</h3></div>
 <!-- /wp:getwid/advanced-heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;font-size:14px">5 interactive crypto widgets with live market data from XBO exchange</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="font-size:14px">5 interactive crypto widgets with live market data from XBO exchange</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -111,8 +111,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-showcase/">Showcase</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Featured integration examples</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Featured integration examples</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -121,8 +121,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-demos/">Block Demos</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">All Gutenberg blocks in action</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">All Gutenberg blocks in action</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -131,8 +131,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/real-world-layouts/">Real-world Layouts</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Production-ready layout templates</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Production-ready layout templates</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box --></div>
 <!-- /wp:column -->
@@ -142,8 +142,8 @@
 <div class="wp-block-getwid-advanced-heading"><h3 class="wp-block-getwid-advanced-heading__content has-text-color has-color-1-color">See It Live</h3></div>
 <!-- /wp:getwid/advanced-heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;font-size:14px">Explore real integration examples and layout templates for your WordPress site</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="font-size:14px">Explore real integration examples and layout templates for your WordPress site</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -163,8 +163,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/getting-started/">Getting Started</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Quick start guide for developers</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Quick start guide for developers</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -173,8 +173,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/xbo-api-docs/">API Documentation</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">REST API reference and endpoints</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">REST API reference and endpoints</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -183,8 +183,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/integration-guide/">Integration Guide</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Custom theme and plugin integration</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Custom theme and plugin integration</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box --></div>
 <!-- /wp:column -->
@@ -194,8 +194,8 @@
 <div class="wp-block-getwid-advanced-heading"><h3 class="wp-block-getwid-advanced-heading__content has-text-color has-color-1-color">Quick Start</h3></div>
 <!-- /wp:getwid/advanced-heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;font-size:14px">Get up and running in 5 minutes. Install, configure, and display your first widget.</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="font-size:14px">Get up and running in 5 minutes. Install, configure, and display your first widget.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -215,8 +215,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/faq/">FAQ</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Frequently asked questions</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Frequently asked questions</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -225,8 +225,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/changelog/">Changelog</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Version history and updates</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Version history and updates</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box -->
 
@@ -235,8 +235,8 @@
 <h4 class="wp-block-heading has-color-4-color has-text-color" style="font-size:16px;font-style:normal;font-weight:600"><a href="/privacy-policy/">Privacy Policy</a></h4>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;margin-top:2px;margin-bottom:0px;font-size:13px">Data handling and privacy</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"13px"},"spacing":{"margin":{"top":"2px","bottom":"0px"}}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="margin-top:2px;margin-bottom:0px;font-size:13px">Data handling and privacy</p>
 <!-- /wp:paragraph --></div></div>
 <!-- /wp:getwid/icon-box --></div>
 <!-- /wp:column -->
@@ -246,12 +246,12 @@
 <div class="wp-block-getwid-advanced-heading"><h3 class="wp-block-getwid-advanced-heading__content has-text-color has-color-1-color">Get In Touch</h3></div>
 <!-- /wp:getwid/advanced-heading -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;font-size:14px"><i class="fas fa-envelope"></i> atlantdak@gmail.com</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="font-size:14px"><i class="fas fa-envelope"></i> atlantdak@gmail.com</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"},"color":{"text":"#898299"}}} -->
-<p class="has-text-color" style="color:#898299;font-size:14px"><i class="fab fa-github"></i> <a href="https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit">View Repository</a></p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px"}},"textColor":"color-8"} -->
+<p class="has-text-color has-color-8-color" style="font-size:14px"><i class="fab fa-github"></i> <a href="https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit">View Repository</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
