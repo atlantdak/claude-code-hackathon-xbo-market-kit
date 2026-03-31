@@ -2,7 +2,7 @@
 
 Welcome to the XBO Market Kit project documentation.
 
-**Live Demo:** [https://kishkin.dev](https://kishkin.dev) | **GitHub:** [atlantdak/claude-code-hackathon-xbo-market-kit](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
+**Live Demo:** [https://xbo-hackathon.kishkin.dev](https://xbo-hackathon.kishkin.dev) | **GitHub:** [atlantdak/claude-code-hackathon-xbo-market-kit](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
 
 **Version:** 1.0.0 | **Built with:** Claude Code during the Claude Code Hackathon 2026
 

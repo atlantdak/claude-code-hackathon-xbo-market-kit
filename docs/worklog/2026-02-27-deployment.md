@@ -2,7 +2,7 @@
 
 ## Summary
 
-Built a complete deployment pipeline (`scripts/deploy.sh`) for deploying WordPress content from Local by Flywheel to production server (178.62.244.240, LiteSpeed, https://kishkin.dev). Bash script with 6 subcommands (full, plugins, theme, assets, db, status), dry-run by default, rsync-based file sync, WP-CLI database operations with LiteSpeed table preservation, and automatic production plugin activation.
+Built a complete deployment pipeline (`scripts/deploy.sh`) for deploying WordPress content from Local by Flywheel to production server (178.62.244.240, LiteSpeed, https://xbo-hackathon.kishkin.dev). Bash script with 6 subcommands (full, plugins, theme, assets, db, status), dry-run by default, rsync-based file sync, WP-CLI database operations with LiteSpeed table preservation, and automatic production plugin activation.
 
 ## Time Tracking
 
@@ -50,7 +50,7 @@ Built a complete deployment pipeline (`scripts/deploy.sh`) for deploying WordPre
 - [x] Production plugins activation after every plugin deploy
 - [x] All 7 plugins deployed and active (xbo-market-kit, getwid, getwid-megamenu, breadcrumb-navxt, svg-support, one-click-demo-import, mp-api-docs)
 - [x] LiteSpeed cache remains active
-- [x] Production site verified: https://kishkin.dev
+- [x] Production site verified: https://xbo-hackathon.kishkin.dev
 
 ## Commits
 

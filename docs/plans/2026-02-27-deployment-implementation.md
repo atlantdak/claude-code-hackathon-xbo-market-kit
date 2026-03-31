@@ -40,7 +40,7 @@ REMOTE_HOST="root@178.62.244.240"
 REMOTE_PATH="/var/www/html"
 REMOTE_OWNER="www-data:www-data"
 LOCAL_URL="http://claude-code-hackathon-xbo-market-kit.local"
-REMOTE_URL="https://kishkin.dev"
+REMOTE_URL="https://xbo-hackathon.kishkin.dev"
 ```
 
 **Step 3: Verify deploy.conf is gitignored**
@@ -321,7 +321,7 @@ cmd_status() {
 **Step 2: Test**
 
 Run: `bash scripts/deploy.sh status`
-Expected: see WP version 6.9, site URL https://kishkin.dev, plugin list, theme list.
+Expected: see WP version 6.9, site URL https://xbo-hackathon.kishkin.dev, plugin list, theme list.
 
 **Step 3: Commit**
 
@@ -649,7 +649,7 @@ cmd_db() {
 
     # Also replace http with https if needed
     info "Ensuring HTTPS URLs..."
-    remote_exec "wp --path=$REMOTE_PATH --allow-root search-replace 'http://kishkin.dev' 'https://kishkin.dev' --skip-columns=guid --all-tables" || true
+    remote_exec "wp --path=$REMOTE_PATH --allow-root search-replace 'http://kishkin.dev' 'https://xbo-hackathon.kishkin.dev' --skip-columns=guid --all-tables" || true
 
     # Step 8: Maintenance mode OFF
     info "Disabling maintenance mode..."
@@ -718,7 +718,7 @@ Expected: prime-fse synced, smoke check passes.
 
 **Step 3: Verify on site**
 
-Open: `https://kishkin.dev` — should show the site with deployed plugins/theme.
+Open: `https://xbo-hackathon.kishkin.dev` — should show the site with deployed plugins/theme.
 
 **Step 4: Commit plan doc**
 

@@ -13,7 +13,7 @@ server via SSH + rsync. Single bash script with subcommands for granular control
 | | Local | Production |
 |---|---|---|
 | WordPress | 6.9.1 | 6.9 |
-| URL | http://claude-code-hackathon-xbo-market-kit.local | https://kishkin.dev |
+| URL | http://claude-code-hackathon-xbo-market-kit.local | https://xbo-hackathon.kishkin.dev |
 | Path | (project root) | /var/www/html |
 | Server | Local by Flywheel | LiteSpeed |
 | SSH | n/a | root@178.62.244.240 |
@@ -110,15 +110,15 @@ REMOTE_HOST="root@178.62.244.240"
 REMOTE_PATH="/var/www/html"
 REMOTE_OWNER="www-data:www-data"
 LOCAL_URL="http://claude-code-hackathon-xbo-market-kit.local"
-REMOTE_URL="https://kishkin.dev"
+REMOTE_URL="https://xbo-hackathon.kishkin.dev"
 ```
 
 Template: `scripts/deploy.conf.example` (committed to git)
 
 ## Post-deploy Checks
 
-1. `curl -sL -o /dev/null -w "%{http_code}" https://kishkin.dev` → expect 200
-2. `curl -sL -o /dev/null -w "%{http_code}" https://kishkin.dev/wp-admin/` → expect 200/302
+1. `curl -sL -o /dev/null -w "%{http_code}" https://xbo-hackathon.kishkin.dev` → expect 200
+2. `curl -sL -o /dev/null -w "%{http_code}" https://xbo-hackathon.kishkin.dev/wp-admin/` → expect 200/302
 3. `wp --path=... --allow-root plugin list` → verify active plugins
 4. `wp --path=... --allow-root option get siteurl` → verify correct URL
 

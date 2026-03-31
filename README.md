@@ -578,20 +578,20 @@ wp xbo icons status         # Show icon sync status
 
 | Page | URL | Status |
 |:-----|:----|:------:|
-| **Home** | [kishkin.dev](https://kishkin.dev) | ✅ |
-| **Widgets Overview** | [/widgets-overview/](https://kishkin.dev/widgets-overview/) | ✅ |
-| **Ticker Demo** | [/xbo-demos/xbo-demo-ticker/](https://kishkin.dev/xbo-demos/xbo-demo-ticker/) | ✅ |
-| **Top Movers Demo** | [/xbo-demos/xbo-demo-movers/](https://kishkin.dev/xbo-demos/xbo-demo-movers/) | ✅ |
-| **Order Book Demo** | [/xbo-demos/xbo-demo-orderbook/](https://kishkin.dev/xbo-demos/xbo-demo-orderbook/) | ✅ |
-| **Recent Trades Demo** | [/xbo-demos/xbo-demo-trades/](https://kishkin.dev/xbo-demos/xbo-demo-trades/) | ✅ |
-| **Slippage Demo** | [/xbo-demos/xbo-demo-slippage/](https://kishkin.dev/xbo-demos/xbo-demo-slippage/) | ✅ |
-| **Showcase** | [/xbo-showcase/](https://kishkin.dev/xbo-showcase/) | ✅ |
-| **Getting Started** | [/getting-started/](https://kishkin.dev/getting-started/) | ✅ |
-| **API Documentation** | [/xbo-api-docs/](https://kishkin.dev/xbo-api-docs/) | ✅ |
-| **Integration Guide** | [/integration-guide/](https://kishkin.dev/integration-guide/) | ✅ |
-| **Real-world Layouts** | [/real-world-layouts/](https://kishkin.dev/real-world-layouts/) | ✅ |
-| **FAQ** | [/faq/](https://kishkin.dev/faq/) | ✅ |
-| **Changelog** | [/changelog/](https://kishkin.dev/changelog/) | ✅ |
+| **Home** | [xbo-hackathon.kishkin.dev](https://xbo-hackathon.kishkin.dev) | ✅ |
+| **Widgets Overview** | [/widgets-overview/](https://xbo-hackathon.kishkin.dev/widgets-overview/) | ✅ |
+| **Ticker Demo** | [/xbo-demos/xbo-demo-ticker/](https://xbo-hackathon.kishkin.dev/xbo-demos/xbo-demo-ticker/) | ✅ |
+| **Top Movers Demo** | [/xbo-demos/xbo-demo-movers/](https://xbo-hackathon.kishkin.dev/xbo-demos/xbo-demo-movers/) | ✅ |
+| **Order Book Demo** | [/xbo-demos/xbo-demo-orderbook/](https://xbo-hackathon.kishkin.dev/xbo-demos/xbo-demo-orderbook/) | ✅ |
+| **Recent Trades Demo** | [/xbo-demos/xbo-demo-trades/](https://xbo-hackathon.kishkin.dev/xbo-demos/xbo-demo-trades/) | ✅ |
+| **Slippage Demo** | [/xbo-demos/xbo-demo-slippage/](https://xbo-hackathon.kishkin.dev/xbo-demos/xbo-demo-slippage/) | ✅ |
+| **Showcase** | [/xbo-showcase/](https://xbo-hackathon.kishkin.dev/xbo-showcase/) | ✅ |
+| **Getting Started** | [/getting-started/](https://xbo-hackathon.kishkin.dev/getting-started/) | ✅ |
+| **API Documentation** | [/xbo-api-docs/](https://xbo-hackathon.kishkin.dev/xbo-api-docs/) | ✅ |
+| **Integration Guide** | [/integration-guide/](https://xbo-hackathon.kishkin.dev/integration-guide/) | ✅ |
+| **Real-world Layouts** | [/real-world-layouts/](https://xbo-hackathon.kishkin.dev/real-world-layouts/) | ✅ |
+| **FAQ** | [/faq/](https://xbo-hackathon.kishkin.dev/faq/) | ✅ |
+| **Changelog** | [/changelog/](https://xbo-hackathon.kishkin.dev/changelog/) | ✅ |
 
 > **[See full visual showcase with screenshots →](docs/SHOWCASE.md)**
 

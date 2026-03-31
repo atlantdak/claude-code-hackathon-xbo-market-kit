@@ -1,6 +1,6 @@
 # XBO Market Kit — Visual Showcase
 
-**Live Demo:** [https://kishkin.dev](https://kishkin.dev) | **GitHub:** [atlantdak/claude-code-hackathon-xbo-market-kit](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
+**Live Demo:** [https://xbo-hackathon.kishkin.dev](https://xbo-hackathon.kishkin.dev) | **GitHub:** [atlantdak/claude-code-hackathon-xbo-market-kit](https://github.com/atlantdak/claude-code-hackathon-xbo-market-kit)
 
 **Version:** 1.0.0 | Screenshots taken at 1728x1117 (MacBook 16" viewport).
 
